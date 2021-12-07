@@ -4,21 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class input extends Component
+class socialLogin extends Component
 {
-    public $name, $type, $placeholder, $value;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $type, $placeholder, $value = "")
+    public function __construct()
     {
-        $this->name = $name;
-        $this->type = $type;
-        $this->placeholder = $placeholder;
-        $this->value = $value;
+        //
     }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -26,6 +23,6 @@ class input extends Component
      */
     public function render()
     {
-        return view('components.input');
+        return view('components.social-login');
     }
 }
