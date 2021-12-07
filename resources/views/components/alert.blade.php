@@ -6,7 +6,7 @@
         </script>
     @endforeach
 @endif
-@if (session('message'))
+@if (session('message') || session('status'))
     <script>
         swal("Success!", "{{ session('message') }}", "success");
     </script>

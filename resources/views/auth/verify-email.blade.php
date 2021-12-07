@@ -1,39 +1,29 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+@extends('auth.layout.app')
+@section('title')
+    Verify Email Address
+@endsection
+@section('form')
+    <div class="text-center">
+        <div class="mb-4">
+            <img class="avatar avatar-xxl avatar-4by3" src="{{ asset('assets/svg/illustrations/click.svg') }}"
+                alt="Image Description">
         </div>
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
+        <h1 class="display-4">Verify your email</h1>
 
-        <div class="mt-4 flex items-center justify-between">
+        <p class="mb-1 text-left">Thanks for signing up! Before getting started, could you verify your email address by
+            clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+        </p>
+
+        <div class="mt-4 mb-3">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
-
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
+                <button type="submit" class="btn btn-primary btn-wide">Resend Verification Email</button>
             </form>
-
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
+                <button type="submit" class="btn btn-sm btn-secondery mt-3">Log Out</button>
             </form>
         </div>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection
