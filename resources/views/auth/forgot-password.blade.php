@@ -1,6 +1,6 @@
 @extends('auth.layout.app')
 @section('title')
-    Login Page
+Forgot password
 @endsection
 @section('form')
     <form class="js-validate" method="POST" action="{{ route('password.email') }}">
