@@ -14,7 +14,7 @@
     <main id="content" role="main" class="main">
         <div class="container">
             <a class="position-absolute top-0 left-0 right-0" href="index.html">
-                <img class="avatar avatar-xl avatar-4by3 avatar-centered" src="./assets/svg/logos/logo.svg"
+                <img class="avatar avatar-xxl avatar-4by3 avatar-centered" src="{{ asset('assets/svg/logos/logo-hr-dark.svg') }}"
                     alt="Image Description">
             </a>
             @yield('content')
