@@ -16,15 +16,19 @@ class input extends Component
     {
         if ($attribute) {
             $this->attribute = $attribute;
+        } else {
+            $this->attribute = "";
         }
         if ($value) {
             $this->value = $value;
+        } else {
+            $this->value = "";
         }
         $this->name = $name;
         $this->type = $type;
         $this->placeholder = $placeholder;
     }
-    
+
     /**
      * Get the view / contents that represent the component.
      *
