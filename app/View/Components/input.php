@@ -12,13 +12,17 @@ class input extends Component
      *
      * @return void
      */
-    public function __construct($name, $type, $placeholder, $value = "", $attribute = "")
+    public function __construct($name, $type, $placeholder, $value = null, $attribute = null)
     {
+        if ($attribute) {
+            $this->attribute = $attribute;
+        }
+        if ($value) {
+            $this->value = $value;
+        }
         $this->name = $name;
         $this->type = $type;
         $this->placeholder = $placeholder;
-        $this->value = $value;
-        $this->attribute = $attribute;
     }
     
     /**
