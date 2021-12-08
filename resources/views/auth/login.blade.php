@@ -12,7 +12,7 @@
                         here</a></p>
             </div>
 
-            <x-socialLogin />
+            <x-social-login />
 
             <span class="divider text-muted mb-4">OR</span>
         </div>
