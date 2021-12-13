@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\address;
 use App\Models\pricing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -12,11 +13,15 @@ class PricingController extends Controller
     public function index()
     {
         $price = pricing::all();
-        $data = hook();
-        return view('user.dashboard.pricing.index', compact('price', 'data'));
+        return view('user.dashboard.pricing.index', compact('price'));
     }
 
-    public function test()
+    public function show($card)
     {
+        $card = pricing::find($card);
+        // fetching all address detail of this user
+        $address = address::where('user_id', auth()->user()->id)->first();
+        $data = hook();
+        return view('user.dashboard.pricing.show', compact('card', 'address', 'data'));
     }
 }

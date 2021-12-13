@@ -13,7 +13,8 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
-        Route::get('/test', [PricingController::class, 'test'])->name('test');
+        Route::get('/show/{card}', [PricingController::class, 'show'])->name('show');
+        
     });
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/index', [ProfileController::class, 'index'])->name('index');
