@@ -30,14 +30,14 @@ class ProfileController extends Controller
         $user->save();
         return redirect()->back()->with('message', 'Profile Updated Successfully');
     }
-    
-    
+
+
     public function password()
     {
         return view('user.dashboard.profile.password');
     }
 
-    
+
     public function passwordUpdate(Request $request)
     {
         $validatedData = $request->validate([
@@ -63,17 +63,20 @@ class ProfileController extends Controller
             'city' => 'required|max:255',
             'country' => 'required|max:255',
             'zip' => 'required|max:255',
+            'order_id' => 'required|integer',
         ]);
 
-        // inserting address record of this user
-        $address = new address();
-        $address->user_id = auth()->user()->id;
-        $address->name = $validatedData['name'];
-        $address->address = $validatedData['address'];
-        $address->city = $validatedData['city'];
-        $address->zip = $validatedData['zip'];
-        $address->country = $validatedData['country'];
-        $address->save();
-        return redirect()->back()->with('message', 'Address Updated Successfully');
+        $address = address::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            [
+                'name' => $validatedData['name'],
+                'address' => $validatedData['address'],
+                'city' => $validatedData['city'],
+                'country' => $validatedData['country'],
+                'zip' => $validatedData['zip'],
+            ]
+        );
+
+        return redirect()->route('user.order.edit',['order' => $validatedData["order_id"]])->with('message', 'Address Updated Successfully');
     }
 }

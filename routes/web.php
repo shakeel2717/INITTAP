@@ -14,6 +14,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
         Route::get('/show/{card}', [PricingController::class, 'show'])->name('show');
+        Route::get('/edit/{order}', [PricingController::class, 'edit'])->name('edit');
         
     });
     Route::prefix('profile')->name('profile.')->group(function () {

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row gx-2 gx-lg-3">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Update Your Shipping Address</h3>
@@ -49,49 +49,16 @@
                                             <x-cities />
                                         </div>
                                     </div>
+                                    <input type="hidden" name="order_id" value="{{ $card->id }}">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Update Address Info</button>
+                                            <button type="submit" class="btn btn-primary">Update Address & Continue <i
+                                                    class="tio-arrow-large-forward"></i> </button>
                                         </div>
                                     </div>
                                 </div>
 
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Your Selected Card</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <p>Preview of your Card</p>
-                            {{-- <img class="card-back-image" src="{{ asset('assets/img/card/') }}/{{ $card->img }}-back.png" alt="Selected Card">
-                            <h2 class="cards-title">Shakeel Ahmad</h2>
-                            <p class="cards-desg">CEO</p> --}}
-                            <div class="card-box">
-                                <div class="card-left">
-                                    <img src="{{ asset('assets/img/card/man.png') }}" alt="Profile Picture">
-                                </div>
-                                <div class="card-right">
-                                    <img src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Logo">
-                                    <h2>Shakeel Ahmad</h2>
-                                    <h4>Website Designer</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="{{ route('user.order.index') }}" class="btn btn-lg btn-block btn-white">Change the Card</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="" class="btn btn-lg btn-block btn-primary">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>

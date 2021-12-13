@@ -33,9 +33,11 @@
 .card-right h2 {
     color: white;
     margin-top: 40px;
+    text-align: left;
 }
 
 .card-right h4 {
     color: white;
     margin-bottom: 30px;
+    text-align: left;
 }

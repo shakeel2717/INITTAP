@@ -21,7 +21,11 @@ class PricingController extends Controller
         $card = pricing::find($card);
         // fetching all address detail of this user
         $address = address::where('user_id', auth()->user()->id)->first();
-        $data = hook();
-        return view('user.dashboard.pricing.show', compact('card', 'address', 'data'));
+        return view('user.dashboard.pricing.show', compact('card', 'address'));
+    }
+
+    public function edit($order)
+    {
+        return view('user.dashboard.pricing.edit');
     }
 }

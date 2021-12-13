@@ -463,4 +463,5 @@
     </script>
 </body>
 <x-alert />
+@yield('footer')
 </html>
