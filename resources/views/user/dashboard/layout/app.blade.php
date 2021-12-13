@@ -179,9 +179,9 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}" title="Layouts"
                                 data-placement="left">
-                                <i class="tio-settings nav-icon"></i>
+                                <i class="tio-shopping-basket-add nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Pricing</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Order a Card</span>
                             </a>
                         </li>
                         <li class="nav-item">
