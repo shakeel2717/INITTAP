@@ -122,13 +122,13 @@
 
                                 <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('user.profile.index') }}">
                                     <span class="text-truncate pr-2" title="Profile &amp; account">Profile &amp;
                                         account</span>
                                 </a>
 
-                                <a class="dropdown-item" href="#">
-                                    <span class="text-truncate pr-2" title="Settings">Settings</span>
+                                <a class="dropdown-item" href="{{ route('user.profile.password') }}">
+                                    <span class="text-truncate pr-2" title="Settings">Change Password</span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>
@@ -172,6 +172,7 @@
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Dashboard</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Card Order</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
@@ -182,6 +183,18 @@
                                 <i class="tio-shopping-basket-add nav-icon"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Order a Card</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Profile Managent</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}" title="Layouts"
+                                data-placement="left">
+                                <i class="tio-poi-user nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Card Profile</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -204,6 +217,18 @@
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Change Password</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Exit</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.profile.index') }}" title="Layouts"
+                                data-placement="left">
+                                <i class="tio-sign-out nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sign Out</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- End Content -->
@@ -214,15 +239,7 @@
                         <li class="navbar-vertical-footer-list-item">
                             <!-- Unfold -->
                             <div class="hs-unfold">
-                                <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                                    href="javascript:;" data-hs-unfold-options='{
-                                        "target": "#styleSwitcherDropdown",
-                                        "type": "css-animation",
-                                        "animationIn": "fadeInRight",
-                                        "animationOut": "fadeOutRight",
-                                        "hasOverlay": true,
-                                        "smartPositionOff": true
-                                    }'>
+                                <a class="btn btn-icon btn-ghost-secondary rounded-circle" href="{{ route('user.profile.index') }}">
                                     <i class="tio-tune"></i>
                                 </a>
                             </div>

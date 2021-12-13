@@ -12,7 +12,7 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="24">24</span>
+                            <span class="js-counter display-4 text-dark" data-value="24">0</span>
                             <span class="text-body font-size-sm ml-1">Time</span>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="12">5</span>
+                            <span class="js-counter display-4 text-dark" data-value="12">0</span>
                             <span class="text-body font-size-sm ml-1">Time</span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="56">1</span>
+                            <span class="js-counter display-4 text-dark" data-value="56">0</span>
                             <span class="text-body font-size-sm ml-1">Card</span>
                         </div>
                     </div>
@@ -58,5 +58,37 @@
             <!-- End Card -->
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-lg mb-3 mb-lg-5">
+                <div class="card-body text-center">
+                    <div class="w-50 mx-auto mb-4">
+                        <img class="img-fluid" src="{{ asset('assets/svg/illustrations/sorry.svg') }}"
+                            alt="Image Description" width="150">
+                    </div>
+
+                    <div class="mb-3">
+                        <h3>No Card Found!</h3>
+                        <p>You don't have any Active Card in your Profile, Please order 1 card to start using our service.
+                        </p>
+                    </div>
+
+                    <a class="btn btn-primary" href="{{ route('user.order.index') }}">Order Card now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3 mb-lg-5">
+                <div class="card-header">
+                    <h2 class="card-header-title h5">Recent Activities</h2>
+                </div>
+                <div class="card-body card-body-height card-body-centered">
+                    <img class="avatar avatar-xxl mb-3" src="{{ asset('assets/svg/illustrations/yelling.svg') }}"
+                        alt="Image Description">
+                    <p class="card-text">No data to show</p>
+                    <a class="btn btn-sm btn-white" href="{{ route('user.order.index') }}">Order Card today</a>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
