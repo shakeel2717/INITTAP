@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\pricing;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -52,6 +53,31 @@ class clean extends Command
         $user->email = 'shakeel2717@gmail.com';
         $user->password = Hash::make('asdfasdf');
         $user->save();
+
+        // creating pricing
+        $price = new pricing();
+        $price->title = "Classic";
+        $price->type = "Silver Foil on Matte Black";
+        $price->price = '79.99';
+        $price->img = 1;
+        $price->save();
+
+        // creating pricing
+        $price = new pricing();
+        $price->title = "Ceramic White";
+        $price->type = "Gold Foil on Matte White";
+        $price->price = '79.99';
+        $price->img = 2;
+        $price->save();
+
+        // creating pricing
+        $price = new pricing();
+        $price->title = "Classic Gold";
+        $price->type = "Gold Foil on Matte Black";
+        $price->price = '79.99';
+        $price->img = 3;
+        $price->save();
+
         return Command::SUCCESS;
     }
 }

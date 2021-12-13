@@ -7,7 +7,7 @@
         <div class="col-md-8 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Edit your Accont Record</h3>
+                    <h3 class="card-title">Edit your Accont Password</h3>
                     <hr>
                     <form action="{{ route('user.profile.password.update') }}" method="POST">
                         @csrf

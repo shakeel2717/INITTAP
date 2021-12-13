@@ -14,7 +14,7 @@
       <div class="col-sm-6 col-md-4 text-center text-sm-left">
         <h1 class="display-1 mb-0">404</h1>
         <p class="lead">Sorry, the page you're looking for cannot be found.</p>
-        <a class="btn btn-primary" href="{{ route('dashboard') }}">Back to Dashboard</a>
+        <a class="btn btn-primary" href="{{ route('user.dashboard.index') }}">Back to Dashboard</a>
       </div>
     </div>
   </div>

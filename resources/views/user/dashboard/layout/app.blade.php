@@ -172,6 +172,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Card Order</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}" title="Layouts"
+                                data-placement="left">
+                                <i class="tio-settings nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Pricing</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">My Account</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>

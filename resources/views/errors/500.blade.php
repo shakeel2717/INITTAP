@@ -14,7 +14,7 @@
       <div class="col-sm-6 col-md-4 text-center text-sm-left">
         <h1 class="display-1 mb-0">500</h1>
         <p class="lead">The server encountered an internal error or misconfiguration and was unable to complete your request.</p>
-        <a class="btn btn-primary" href="javascript:;">Reload page</a>
+        <a class="btn btn-primary" href="{{ route('user.dashboard.index') }}">Go Back</a>
       </div>
     </div>
   </div>
