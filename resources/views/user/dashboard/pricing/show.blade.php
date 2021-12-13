@@ -19,14 +19,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <x-input type="text" name="name" class="form-control" placeholder="Full Name"
-                                                value="{{ $address->name }}" />
+                                            <x-input type="text" name="name" class="form-control"
+                                                placeholder="Full Name" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <x-input type="text" name="address" class="form-control"
-                                                placeholder="Full Address" value="{{ $address->address }}" />
+                                                placeholder="Full Address" />
                                         </div>
                                     </div>
                                 </div>
@@ -34,13 +34,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <x-input type="text" name="city" class="form-control"
-                                                placeholder="Type City Name" value="{{ $address->city }}" />
+                                                placeholder="Type City Name" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <x-input type="text" name="zip" class="form-control form-control-lg"
-                                                placeholder="Enter Zip Code" value="{{ $address->zip }}" />
+                                                placeholder="Enter Zip Code" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">

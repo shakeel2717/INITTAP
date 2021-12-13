@@ -19,9 +19,7 @@ class PricingController extends Controller
     public function show($card)
     {
         $card = pricing::find($card);
-        // fetching all address detail of this user
-        $address = address::where('user_id', auth()->user()->id)->first();
-        return view('user.dashboard.pricing.show', compact('card', 'address'));
+        return view('user.dashboard.pricing.show', compact('card'));
     }
 
     public function edit($order)
