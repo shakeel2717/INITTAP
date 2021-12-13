@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 Route::redirect('/', '/login', 301);
 
-Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
