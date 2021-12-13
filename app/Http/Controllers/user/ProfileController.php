@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,5 +52,28 @@ class ProfileController extends Controller
             return redirect()->back()->with('message', 'Old Password is not correct');
         }
         return redirect()->back()->with('message', 'Account Password Updated Successfully');
+    }
+
+
+    public function addressUpdate(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
+            'city' => 'required|max:255',
+            'country' => 'required|max:255',
+            'zip' => 'required|max:255',
+        ]);
+
+        // inserting address record of this user
+        $address = new address();
+        $address->user_id = auth()->user()->id;
+        $address->name = $validatedData['name'];
+        $address->address = $validatedData['address'];
+        $address->city = $validatedData['city'];
+        $address->zip = $validatedData['zip'];
+        $address->country = $validatedData['country'];
+        $address->save();
+        return redirect()->back()->with('message', 'Address Updated Successfully');
     }
 }

@@ -20,6 +20,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
         Route::post('/index', [ProfileController::class, 'profileUpdate'])->name('update');
         Route::get('/password', [ProfileController::class, 'password'])->name('password');
         Route::post('/password', [ProfileController::class, 'passwordUpdate'])->name('password.update');
+        Route::post('/address', [ProfileController::class, 'addressUpdate'])->name('address.update');
     });
 });
 
