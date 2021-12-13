@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
 use App\Http\Controllers\user\ProfileController;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
 });
 
 // Payment Getway URL
+Route::post('store', [orderCardController::class, 'store'])->name('store');
 
 Route::prefix('api')->name('api.')->group(function () {
     Route::post('payment/success', [PaymentController::class, 'success'])->name('success');

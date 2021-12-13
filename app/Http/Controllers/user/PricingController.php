@@ -26,6 +26,7 @@ class PricingController extends Controller
 
     public function edit($order)
     {
-        return view('user.dashboard.pricing.edit');
+        $data = hook();
+        return view('user.dashboard.pricing.edit', compact('data'));
     }
 }

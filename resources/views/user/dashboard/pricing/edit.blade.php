@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row gx-2 gx-lg-3">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-12 col-lg-10 mx-auto">
             <div class="card ">
                 <div class="card-body">
                     <h2 class="card-title">Your Selected Card</h2>
@@ -53,7 +53,15 @@
                                         class="btn btn-lg btn-block btn-white">Change the Card</a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="" class="btn btn-lg btn-block btn-primary">Proceed to Checkout</a>
+                                    <form action="{{ $data->params->hppUrl }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="referenceId" id="referenceId"
+                                            value="{{ $data->params->referenceId }}">
+                                        <input type="hidden" name="hppRequestId" id="hppRequestId"
+                                            value="{{ $data->params->hppRequestId }}">
+                                        <button type="submit" class="btn btn-lg btn-block btn-primary">Proceed to
+                                            Checkout</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +94,33 @@
             });
 
 
+            // if user stop writing in the form
+            $("#card_name").on("blur", function() {
+                var heading = $("#card_name").val();
+                var desg = $("#designation").val();
+                // running the ajax function
+                ajaxFunction(heading, desg);
+            });
+            $("#designation").on("blur", function() {
+                var heading = $("#card_name").val();
+                var desg = $("#designation").val();
+                // running the ajax function
+                ajaxFunction(heading, desg);
+            });
+            // creating ajax function
+            function ajaxFunction(heading, desg) {
+                $.ajax({
+                    url: "{{ route('store') }}",
+                    method: "POST",
+                    data: {
+                        heading: heading,
+                        desg: desg,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
         });
     </script>
 @endsection
