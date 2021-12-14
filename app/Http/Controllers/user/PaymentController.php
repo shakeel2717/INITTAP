@@ -13,5 +13,6 @@ class PaymentController extends Controller
         $payment = new payment();
         $payment->description = "Api Success";
         $payment->save();
+        return "Success Payment";
     }
 }

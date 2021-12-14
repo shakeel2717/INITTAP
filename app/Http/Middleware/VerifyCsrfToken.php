@@ -13,5 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'http://127.0.0.1:8000/store',
+        'https://inittap.asanhub.com/store',
+        'https://inittap.asanhub.com/api/payment/success',
+        'http://127.0.0.1:8000/api/payment/success',
     ];
 }
