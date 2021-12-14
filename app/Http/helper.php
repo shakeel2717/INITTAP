@@ -28,7 +28,8 @@ function hook()
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
     $datas->serviceParams->transactionInfo->description = "Testing";
-    $url = 'https://sandbox.waafipay.net/asm';
+    // $url = 'https://sandbox.waafipay.net/asm';
+    $url = 'https://stagingsandbox.safarifoneict.com/asm';
     $options = array(
         'http' => array(
             'method'  => 'POST',
