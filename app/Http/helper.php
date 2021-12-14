@@ -22,14 +22,13 @@ function hook()
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
     $datas->serviceParams->transactionInfo = new \stdClass();
     $datas->serviceParams->transactionInfo->referenceId = rand(1, 1000000);
-    $datas->serviceParams->transactionInfo->hppSuccessCallbackUrl = "https://inittap.asanhub.com/api/payment/success";
+    $datas->serviceParams->transactionInfo->hppSuccessCallbackUrl = url('api/payment/success');
     $datas->serviceParams->transactionInfo->hppFailureCallbackUrl = route('api.failed');
     $datas->serviceParams->transactionInfo->invoiceId = "1933090";
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
     $datas->serviceParams->transactionInfo->description = "Testing";
-    // $url = 'https://sandbox.waafipay.net/asm';
-    $url = 'https://stagingsandbox.safarifoneict.com/asm';
+    $url = 'https://sandbox.waafipay.net/asm';
     $options = array(
         'http' => array(
             'method'  => 'POST',
