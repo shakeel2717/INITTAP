@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\AdminAuthController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
@@ -25,6 +27,16 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::post('/password', [ProfileController::class, 'passwordUpdate'])->name('password.update');
         Route::post('/address', [ProfileController::class, 'addressUpdate'])->name('address.update');
     });
+});
+
+// Admin Login Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AdminAuthController::class, 'login'])->name('login');
+});
+
+// Admin Dashboard
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard/index', [AdminController::class, 'index'])->name('dashboard.index');
 });
 
 // Payment Getway URL
