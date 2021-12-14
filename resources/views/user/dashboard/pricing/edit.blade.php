@@ -7,7 +7,7 @@
         <div class="col-md-12 col-lg-10 mx-auto">
             <div class="card ">
                 <div class="card-body">
-                    <h2 class="card-title">Your Selected Card</h2>
+                    <h2 class="card-title">Your Selected Card {{ route('api.success') }}</h2>
                     <hr>
                     <div class="row text-center">
                         <div class="col-md-8 mx-auto">
