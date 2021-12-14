@@ -14,10 +14,10 @@ class adminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
         if (!$request->session()->exists('admin')) {
-            return redirect()->route('admin.login');
+            return redirect('/admin/login');
         }
         return $next($request);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\admin;
 use App\Models\pricing;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -52,6 +53,13 @@ class clean extends Command
         $user->name = 'Shakeel Ahmad';
         $user->email = 'shakeel2717@gmail.com';
         $user->password = Hash::make('asdfasdf');
+        $user->save();
+
+
+        // creating a new admin
+        $user = new admin();
+        $user->username = 'tet';
+        $user->password = Hash::make('test');
         $user->save();
 
         // creating pricing

@@ -32,11 +32,13 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 // Admin Login Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AdminAuthController::class, 'login'])->name('login');
+    Route::post('login', [AdminAuthController::class, 'loginReq'])->name('login.req');
 });
 
 // Admin Dashboard
-Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard/index', [AdminController::class, 'index'])->name('dashboard.index');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 
 // Payment Getway URL
