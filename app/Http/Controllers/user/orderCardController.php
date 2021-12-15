@@ -19,8 +19,8 @@ class orderCardController extends Controller
         ]);
         // checking if this user already has ordered
         $security = cardOrder::where('user_id', Auth::user()->id)->first();
-        if ($security != null) {
-            return redirect()->route('user.dashboard.index')->withErrors('You have already ordered a card');
+        if ($security != "") {
+            return "already have an Order";
         }
 
         $task = cardOrder::updateOrCreate([
