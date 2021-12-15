@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\cardOrder;
+use App\Models\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,7 @@ class orderCardController extends Controller
             'heading' => 'required|string',
             'about' => 'nullable|string',
         ]);
+
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
         ], [
@@ -24,6 +26,16 @@ class orderCardController extends Controller
             'card_designation' => $validatedData['desg'],
             'about' => $validatedData['about'],
         ]);
+
+        // updating the record in profile
+        $profile = profile::updateOrCreate(
+            [
+                'user_id' => Auth::user()->id
+            ],
+            [
+                'title' => $validatedData['heading'],  'designation' => $validatedData['desg'], 'about' => $validatedData['about']
+            ]
+        );
         return response()->json(['success' => 'success'], 200);
     }
 }

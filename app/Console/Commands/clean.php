@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\admin;
 use App\Models\pricing;
+use App\Models\profile;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -54,6 +55,14 @@ class clean extends Command
         $user->email = 'shakeel2717@gmail.com';
         $user->password = Hash::make('asdfasdf');
         $user->save();
+
+        // creating a new profile
+        $profile = new profile();
+        $profile->user_id = $user->id;
+        $profile->title = "Shakeel Ahmad";
+        $profile->about = "Hi, I\'m Graphic Designer, Please let me know if you have any questions.";
+        $profile->save();
+
 
 
         // creating a new admin

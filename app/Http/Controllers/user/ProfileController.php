@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\address;
+use App\Models\profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +78,20 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('user.order.edit',['order' => $validatedData["order_id"]])->with('message', 'Address Updated Successfully');
+        // updating profile section
+        $profile = profile::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+            ],
+            [
+                'title' => $validatedData['name'],
+                'address' => $validatedData['address'],
+                'city' => $validatedData['city'],
+                'country' => $validatedData['country'],
+                'zip' => $validatedData['zip'],
+            ]
+        );
+
+        return redirect()->route('user.order.edit', ['order' => $validatedData["order_id"]])->with('message', 'Address Updated Successfully');
     }
 }

@@ -32,7 +32,7 @@
                 </label>
                 <!-- End Avatar -->
 
-                <h1 class="page-header-title">{{ Auth::user()->cardOrder[0]->card_title }} <i
+                <h1 class="page-header-title">{{ Auth::user()->profile->title }} <i
                         class="tio-verified tio-lg text-primary" data-toggle="tooltip" data-placement="top" title=""
                         data-original-title="Activated"></i></h1>
 
@@ -40,13 +40,13 @@
                 <ul class="list-inline list-inline-m-1">
                     <li class="list-inline-item">
                         <i class="tio-poi-user mr-1"></i>
-                        <span>{{ Auth::user()->cardOrder[0]->card_designation }}</span>
+                        <span>{{ Auth::user()->profile->designation }}</span>
                     </li>
 
                     <li class="list-inline-item">
                         <i class="tio-poi-outlined mr-1"></i>
-                        <a href="#">{{ Auth::user()->address[0]->city }},</a>
-                        <a href="#">{{ Auth::user()->address[0]->country }}</a>
+                        <a href="#">{{ Auth::user()->profile->city }},</a>
+                        <a href="#">{{ Auth::user()->profile->country }}</a>
                     </li>
 
                     <li class="list-inline-item">
@@ -59,14 +59,14 @@
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <h5>About</h5>
-                        <p>{{ Auth::user()->cardOrder[0]->about }}</p>
+                        <p>{{ Auth::user()->profile->about }}</p>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <h5>Address</h5>
-                        <p>{{ Auth::user()->address[0]->address }}, {{ Auth::user()->address[0]->city }},
-                            {{ Auth::user()->address[0]->country }}</p>
+                        <p>{{ Auth::user()->profile->address }}, {{ Auth::user()->profile->city }}
+                            {{ Auth::user()->profile->country }}</p>
                     </div>
                 </div>
                 <div class="col-12">
