@@ -75,4 +75,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(website::class);
     }
+
+
+    public function social()
+    {
+        return $this->hasMany(social::class);
+    }
 }

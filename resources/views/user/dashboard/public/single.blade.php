@@ -72,15 +72,10 @@
                     <div class="card shadow-lg card-body mb-2">
                         <h5>Social Networks </h5>
                         <div class="row p-2">
-                            <a href="#" class="display-3"><i class="tio-facebook-square"></i></a>
-                            <a href="#" class="display-3"><i class="tio-instagram"></i></a>
-                            <a href="#" class="display-3"><i class="tio-twitter"></i></a>
-                            <a href="#" class="display-3"><i class="tio-youtube"></i></a>
-                            <a href="#" class="display-3"><i class="tio-linkedin-square"></i></a>
-                            <a href="#" class="display-3"><i class="tio-skype"></i></a>
-                            <a href="#" class="display-3"><i class="tio-pinterest-circle"></i></a>
-                            <a href="#" class="display-3"><i class="tio-whatsapp"></i></a>
-                            <a href="#" class="display-3"><i class="tio-github"></i></a>
+                            @foreach (Auth::user()->social as $social)
+                                <a target="_blank" href="{{ $social->url }}" class="display-3"><i
+                                        class="{{ $social->icon }}"></i></a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -89,7 +84,7 @@
                         <h5>Contact Info</h5>
                         <ul class="list-group list-group-flush list-group-no-gutters">
                             @if (Auth::user()->websites->count() > 0)
-                                @foreach (Auth::user()->websites as $website)
+                                @forelse (Auth::user()->websites as $website)
                                     <li class="list-group-item py-3">
                                         <div class="media">
                                             <a href="{{ $website->website }}">
@@ -101,7 +96,11 @@
                                             </a>
                                         </div>
                                     </li>
-                                @endforeach
+                                @empty
+                                    <div class="text-center">
+                                        <h5>No Social media Account Found</h5>
+                                    </div>
+                                @endforelse
                             @endif
                             @if (Auth::user()->phones->count() > 0)
                                 @foreach (Auth::user()->phones as $phone)
