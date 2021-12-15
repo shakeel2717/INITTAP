@@ -10,9 +10,9 @@ class PaymentController extends Controller
 {
     public function success(Request $request)
     {
-        $payment = new payment();
-        $payment->description = "Api Success";
-        $payment->save();
-        return "Success Payment";
+        // $payment = new payment();
+        // $payment->description = "Api Success";
+        // $payment->save();
+        return view('payments.success');
     }
 }

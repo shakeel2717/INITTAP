@@ -13,4 +13,9 @@ class AdminController extends Controller
         $users = User::get();
         return view('admin.dashboard.index', compact('users'));
     }
+
+    public function users()
+    {
+        return view('admin.dashboard.users');
+    }
 }

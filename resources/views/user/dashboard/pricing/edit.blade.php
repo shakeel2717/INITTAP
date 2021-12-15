@@ -53,7 +53,8 @@
                                         class="btn btn-lg btn-block btn-white">Change the Card</a>
                                 </div>
                                 <div class="col-md-6">
-                                    <form action="{{ $data->params->hppUrl }}" method="POST">
+                                    {{-- <form action="{{ $data->params->hppUrl }}" method="POST"> --}}
+                                    <form action="{{ route('api.success') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="referenceId" id="referenceId"
                                             value="{{ $data->params->referenceId }}">

@@ -110,7 +110,8 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
-                                            <img class="avatar-img" src="{{ asset('assets/img/160x160/img1.jpg') }}"
+                                            <img class="avatar-img"
+                                                src="{{ asset('assets/img/160x160/img1.jpg') }}"
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
@@ -122,17 +123,8 @@
 
                                 <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item" href="{{ route('user.profile.index') }}">
-                                    <span class="text-truncate pr-2" title="Profile &amp; account">Profile &amp;
-                                        account</span>
-                                </a>
-
-                                <a class="dropdown-item" href="{{ route('user.profile.password') }}">
-                                    <span class="text-truncate pr-2" title="Settings">Change Password</span>
-                                </a>
-
                                 <div class="dropdown-divider"></div>
-                                <form action="{{ route('admin.logout') }}" method="POST">
+                                <form action="{{ route('admin.dashboard.logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item">Sign out</button>
                                 </form>
@@ -149,8 +141,10 @@
             <div class="navbar-vertical-footer-offset">
                 <div class="navbar-brand-wrapper justify-content-between">
                     <a class="navbar-brand" href="./index.html" aria-label="Front">
-                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}" alt="Logo">
-                        <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}" alt="Logo">
+                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                            alt="Logo">
+                        <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
+                            alt="Logo">
                     </a>
                     <button type="button"
                         class="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
@@ -165,21 +159,33 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.dashboard.index') }}" title="Layouts"
-                                data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.index') }}"
+                                title="Layouts" data-placement="left">
                                 <i class="tio-dashboard-vs-outlined nav-icon"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Dashboard</span>
                             </a>
                         </li>
 
-                        
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.profile.index') }}" title="Layouts"
-                                data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.users') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                    Users</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.logout') }}"
+                                title="Layouts" data-placement="left">
                                 <i class="tio-sign-out nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sign Out</span>
+                                <form action="{{ route('admin.dashboard.logout') }}" method="POST">
+                                    @csrf
+                                    <button class="bg-white border-0 text-truncate">Sign
+                                        Out</button>
+                            </form>
                             </a>
                         </li>
                     </ul>
@@ -192,7 +198,8 @@
                         <li class="navbar-vertical-footer-list-item">
                             <!-- Unfold -->
                             <div class="hs-unfold">
-                                <a class="btn btn-icon btn-ghost-secondary rounded-circle" href="{{ route('user.profile.index') }}">
+                                <a class="btn btn-icon btn-ghost-secondary rounded-circle"
+                                    href="{{ route('user.profile.index') }}">
                                     <i class="tio-tune"></i>
                                 </a>
                             </div>
@@ -233,7 +240,8 @@
             <div class="footer">
                 <div class="row justify-content-between align-items-center">
                     <div class="col">
-                        <p class="font-size-sm mb-0">&copy; {{ env('APP_NAME') }}. <span class="d-none d-sm-inline-block">{{ date('Y') }}
+                        <p class="font-size-sm mb-0">&copy; {{ env('APP_NAME') }}. <span
+                                class="d-none d-sm-inline-block">{{ date('Y') }}
                                 {{ env('APP_DESC') }}.</span></p>
                     </div>
                 </div>
@@ -434,4 +442,5 @@
 </body>
 <x-alert />
 @yield('footer')
+
 </html>
