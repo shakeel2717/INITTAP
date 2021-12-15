@@ -124,7 +124,7 @@
                                 <div class="dropdown-divider"></div>
 
                                 <div class="dropdown-divider"></div>
-                                <form action="{{ route('admin.dashboard.logout') }}" method="POST">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item">Sign out</button>
                                 </form>
@@ -208,23 +208,6 @@
                     </ul>
                 </div>
                 <!-- End Content -->
-
-                <!-- Footer -->
-                <div class="navbar-vertical-footer">
-                    <ul class="navbar-vertical-footer-list">
-                        <li class="navbar-vertical-footer-list-item">
-                            <!-- Unfold -->
-                            <div class="hs-unfold">
-                                <a class="btn btn-icon btn-ghost-secondary rounded-circle"
-                                    href="{{ route('user.profile.index') }}">
-                                    <i class="tio-tune"></i>
-                                </a>
-                            </div>
-                            <!-- End Unfold -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Footer -->
             </div>
         </div>
     </aside>
@@ -240,7 +223,7 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col-sm mb-2 mb-sm-0">
-                        <h1 class="page-header-title">Dashboard</h1>
+                        <h1 class="page-header-title">@yield('title')</h1>
                     </div>
 
                     <div class="col-sm-auto">

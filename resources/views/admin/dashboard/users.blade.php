@@ -18,6 +18,7 @@
                                 <th scope="col">Password</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Join Date</th>
+                                <th scope="col">Shipping Address</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,11 +29,13 @@
                                     <td>Password Protected</td>
                                     <td>{{ $user->status }}</td>
                                     <td>{{ $user->created_at }}</td>
+                                    <td><a href="{{ route('admin.dashboard.userShow', ['id' => $user->id]) }}"
+                                            class="btn btn-sm btn-primary">View Address</a></td>
                                 </tr>
                             @empty
-                            <tr>
-                                <td>No Record Found</td>
-                            </tr>
+                                <tr>
+                                    <td>No Record Found</td>
+                                </tr>
 
                             @endforelse
                         </tbody>
