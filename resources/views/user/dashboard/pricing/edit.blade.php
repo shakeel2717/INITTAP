@@ -127,6 +127,7 @@
                     url: "{{ route('store') }}",
                     method: "POST",
                     data: {
+                        _token : "{{ csrf_token() }}",
                         heading: heading,
                         desg: desg,
                         about: about,
