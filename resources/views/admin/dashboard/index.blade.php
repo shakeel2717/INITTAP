@@ -27,7 +27,7 @@
                     <div class="row align-items-center gx-2">
                         <div class="col">
                             <span class="js-counter display-4 text-dark"
-                                data-value="{{ $users->where('status', 'Pending')->count() }}">{{ $users->where('status', 'Pending')->count() }}</span>
+                                data-value="{{ $users->where('status', 'pending')->count() }}">{{ $users->where('status', 'pending')->count() }}</span>
                             <span class="text-body font-size-sm ml-1">Time</span>
                         </div>
                     </div>

@@ -59,24 +59,50 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card card-lg mb-3 mb-lg-5">
-                <div class="card-body text-center">
-                    <div class="w-50 mx-auto mb-4">
-                        <img class="img-fluid" src="{{ asset('assets/svg/illustrations/sorry.svg') }}"
-                            alt="Image Description" width="150">
-                    </div>
+        @if (Auth::user()->cardOrder()->count() < 1)
+            <div class="col-md-4">
+                <div class="card card-lg mb-3 mb-lg-5">
+                    <div class="card-body text-center">
+                        <div class="w-50 mx-auto mb-4">
+                            <img class="img-fluid" src="{{ asset('assets/svg/illustrations/sorry.svg') }}"
+                                alt="Image Description" width="150">
+                        </div>
 
-                    <div class="mb-3">
-                        <h3>No Card Found!</h3>
-                        <p>You don't have any Active Card in your Profile, Please order 1 card to start using our service.
-                        </p>
-                    </div>
+                        <div class="mb-3">
+                            <h3>No 1Card Found!</h3>
+                            <p>You don't have any Active Card in your Profile, Please order 1 card to start using our
+                                service.
+                            </p>
+                        </div>
 
-                    <a class="btn btn-primary" href="{{ route('user.order.index') }}">Order Card now</a>
+                        <a class="btn btn-primary" href="{{ route('user.order.index') }}">Order Card now</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @elseif (Auth::user()->cardOrder()->count() > 0)
+            @if (Auth::user()->cardOrder[0]->status == 'pending')
+                <div class="col-md-4">
+                    <div class="card card-lg mb-3 mb-lg-5">
+                        <div class="card-body text-center">
+                            <div class="w-50 mx-auto mb-4">
+                                <img class="img-fluid" src="{{ asset('assets/img/truck.png') }}"
+                                    alt="Image Description" width="150">
+                            </div>
+
+                            <div class="mb-3">
+                                <h3>Your Card is on the way!</h3>
+                                <p>you can activate the card once your recieve in your address you provide us while placing order to card.
+                                </p>
+                            </div>
+
+                            <a class="btn btn-primary" href="#">Contact us</a>
+                        </div>
+                    </div>
+                </div>
+            @else
+            hi
+            @endif
+        @endif
         <div class="col-md-8">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">
@@ -90,5 +116,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
