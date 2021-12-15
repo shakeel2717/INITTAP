@@ -13,21 +13,23 @@
                     <table class="table table-borderless table-thead-bordered">
                         <thead class="thead-light">
                             <tr>
+                                <th scope="col">User Email</th>
                                 <th scope="col">Full Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Password</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Join Date</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Zip</th>
+                                <th scope="col">Country</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($addresses as $address)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>Password Protected</td>
-                                    <td>{{ $user->status }}</td>
-                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $address->user->email }}</td>
+                                    <td>{{ $address->name }}</td>
+                                    <td>{{ $address->address }}</td>
+                                    <td>{{ $address->city }}</td>
+                                    <td>{{ $address->zip }}</td>
+                                    <td>{{ $address->country }}</td>
                                 </tr>
                             @empty
                             <tr>

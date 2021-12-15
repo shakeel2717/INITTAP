@@ -40,6 +40,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
+    Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\address;
 use App\Models\cardOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,4 +29,12 @@ class AdminController extends Controller
         $cardOrders = cardOrder::get();
         return view('admin.dashboard.orders', compact('cardOrders'));
     }
+
+    public function shipping()
+    {
+        // getting all shipping address
+        $addresses = address::get();
+        return view('admin.dashboard.shipping', compact('addresses'));
+    }
 }
+
