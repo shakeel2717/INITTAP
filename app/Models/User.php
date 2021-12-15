@@ -58,4 +58,21 @@ class User extends Authenticatable
     {
         return $this->hasOne(profile::class);
     }
+
+    public function emails()
+    {
+        return $this->hasMany(email::class);
+    }
+
+
+    public function phones()
+    {
+        return $this->hasMany(phone::class);
+    }
+
+
+    public function websites()
+    {
+        return $this->hasMany(website::class);
+    }
 }

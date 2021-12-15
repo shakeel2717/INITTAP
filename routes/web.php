@@ -23,6 +23,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     });
     Route::prefix('public')->name('public.')->group(function () {
         Route::get('/single', [PublicController::class, 'single'])->name('single');
+        Route::post('/store', [PublicController::class, 'store'])->name('store');
         Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
     });
