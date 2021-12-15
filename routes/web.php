@@ -41,6 +41,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
+    Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

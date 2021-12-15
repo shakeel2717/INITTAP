@@ -23,6 +23,13 @@ class AdminController extends Controller
     }
 
 
+    public function userShow($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.dashboard.show', compact('user'));
+    }
+
+
     public function orders()
     {
         // getting all cardOrdres
@@ -37,4 +44,3 @@ class AdminController extends Controller
         return view('admin.dashboard.shipping', compact('addresses'));
     }
 }
-
