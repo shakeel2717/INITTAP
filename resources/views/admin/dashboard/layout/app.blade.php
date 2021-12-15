@@ -227,9 +227,8 @@
                     </div>
 
                     <div class="col-sm-auto">
-                        <a class="btn btn-primary" href="javascript:;" data-toggle="modal"
-                            data-target="#inviteUserModal">
-                            <i class="tio-user mr-1"></i> Manage Profile
+                        <a class="btn btn-primary" href="{{ route('admin.dashboard.orders') }}">
+                            <i class="tio-user mr-1"></i> Manage Orders
                         </a>
                     </div>
                 </div>
