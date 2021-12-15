@@ -15,6 +15,10 @@ class CreateSocialsTable extends Migration
     {
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('name')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

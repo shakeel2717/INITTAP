@@ -4,6 +4,9 @@
 @endsection
 @section('content')
     <div class="row">
+        <div class="col-md-8 mx-auto text-center mb-4">
+            <img src="{{ asset('assets/img/profile.svg') }}" alt="Profile Edit" width="350">
+        </div>
         <div class="col-md-8 mx-auto">
             <div id="addUserStepFormContent">
                 <form action="{{ route('user.public.store') }}" method="POST">
@@ -23,11 +26,12 @@
                                 </div>
                             </div>
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                            "template": "#addAddressFieldEgTemplate",
-                                                                            "container": "#addAddressFieldEgContainer",
-                                                                            "defaultCreated": 0
-                                                                        }'>
+                            <div class="js-add-field row form-group"
+                                data-hs-add-field-options='{
+                                                                                                                                                                                "template": "#addAddressFieldEgTemplate",
+                                                                                                                                                                                "container": "#addAddressFieldEgContainer",
+                                                                                                                                                                                "defaultCreated": 0
+                                                                                                                                                                            }'>
                                 <label for="email" class="col-sm-3 col-form-label input-label">Public Email
                                     Address</span></label>
 
@@ -65,11 +69,12 @@
 
 
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                    "template": "#addPhoneFieldEgTemplate",
-                                                    "container": "#addPhoneFieldEgContainer",
-                                                    "defaultCreated": 0
-                                                }'>
+                            <div class="js-add-field row form-group"
+                                data-hs-add-field-options='{
+                                                                                                                                                        "template": "#addPhoneFieldEgTemplate",
+                                                                                                                                                        "container": "#addPhoneFieldEgContainer",
+                                                                                                                                                        "defaultCreated": 0
+                                                                                                                                                    }'>
                                 <label for="phone" class="col-sm-3 col-form-label input-label">Public Phone
                                     Number</span></label>
 
@@ -108,13 +113,14 @@
 
 
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                    "template": "#addwebsiteFieldEgTemplate",
-                                    "container": "#addwebsiteFieldEgContainer",
-                                    "defaultCreated": 0
-                                }'>
+                            <div class="js-add-field row form-group"
+                                data-hs-add-field-options='{
+                                                                                                                                        "template": "#addwebsiteFieldEgTemplate",
+                                                                                                                                        "container": "#addwebsiteFieldEgContainer",
+                                                                                                                                        "defaultCreated": 0
+                                                                                                                                    }'>
                                 <label for="website" class="col-sm-3 col-form-label input-label">Public website
-                                </span></label>
+                                    </span></label>
 
                                 <div class="col-sm-9">
                                     <input type="url" class="form-control" name="website" id="website"
@@ -147,7 +153,9 @@
 
 
                         </div>
-                        <div class="card-footer d-flex justify-content-end align-items-center">
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalTopCover"> Add Social
+                                Media Accounts </a>
                             <button type="submit" class="btn btn-primary"> Update Profile </button>
                         </div>
                     </div>
@@ -155,4 +163,93 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div id="exampleModalTopCover" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-top-cover bg-dark text-center">
+
+                    <div class="modal-close">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost-light" data-dismiss="modal"
+                            aria-label="Close">
+                            <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor"
+                                    d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- End Header -->
+
+                <div class="modal-top-cover-icon">
+                    <span class="icon icon-lg icon-light icon-circle icon-centered shadow-soft">
+                        <i class="tio-user-add"></i>
+                    </span>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('user.public.social') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="social">Select Social Type</label>
+                                    <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
+                                        data-hs-select2-options='{
+                                                                          "placeholder": "Select wallet"
+                                                                        }' name="social">
+                                        <option value="facebook" selected
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-facebook-square"></i><span>Facebook</span></span>'>
+                                            Facebook
+                                        </option>
+                                        <option value="instagram"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-instagram"></i><span>Instagram</span></span>'>
+                                            Instagram
+                                        </option>
+                                        <option value="twitter"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-twitter"></i><span>Twitter</span></span>'>
+                                            Twitter
+                                        </option>
+                                        <option value="youtube"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-youtube"></i><span>Youtube</span></span>'>
+                                            Youtube
+                                        </option>
+                                        <option value="linkedin"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-linkedin-square"></i><span>Linkedin</span></span>'>
+                                            Linkedin
+                                        </option>
+                                        <option value="skype"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-skype"></i><span>Skype</span></span>'>
+                                            Skype
+                                        </option>
+                                        <option value="whatsapp"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-whatsapp"></i><span>Whatsapp</span></span>'>
+                                            Whatsapp
+                                        </option>
+                                        <option value="github"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-github"></i><span>Github</span></span>'>
+                                            Github
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="link">Social Account Link</label>
+                                    <input type="url" name="link" id="link" class="form-control"
+                                        placeholder="Paste Your Social Meida Link here">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Add Social Media Account" class="btn btn-primary btn-block">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
 @endsection

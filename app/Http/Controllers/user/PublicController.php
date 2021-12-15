@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\email;
 use App\Models\phone;
+use App\Models\social;
 use App\Models\website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,5 +75,52 @@ class PublicController extends Controller
         }
 
         return redirect()->back()->with('message', 'Your public information has been updated successfully');
+    }
+
+
+    public function social(Request $request)
+    {
+        $validatedData = $request->validate([
+            'social' => 'required',
+            'link' => 'required',
+        ]);
+
+        switch ($validatedData['social']) {
+            case 'facebook':
+                $icon = 'tio-facebook-square';
+                break;
+            case 'instagram':
+                $icon = 'tio-instagram';
+                break;
+            case 'twitter':
+                $icon = 'tio-twitter';
+                break;
+            case 'youtube':
+                $icon = 'tio-youtube';
+                break;
+            case 'linkedin':
+                $icon = 'tio-linkedin-square';
+                break;
+            case 'skype':
+                $icon = 'tio-skype';
+                break;
+            case 'whatsapp':
+                $icon = 'tio-whatsapp';
+                break;
+            case 'github':
+                $icon = 'tio-github';
+                break;
+            default:
+                $icon = 'tio-facebook-square';
+                break;
+        }
+
+        $social = new social();
+        $social->user_id = Auth::user()->id;
+        $social->name = $validatedData['social'];
+        $social->icon = $icon;
+        $social->url = $validatedData['link'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your social information has been updated successfully');
     }
 }
