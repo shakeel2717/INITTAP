@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\email;
 use App\Models\phone;
 use App\Models\social;
+use App\Models\User;
 use App\Models\website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,12 @@ class PublicController extends Controller
 
         if ($request->hasFile('profile')) {
             $file = $request->profile;
-            $name = time().Auth::user()->code .'.'. $file->getClientOriginalExtension();
-            $file->move(public_path().'/assets/profiles/', $name);
+            $name = time() . Auth::user()->code . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/assets/profiles/', $name);
+            // updating the user profile
+            $profile = auth()->user();
+            $profile->avatar = $name;
+            $profile->save();
         }
         $emails = $request->only([
             'email', 'email_0', 'email_1', 'email_2', 'email_3', 'email_4', 'email_5', 'email_6', 'email_7', 'email_8', 'email_9', 'email_10',

@@ -27,7 +27,7 @@
                 <!-- Avatar -->
                 <label class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar"
                     for="avatarUploader">
-                    <img id="avatarImg" class="avatar-img" src="{{ asset('assets/img/160x160/img1.jpg') }}"
+                    <img id="avatarImg" class="avatar-img" src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                         alt="Image Description">
                 </label>
                 <!-- End Avatar -->
