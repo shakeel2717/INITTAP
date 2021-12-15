@@ -22,6 +22,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::get('/edit/{order}', [PricingController::class, 'edit'])->name('edit');
     });
     Route::prefix('public')->name('public.')->group(function () {
+        Route::get('/single', [PublicController::class, 'single'])->name('single');
         Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
     });
