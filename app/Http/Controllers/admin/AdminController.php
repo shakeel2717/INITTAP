@@ -37,6 +37,18 @@ class AdminController extends Controller
         return view('admin.dashboard.orders', compact('cardOrders'));
     }
 
+
+    public function oderUpdate($id)
+    {
+        $validatedData = request()->validate([
+            'status' => 'required',
+        ]);
+        $order = cardOrder::findOrFail($id);
+        $order->status = $validatedData['status'];
+        $order->save();
+        return redirect()->back()->with('message', 'Order Updated Successfully');
+    }
+
     public function shipping()
     {
         // getting all shipping address

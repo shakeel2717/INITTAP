@@ -91,7 +91,8 @@
 
                             <div class="mb-3">
                                 <h3>Your Card is on the way!</h3>
-                                <p>you can activate the card once your recieve in your address you provide us while placing order to card.
+                                <p>you can activate the card once your recieve in your address you provide us while placing
+                                    order to card.
                                 </p>
                             </div>
 
@@ -99,8 +100,26 @@
                         </div>
                     </div>
                 </div>
-            @else
-            hi
+            @elseif (Auth::user()->cardOrder[0]->status == 'shipped')
+                <div class="col-md-4">
+                    <div class="card card-lg mb-3 mb-lg-5">
+                        <div class="card-body text-center">
+                            <div class="w-50 mx-auto mb-4">
+                                <img class="img-fluid" src="{{ asset('assets/img/shipped.png') }}"
+                                    alt="Image Description" width="150">
+                            </div>
+
+                            <div class="mb-3">
+                                <h3>Your Card Delivered!</h3>
+                                <p>you can activate the card once your recieve in your address you provide us while placing
+                                    order to card.
+                                </p>
+                            </div>
+
+                            <a class="btn btn-primary" href="#">Manage Profile</a>
+                        </div>
+                    </div>
+                </div>
             @endif
         @endif
         <div class="col-md-8">

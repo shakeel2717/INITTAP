@@ -18,7 +18,9 @@
                                 <th scope="col">Card Price</th>
                                 <th scope="col">Card Title</th>
                                 <th scope="col">Card Designation</th>
+                                <th scope="col">Order Status</th>
                                 <th scope="col">Order Date</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,12 +31,32 @@
                                     <td>{{ $order->pricing->price }}</td>
                                     <td>{{ $order->card_title }}</td>
                                     <td>{{ $order->card_designation }}</td>
+                                    <td><span class="badge badge-primary">{{ Str::ucfirst($order->status) }}</span></td>
                                     <td>{{ $order->created_at }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.dashboard.order.update', ['id' => $order->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <select name="status" id="status" class="form-control">
+                                                        <option value="">Select Status</option>
+                                                        <option value="pending">Pending</option>
+                                                        <option value="shipped">Shipped</option>
+                                                        <option value="complete">Complete</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn ml-2 btn-primary">Action</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
-                            <tr>
-                                <td>No Record Found</td>
-                            </tr>
+                                <tr>
+                                    <td>No Record Found</td>
+                                </tr>
 
                             @endforelse
                         </tbody>

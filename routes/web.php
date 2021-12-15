@@ -40,6 +40,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
+    Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
 
