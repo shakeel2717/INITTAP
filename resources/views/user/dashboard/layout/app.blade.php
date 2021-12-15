@@ -98,7 +98,7 @@
                        "type": "css-animation"
                      }'>
                                 <div class="avatar avatar-sm avatar-circle">
-                                    <img class="avatar-img" src="{{ asset('assets/img/160x160/img1.jpg') }}"
+                                    <img class="avatar-img" src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                         alt="Image Description">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
                                             <img class="avatar-img"
-                                                src="{{ asset('assets/img/160x160/img1.jpg') }}"
+                                                src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
