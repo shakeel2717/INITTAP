@@ -13,4 +13,19 @@ class cardOrder extends Model
     protected $fillable = [
         'user_id', 'pricing_id', 'card_title', 'card_designation'
     ];
+
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function pricing()
+    {
+        return $this->belongsTo(pricing::class);
+    }
+
+
+
 }

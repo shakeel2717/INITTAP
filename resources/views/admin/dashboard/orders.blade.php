@@ -13,21 +13,23 @@
                     <table class="table table-borderless table-thead-bordered">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Full Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Password</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Join Date</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">User Email</th>
+                                <th scope="col">Card Price</th>
+                                <th scope="col">Card Title</th>
+                                <th scope="col">Card Designation</th>
+                                <th scope="col">Order Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($cardOrders as $order)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>Password Protected</td>
-                                    <td>{{ $user->status }}</td>
-                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->user->email }}</td>
+                                    <td>{{ $order->pricing->price }}</td>
+                                    <td>{{ $order->card_title }}</td>
+                                    <td>{{ $order->card_designation }}</td>
+                                    <td>{{ $order->created_at }}</td>
                                 </tr>
                             @empty
 
