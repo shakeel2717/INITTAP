@@ -54,6 +54,7 @@ class clean extends Command
         $user->name = 'Shakeel Ahmad';
         $user->email = 'shakeel2717@gmail.com';
         $user->password = Hash::make('asdfasdf');
+        $user->code = userCode();
         $user->save();
 
         // creating a new profile

@@ -9,10 +9,36 @@
         </div>
         <div class="col-md-8 mx-auto">
             <div id="addUserStepFormContent">
-                <form action="{{ route('user.public.store') }}" method="POST">
+                <form action="{{ route('user.public.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div id="addUserStepProfile" class="card card-lg active">
                         <div class="card-body">
+                            <div class="row form-group d-flex justify-content-center">
+                                <div class="d-flex align-items-center">
+                                    <!-- Avatar -->
+                                    <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5" for="avatarUploader">
+                                        <img id="avatarImg" class="avatar-img"
+                                            src="{{ asset('assets/img/160x160/img1.jpg') }}" alt="Image Description">
+
+                                        <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
+                                            data-hs-file-attach-options='{
+                                                            "textTarget": "#avatarImg",
+                                                            "mode": "image",
+                                                            "targetAttr": "src",
+                                                            "resetTarget": ".js-file-attach-reset-img",
+                                                            "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                            "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                        }' name="profile">
+
+                                        <span class="avatar-uploader-trigger">
+                                            <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
+                                        </span>
+                                    </label>
+                                    <!-- End Avatar -->
+
+                                    <button type="button" class="js-file-attach-reset-img btn btn-white">Delete</button>
+                                </div>
+                            </div>
                             <div class="row form-group">
                                 <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Full name <i
                                         class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
@@ -26,12 +52,11 @@
                                 </div>
                             </div>
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group"
-                                data-hs-add-field-options='{
-                                                                                                                                                                                "template": "#addAddressFieldEgTemplate",
-                                                                                                                                                                                "container": "#addAddressFieldEgContainer",
-                                                                                                                                                                                "defaultCreated": 0
-                                                                                                                                                                            }'>
+                            <div class="js-add-field row form-group" data-hs-add-field-options='{
+                                                        "template": "#addAddressFieldEgTemplate",
+                                                        "container": "#addAddressFieldEgContainer",
+                                                        "defaultCreated": 0
+                                                    }'>
                                 <label for="email" class="col-sm-3 col-form-label input-label">Public Email
                                     Address</span></label>
 
@@ -69,12 +94,11 @@
 
 
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group"
-                                data-hs-add-field-options='{
-                                                                                                                                                        "template": "#addPhoneFieldEgTemplate",
-                                                                                                                                                        "container": "#addPhoneFieldEgContainer",
-                                                                                                                                                        "defaultCreated": 0
-                                                                                                                                                    }'>
+                            <div class="js-add-field row form-group" data-hs-add-field-options='{
+                                                                    "template": "#addPhoneFieldEgTemplate",
+                                                                    "container": "#addPhoneFieldEgContainer",
+                                                                    "defaultCreated": 0
+                                                                }'>
                                 <label for="phone" class="col-sm-3 col-form-label input-label">Public Phone
                                     Number</span></label>
 
@@ -113,12 +137,11 @@
 
 
                             <!-- Form Group -->
-                            <div class="js-add-field row form-group"
-                                data-hs-add-field-options='{
-                                                                                                                                        "template": "#addwebsiteFieldEgTemplate",
-                                                                                                                                        "container": "#addwebsiteFieldEgContainer",
-                                                                                                                                        "defaultCreated": 0
-                                                                                                                                    }'>
+                            <div class="js-add-field row form-group" data-hs-add-field-options='{
+                                                            "template": "#addwebsiteFieldEgTemplate",
+                                                            "container": "#addwebsiteFieldEgContainer",
+                                                            "defaultCreated": 0
+                                                        }'>
                                 <label for="website" class="col-sm-3 col-form-label input-label">Public website
                                     </span></label>
 
@@ -197,8 +220,8 @@
                                     <label for="social">Select Social Type</label>
                                     <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
                                         data-hs-select2-options='{
-                                                                          "placeholder": "Select wallet"
-                                                                        }' name="social">
+                                                                                                      "placeholder": "Select wallet"
+                                                                                                    }' name="social">
                                         <option value="facebook" selected
                                             data-option-template='<span class="d-flex align-items-center"><i class="tio-facebook-square"></i><span>Facebook</span></span>'>
                                             Facebook
@@ -252,4 +275,16 @@
         </div>
     </div>
     <!-- End Modal -->
+@endsection
+@section('footer')
+    <script src="{{ asset('assets/vendor/hs-file-attach/dist/hs-file-attach.min.js') }}"></script>
+    <script>
+        $(document).on('ready', function() {
+            // INITIALIZATION OF CUSTOM FILE
+            // =======================================================
+            $('.js-file-attach').each(function() {
+                var customFile = new HSFileAttach($(this)).init();
+            });
+        });
+    </script>
 @endsection

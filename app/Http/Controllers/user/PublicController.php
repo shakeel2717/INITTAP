@@ -26,6 +26,15 @@ class PublicController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('profile')) {
+            $file = $request->profile;
+            $name = time().Auth::user()->code .'.'. $file->getClientOriginalExtension();
+            $file->move(public_path().'/assets/profiles/', $name);
+        }
         $emails = $request->only([
             'email', 'email_0', 'email_1', 'email_2', 'email_3', 'email_4', 'email_5', 'email_6', 'email_7', 'email_8', 'email_9', 'email_10',
         ]);
@@ -38,7 +47,6 @@ class PublicController extends Controller
             'website', 'website_0', 'website_1', 'website_2', 'website_3', 'website_4', 'website_5', 'website_6', 'website_7', 'website_8', 'website_9', 'website_10',
         ]);
 
-
         // inserting new email for this user
         foreach ($emails as $email) {
             if ($email) {
@@ -49,8 +57,6 @@ class PublicController extends Controller
                 $publicEmail->save();
             }
         }
-
-
         // inserting new Phones for this user
         foreach ($phones as $phone) {
             if ($phone) {
@@ -61,8 +67,6 @@ class PublicController extends Controller
                 $publicPhone->save();
             }
         }
-
-
         // inserting new Websites for this user
         foreach ($websites as $website) {
             if ($website) {
