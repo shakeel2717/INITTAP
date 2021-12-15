@@ -190,13 +190,23 @@
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}" title="Layouts"
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.public.edit') }}" title="Layouts"
                                 data-placement="left">
                                 <i class="tio-poi-user nav-icon"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Card Profile</span>
                             </a>
                         </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}" title="Layouts"
+                                data-placement="left">
+                                <i class="tio-earth-east nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Preview your Profile</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">My Account</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>

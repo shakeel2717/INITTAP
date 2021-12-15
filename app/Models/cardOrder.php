@@ -11,7 +11,7 @@ class cardOrder extends Model
 
 
     protected $fillable = [
-        'user_id', 'pricing_id', 'card_title', 'card_designation'
+        'user_id', 'pricing_id', 'card_title', 'card_designation' , 'about'
     ];
 
 

@@ -40,6 +40,10 @@
                                             <input type="text" class="form-control" id="designation" name="designation"
                                                 placeholder="Enter Card Name" value="Designation">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="designation">About / Tag Line</label>
+                                            <textarea name="about" id="about" cols="30" rows="10" class="form-control" placeholder="Type Your Tagline, or About You!"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -99,23 +103,33 @@
             $("#card_name").on("blur", function() {
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
+                var about = $("#about").val();
                 // running the ajax function
-                ajaxFunction(heading, desg);
+                ajaxFunction(heading, desg,about);
             });
             $("#designation").on("blur", function() {
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
+                var about = $("#about").val();
                 // running the ajax function
-                ajaxFunction(heading, desg);
+                ajaxFunction(heading, desg, about);
+            });
+            $("#about").on("blur", function() {
+                var heading = $("#card_name").val();
+                var desg = $("#designation").val();
+                var about = $("#about").val();
+                // running the ajax function
+                ajaxFunction(heading, desg, about);
             });
             // creating ajax function
-            function ajaxFunction(heading, desg) {
+            function ajaxFunction(heading, desg,about) {
                 $.ajax({
                     url: "{{ route('store') }}",
                     method: "POST",
                     data: {
                         heading: heading,
                         desg: desg,
+                        about: about,
                     },
                     success: function(data) {
                         console.log(data);

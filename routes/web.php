@@ -6,7 +6,9 @@ use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
 use App\Http\Controllers\user\ProfileController;
+use App\Http\Controllers\user\PublicController;
 use App\Http\Controllers\user\UserDashboard;
+use App\Http\Controllers\user\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -18,8 +20,12 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
         Route::get('/show/{card}', [PricingController::class, 'show'])->name('show');
         Route::get('/edit/{order}', [PricingController::class, 'edit'])->name('edit');
-        
     });
+    Route::prefix('public')->name('public.')->group(function () {
+        Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
+        Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
+    });
+
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/index', [ProfileController::class, 'index'])->name('index');
         Route::post('/index', [ProfileController::class, 'profileUpdate'])->name('update');
@@ -43,7 +49,6 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
-
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 

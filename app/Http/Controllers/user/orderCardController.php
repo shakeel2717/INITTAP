@@ -14,6 +14,7 @@ class orderCardController extends Controller
         $validatedData = $reqeust->validate([
             'desg' => 'required|string',
             'heading' => 'required|string',
+            'about' => 'nullable|string',
         ]);
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
@@ -21,6 +22,7 @@ class orderCardController extends Controller
             'pricing_id' => 1,
             'card_title' => $validatedData['heading'],
             'card_designation' => $validatedData['desg'],
+            'about' => $validatedData['about'],
         ]);
         return response()->json(['success' => 'success'], 200);
     }
