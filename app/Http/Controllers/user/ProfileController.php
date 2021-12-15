@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\address;
+use App\Models\cardOrder;
 use App\Models\profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,6 +67,12 @@ class ProfileController extends Controller
             'zip' => 'required|max:255',
             'order_id' => 'required|integer',
         ]);
+
+        // checking if this user already has ordered
+        $security = cardOrder::where('user_id', Auth::user()->id)->first();
+        if ($security != null) {
+            return redirect()->route('user.dashboard.index')->withErrors('You have already ordered a card');
+        }
 
         $address = address::updateOrCreate(
             ['user_id' => auth()->user()->id],

@@ -64,12 +64,12 @@
                 <div class="card card-lg mb-3 mb-lg-5">
                     <div class="card-body text-center">
                         <div class="w-50 mx-auto mb-4">
-                            <img class="img-fluid" src="{{ asset('assets/svg/illustrations/sorry.svg') }}"
-                                alt="Image Description" width="150">
+                            <img class="img-fluid" src="{{ asset('assets/img/nocard.svg') }}" alt="Image Description"
+                                width="250">
                         </div>
 
                         <div class="mb-3">
-                            <h3>No 1Card Found!</h3>
+                            <h3>No Card Found!</h3>
                             <p>You don't have any Active Card in your Profile, Please order 1 card to start using our
                                 service.
                             </p>
@@ -116,7 +116,26 @@
                                 </p>
                             </div>
 
-                            <a class="btn btn-primary" href="#">Manage Profile</a>
+                            <a class="btn btn-primary" href="{{ route('user.public.edit') }}">Manage Profile</a>
+                        </div>
+                    </div>
+                </div>
+            @elseif (Auth::user()->cardOrder[0]->status == 'complete')
+                <div class="col-md-4">
+                    <div class="card card-lg mb-3 mb-lg-5">
+                        <div class="card-body text-center">
+                            <div class="w-50 mx-auto mb-4">
+                                <img class="img-fluid" src="{{ asset('assets/img/complete.svg') }}"
+                                    alt="Image Description" width="300">
+                            </div>
+
+                            <div class="mb-3">
+                                <h3>Your Card is Active!</h3>
+                                <p>You can change and update your public profile record anytime
+                                </p>
+                            </div>
+
+                            <a class="btn btn-primary" href="{{ route('user.public.single') }}">View Profile</a>
                         </div>
                     </div>
                 </div>

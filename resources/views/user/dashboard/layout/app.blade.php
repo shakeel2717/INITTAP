@@ -290,8 +290,7 @@
                     </div>
 
                     <div class="col-sm-auto">
-                        <a class="btn btn-primary" href="javascript:;" data-toggle="modal"
-                            data-target="#inviteUserModal">
+                        <a class="btn btn-primary" href="{{ route('user.public.single') }}">
                             <i class="tio-user mr-1"></i> Manage Profile
                         </a>
                     </div>
