@@ -98,6 +98,8 @@
                 }
             });
 
+            var csrf = $('meta[name="csrf-token"]').attr('content');
+
 
             // if user stop writing in the form
             $("#card_name").on("blur", function() {
@@ -127,7 +129,7 @@
                     url: "{{ route('store') }}",
                     method: "POST",
                     data: {
-                        _token : "{{ csrf_token() }}",
+                        _token : csrf,
                         heading: heading,
                         desg: desg,
                         about: about,
