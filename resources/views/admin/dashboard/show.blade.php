@@ -40,7 +40,7 @@
 
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm-down-break align-items-center">
-                        <input type="email" class="form-control" value="{{ $user->address[0]->address }}">
+                        <input type="email" class="form-control" value="{{ $user->profile->address }}">
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <label for="organizationLabel" class="col-sm-3 col-form-label input-label">City</label>
 
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" value="{{ $user->address[0]->city }}">
+                    <input type="email" class="form-control" value="{{ $user->profile->city }}">
                 </div>
             </div>
             <!-- End Form Group -->
@@ -60,7 +60,7 @@
                 <label for="departmentLabel" class="col-sm-3 col-form-label input-label">zip</label>
 
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" value="{{ $user->address[0]->zip }}">
+                    <input type="email" class="form-control" value="{{ $user->profile->zip }}">
                 </div>
             </div>
             <!-- End Form Group -->
@@ -70,7 +70,7 @@
                 <label for="departmentLabel" class="col-sm-3 col-form-label input-label">Country</label>
 
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" value="{{ $user->address[0]->country }}">
+                    <input type="email" class="form-control" value="{{ $user->profile->country }}">
                 </div>
             </div>
             <!-- End Form Group -->

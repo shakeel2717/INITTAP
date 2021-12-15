@@ -43,7 +43,6 @@
                                                         <option value="">Select Status</option>
                                                         <option value="pending">Pending</option>
                                                         <option value="shipped">Shipped</option>
-                                                        <option value="complete">Complete</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

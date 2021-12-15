@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
@@ -46,6 +47,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Admin Dashboard
 Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')->group(function () {
+    Route::resource('/stock', StockController::class);
     Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');

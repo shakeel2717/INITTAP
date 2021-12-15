@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\address;
+use App\Models\admin;
 use App\Models\cardOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,15 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::get();
-        return view('admin.dashboard.index', compact('users'));
+        $orders = cardOrder::get();
+        $admin = admin::first();
+        // getting sum of total orderCards
+        $totalOrders = cardOrder::withSum('pricing','price')->get();
+        $amount = 0;
+        foreach ($totalOrders as $pricing) {
+            $amount += $pricing->pricing_sum_price;
+        }
+        return view('admin.dashboard.index', compact('users', 'orders', 'admin', 'amount','totalOrders'));
     }
 
     public function users()
@@ -46,6 +55,10 @@ class AdminController extends Controller
         $order = cardOrder::findOrFail($id);
         $order->status = $validatedData['status'];
         $order->save();
+        // updating this user status
+        $user = auth()->user();
+        $user->status = 'active';
+        $user->save();
         return redirect()->back()->with('message', 'Order Updated Successfully');
     }
 

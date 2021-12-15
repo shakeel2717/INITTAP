@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string('username')->default('test');
             $table->string('password')->default('test');
+            $table->integer('stock')->default(10);
             $table->timestamps();
         });
     }
