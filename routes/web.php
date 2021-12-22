@@ -29,6 +29,8 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::post('/social', [PublicController::class, 'social'])->name('social');
         Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
+        Route::post('/addressEdit', [PublicController::class, 'addressEdit'])->name('addressEdit');
+        
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {

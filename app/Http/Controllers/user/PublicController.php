@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\email;
 use App\Models\phone;
+use App\Models\profile;
 use App\Models\social;
 use App\Models\User;
 use App\Models\website;
@@ -131,5 +132,22 @@ class PublicController extends Controller
         $social->url = $validatedData['link'];
         $social->save();
         return redirect()->back()->with('message', 'Your social information has been updated successfully');
+    }
+
+
+    public function addressEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+        // updating this user address
+        $profile = profile::find(Auth::user()->profile->id);
+        $profile->address = $validatedData['address'];
+        $profile->city = $validatedData['city'];
+        $profile->country = $validatedData['country'];
+        $profile->save();
+        return redirect()->back()->with('message', 'Your address has been updated successfully');
     }
 }
