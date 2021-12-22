@@ -167,14 +167,46 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Users Management</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.users') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
+                                <i class="tio-group-senior nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
                                     Users</span>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Card Management</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.cards.index') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-credit-cards nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All Cards</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.cards.create') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-credit-cards nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add new Card</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Orders Management</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.orders') }}"

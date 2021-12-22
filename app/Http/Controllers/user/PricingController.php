@@ -12,7 +12,7 @@ class PricingController extends Controller
 {
     public function index()
     {
-        $price = pricing::all();
+        $price = pricing::where('status', 'active')->get();
         return view('user.dashboard.pricing.index', compact('price'));
     }
 
@@ -28,7 +28,4 @@ class PricingController extends Controller
         // return $data->params->hppUrl;
         return view('user.dashboard.pricing.edit', compact('data'));
     }
-
-
-    
 }

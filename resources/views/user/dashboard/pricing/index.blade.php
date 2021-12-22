@@ -11,7 +11,7 @@
                         <h3 class="card-title">{{ $card->title }} $ {{ number_format($card->price, 2) }}</h3>
                         <hr>
                         <div class="card-image w-100 text-center">
-                            <img src="{{ asset('assets/img/card/') }}/{{ $card->img }}.png" alt="">
+                            <img src="{{ asset('assets/cards/') }}/{{ $card->img }}" alt="">
                         </div>
                         <hr>
                         <h3 class="card-title">{{ $card->type }}</h3>

@@ -19,6 +19,7 @@ class CreatePricingsTable extends Migration
             $table->string('type');
             $table->string('price');
             $table->string('img');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

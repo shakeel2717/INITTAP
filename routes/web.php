@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
@@ -53,6 +54,9 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
+    Route::get('cards/pause/{card}', [CardManageController::class, 'cardPause'])->name('cards.pause');
+    Route::get('cards/active/{card}', [CardManageController::class, 'cardActive'])->name('cards.active');
+    Route::resource('cards', CardManageController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

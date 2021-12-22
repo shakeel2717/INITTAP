@@ -77,7 +77,7 @@ class clean extends Command
         $price->title = "Classic";
         $price->type = "Silver Foil on Matte Black";
         $price->price = '79.99';
-        $price->img = 1;
+        $price->img = '1.png';
         $price->save();
 
         // creating pricing
@@ -85,7 +85,7 @@ class clean extends Command
         $price->title = "Ceramic White";
         $price->type = "Gold Foil on Matte White";
         $price->price = '79.99';
-        $price->img = 2;
+        $price->img = '2.png';
         $price->save();
 
         // creating pricing
@@ -93,7 +93,7 @@ class clean extends Command
         $price->title = "Classic Gold";
         $price->type = "Gold Foil on Matte Black";
         $price->price = '79.99';
-        $price->img = 3;
+        $price->img = '3.png';
         $price->save();
 
         return Command::SUCCESS;
