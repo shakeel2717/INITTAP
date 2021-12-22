@@ -163,4 +163,42 @@ class PublicController extends Controller
         $social->save();
         return redirect()->back()->with('message', 'Your social information has been updated successfully');
     }
+
+    public function emailEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email_id' => 'required',
+            'email' => 'required',
+        ]);
+        $social = email::find($validatedData['email_id']);
+        $social->email = $validatedData['email'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your email information has been updated successfully');
+    }
+
+
+    public function phoneEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'phone_id' => 'required',
+            'phone' => 'required',
+        ]);
+        $social = phone::find($validatedData['phone_id']);
+        $social->phone = $validatedData['phone'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your phone information has been updated successfully');
+    }
+
+
+    public function websiteEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'website_id' => 'required',
+            'website' => 'required',
+        ]);
+        $social = website::find($validatedData['website_id']);
+        $social->website = $validatedData['website'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your website has been updated successfully');
+    }
 }

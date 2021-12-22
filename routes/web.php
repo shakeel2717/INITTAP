@@ -31,6 +31,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
         Route::post('/addressEdit', [PublicController::class, 'addressEdit'])->name('addressEdit');
         Route::post('/socialEdit', [PublicController::class, 'socialEdit'])->name('socialEdit');
+        Route::post('/websiteEdit', [PublicController::class, 'websiteEdit'])->name('websiteEdit');
+        Route::post('/phoneEdit', [PublicController::class, 'phoneEdit'])->name('phoneEdit');
+        Route::post('/emailEdit', [PublicController::class, 'emailEdit'])->name('emailEdit');
         
         
     });
