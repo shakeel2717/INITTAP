@@ -22,7 +22,7 @@
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
-                <a class="navbar-brand" href="./index.html" aria-label="Front">
+                <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
                     <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}" alt="Logo">
                     <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}" alt="Logo">
                 </a>
@@ -98,7 +98,8 @@
                        "type": "css-animation"
                      }'>
                                 <div class="avatar avatar-sm avatar-circle">
-                                    <img class="avatar-img" src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                    <img class="avatar-img"
+                                        src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                         alt="Image Description">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -111,7 +112,7 @@
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
                                             <img class="avatar-img"
-                                                src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                                src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
@@ -147,10 +148,10 @@
     <aside
         class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
         <div class="navbar-vertical-container">
-            <div class="navbar-vertical-footer-offset">
+            <div class="navbar-vertical-footer-offset bg-dark">
                 <div class="navbar-brand-wrapper justify-content-between">
-                    <a class="navbar-brand" href="./index.html" aria-label="Front">
-                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                    <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
+                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-gold.svg') }}"
                             alt="Logo">
                         <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
                             alt="Logo">
@@ -170,9 +171,9 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.dashboard.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
+                                <i class="tio-dashboard-vs-outlined nav-icon  text-white"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Dashboard</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Dashboard</span>
                             </a>
                         </li>
 
@@ -183,8 +184,10 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-shopping-basket-add nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Order a
+                                <i class="tio-shopping-basket-add nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Order
+                                    a
                                     Card</span>
                             </a>
                         </li>
@@ -195,8 +198,9 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.public.single') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-poi-user nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Card
+                                <i class="tio-poi-user nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Card
                                     Profile</span>
                             </a>
                         </li>
@@ -204,8 +208,10 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.public.edit') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-brush nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Edit Card
+                                <i class="tio-brush nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Edit
+                                    Card
                                     Profile</span>
                             </a>
                         </li>
@@ -213,8 +219,10 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-earth-east nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Preview your
+                                <i class="tio-earth-east nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Preview
+                                    your
                                     Profile</span>
                             </a>
                         </li>
@@ -226,16 +234,18 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.profile.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-settings nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Account
+                                <i class="tio-settings nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Account
                                     Setting</span>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.profile.password') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-key nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Change
+                                <i class="tio-key nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Change
                                     Password</span>
                             </a>
                         </li>
@@ -246,8 +256,9 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('user.profile.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-sign-out nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sign
+                                <i class="tio-sign-out nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Sign
                                     Out</span>
                             </a>
                         </li>
