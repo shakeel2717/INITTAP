@@ -150,4 +150,17 @@ class PublicController extends Controller
         $profile->save();
         return redirect()->back()->with('message', 'Your address has been updated successfully');
     }
+
+
+    public function socialEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'social_id' => 'required',
+            'link' => 'required',
+        ]);
+        $social = social::find($validatedData['social_id']);
+        $social->url = $validatedData['link'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your social information has been updated successfully');
+    }
 }

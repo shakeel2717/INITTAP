@@ -30,6 +30,8 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
         Route::post('/addressEdit', [PublicController::class, 'addressEdit'])->name('addressEdit');
+        Route::post('/socialEdit', [PublicController::class, 'socialEdit'])->name('socialEdit');
+        
         
     });
 
