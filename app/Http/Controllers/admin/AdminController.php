@@ -59,6 +59,29 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'User added successfully');
     }
 
+    public function userEdit($id)
+    {
+        $user = User::find($id);
+        return view('admin.dashboard.userEdit', compact('user'));
+    }
+
+
+    public function userEditReq(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'status' => 'required|string',
+            'user_id' => 'required|integer',
+        ]);
+        $user = user::find($validatedData['user_id']);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->status = $validatedData['status'];
+        $user->save();
+        return redirect()->back()->with('message', 'User updated successfully');
+    }
+
     public function users()
     {
         $users = User::get();

@@ -19,6 +19,7 @@
                                 <th scope="col">Status</th>
                                 <th scope="col">Join Date</th>
                                 <th scope="col">Shipping Address</th>
+                                <th scope="col">Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,8 @@
                                     <td>{{ $user->created_at }}</td>
                                     <td><a href="{{ route('admin.dashboard.userShow', ['id' => $user->id]) }}"
                                             class="btn btn-sm btn-primary">View Address</a></td>
+                                    <td><a href="{{ route('admin.dashboard.userEdit', ['id' => $user->id]) }}"
+                                            class="btn btn-sm btn-primary">Edit User</a></td>
                                 </tr>
                             @empty
                                 <tr>

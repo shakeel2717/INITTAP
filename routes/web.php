@@ -53,6 +53,9 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('add-users', [AdminController::class, 'addUsers'])->name('addUsers');
     Route::post('add-users', [AdminController::class, 'addUsersReq'])->name('addUsersReq');
+    Route::get('user/edit/{id}', [AdminController::class, 'userEdit'])->name('userEdit');
+    Route::post('user/userEditReq/', [AdminController::class, 'userEditReq'])->name('userEditReq');
+    
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
