@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\address;
 use App\Models\admin;
 use App\Models\cardOrder;
+use App\Models\profile;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -17,12 +20,43 @@ class AdminController extends Controller
         $orders = cardOrder::get();
         $admin = admin::first();
         // getting sum of total orderCards
-        $totalOrders = cardOrder::withSum('pricing','price')->get();
+        $totalOrders = cardOrder::withSum('pricing', 'price')->get();
         $amount = 0;
         foreach ($totalOrders as $pricing) {
             $amount += $pricing->pricing_sum_price;
         }
-        return view('admin.dashboard.index', compact('users', 'orders', 'admin', 'amount','totalOrders'));
+        return view('admin.dashboard.index', compact('users', 'orders', 'admin', 'amount', 'totalOrders'));
+    }
+
+
+    public function addUsers()
+    {
+        return view('admin.dashboard.addUsers');
+    }
+
+    public function addUsersReq(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'code' => userCode(),
+            'password' => Hash::make($request->password),
+        ]);
+
+        // creating this user profile public
+        $profile = new profile();
+        $profile->user_id = $user->id;
+        $profile->title = $request->name;
+        $profile->save();
+
+        event(new Registered($user));
+        return redirect()->back()->with('message', 'User added successfully');
     }
 
     public function users()

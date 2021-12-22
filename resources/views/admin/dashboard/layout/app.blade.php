@@ -181,6 +181,15 @@
                             </a>
                         </li>
 
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.addUsers') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-user-add nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add
+                                    Users</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Card Management</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
