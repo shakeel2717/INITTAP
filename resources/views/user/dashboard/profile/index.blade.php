@@ -16,6 +16,8 @@
                                 <div class="form-group">
                                     <x-input name="name" type="text" label="Name" value="{{ Auth::user()->name }}"
                                         placeholder="Enter Your Full Name" />
+                                    <x-input name="name" type="text" label="Name" value="{{ Auth::user()->username }}"
+                                        placeholder="Enter Your Username" attribute='readonly' />
                                     <x-input name="email" type="text" label="Email" value="{{ Auth::user()->email }}"
                                         placeholder="Enter Your Email" />
                                     <input type="submit" value="Update Profile Record" class="btn btn-primary btn-lg">

@@ -52,6 +52,7 @@ class clean extends Command
         // creating a new user
         $user = new User();
         $user->name = 'Shakeel Ahmad';
+        $user->username = 'shakeel2717';
         $user->email = 'shakeel2717@gmail.com';
         $user->password = Hash::make('asdfasdf');
         $user->code = userCode();
@@ -68,7 +69,7 @@ class clean extends Command
 
         // creating a new admin
         $user = new admin();
-        $user->username = 'tet';
+        $user->username = 'test';
         $user->password = Hash::make('test');
         $user->save();
 

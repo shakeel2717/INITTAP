@@ -16,7 +16,14 @@
 
             <span class="divider text-muted mb-4">OR</span>
         </div>
-        <x-input name="name" type="text" placeholder="Full Name" value="{{ old('name') }}" />
+        <div class="row">
+            <div class="col-md-6">
+                <x-input name="name" type="text" placeholder="Full Name" value="{{ old('name') }}" />
+            </div>
+            <div class="col-md-6">
+                <x-input name="username" type="text" placeholder="Username" value="{{ old('username') }}" />
+            </div>
+        </div>
         <x-input name="email" type="email" placeholder="Email Address" value="{{ old('email') }}" />
         <div class="row">
             <div class="col-6">
