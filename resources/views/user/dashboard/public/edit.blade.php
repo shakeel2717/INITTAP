@@ -18,17 +18,18 @@
                                     <!-- Avatar -->
                                     <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5" for="avatarUploader">
                                         <img id="avatarImg" class="avatar-img"
-                                            src="{{ (Auth::user()->avatar != "") ? asset('assets/profiles/'). '/'.Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}" alt="Image Description">
+                                            src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                            alt="Image Description">
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
                                             data-hs-file-attach-options='{
-                                                                            "textTarget": "#avatarImg",
-                                                                            "mode": "image",
-                                                                            "targetAttr": "src",
-                                                                            "resetTarget": ".js-file-attach-reset-img",
-                                                                            "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                        }' name="profile">
+                                                                                "textTarget": "#avatarImg",
+                                                                                "mode": "image",
+                                                                                "targetAttr": "src",
+                                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                            }' name="profile">
 
                                         <span class="avatar-uploader-trigger">
                                             <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -53,10 +54,10 @@
                             </div>
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                        "template": "#addAddressFieldEgTemplate",
-                                                                        "container": "#addAddressFieldEgContainer",
-                                                                        "defaultCreated": 0
-                                                                    }'>
+                                                                            "template": "#addAddressFieldEgTemplate",
+                                                                            "container": "#addAddressFieldEgContainer",
+                                                                            "defaultCreated": 0
+                                                                        }'>
                                 <label for="email" class="col-sm-3 col-form-label input-label">Public Email
                                     Address</span></label>
 
@@ -95,10 +96,10 @@
 
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                                    "template": "#addPhoneFieldEgTemplate",
-                                                                                    "container": "#addPhoneFieldEgContainer",
-                                                                                    "defaultCreated": 0
-                                                                                }'>
+                                                                                        "template": "#addPhoneFieldEgTemplate",
+                                                                                        "container": "#addPhoneFieldEgContainer",
+                                                                                        "defaultCreated": 0
+                                                                                    }'>
                                 <label for="phone" class="col-sm-3 col-form-label input-label">Public Phone
                                     Number</span></label>
 
@@ -138,10 +139,10 @@
 
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                            "template": "#addwebsiteFieldEgTemplate",
-                                                                            "container": "#addwebsiteFieldEgContainer",
-                                                                            "defaultCreated": 0
-                                                                        }'>
+                                                                                "template": "#addwebsiteFieldEgTemplate",
+                                                                                "container": "#addwebsiteFieldEgContainer",
+                                                                                "defaultCreated": 0
+                                                                            }'>
                                 <label for="website" class="col-sm-3 col-form-label input-label">Public website
                                     </span></label>
 
@@ -220,8 +221,8 @@
                                     <label for="social">Select Social Type</label>
                                     <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
                                         data-hs-select2-options='{
-                                                                                                                      "placeholder": "Select wallet"
-                                                                                                                    }'
+                                                                                                                          "placeholder": "Select wallet"
+                                                                                                                        }'
                                         name="social">
                                         <option value="facebook" selected
                                             data-option-template='<span class="d-flex align-items-center"><i class="tio-facebook-square"></i><span>Facebook</span></span>'>
@@ -259,11 +260,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="link">Social Account Link</label>
-                                    <input type="url" name="link" id="link" class="form-control"
-                                        placeholder="Paste Your Social Meida Link here">
+                                    <input type="text" name="link" id="link" class="form-control" placeholder="Type">
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Add Social Media Account" class="btn btn-primary btn-block">
+                                    <input type="submit" value="Type your social media Username"
+                                        class="btn btn-primary btn-block">
                                 </div>
                             </div>
                         </div>

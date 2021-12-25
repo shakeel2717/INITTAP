@@ -94,33 +94,41 @@ class PublicController extends Controller
             'social' => 'required',
             'link' => 'required',
         ]);
-
         switch ($validatedData['social']) {
             case 'facebook':
                 $icon = 'tio-facebook-square';
+                $protocole = 'https://www.facebook.com/';
                 break;
             case 'instagram':
                 $icon = 'tio-instagram';
+                $protocole = 'https://www.instagram.com/';
                 break;
             case 'twitter':
+                $protocole = 'https://twitter.com/';
                 $icon = 'tio-twitter';
                 break;
             case 'youtube':
+                $protocole = 'https://www.youtube.com/';
                 $icon = 'tio-youtube';
                 break;
             case 'linkedin':
+                $protocole = 'https://www.linkedin.com/';
                 $icon = 'tio-linkedin-square';
                 break;
             case 'skype':
+                $protocole = 'https://www.skype.com/';
                 $icon = 'tio-skype';
                 break;
             case 'whatsapp':
+                $protocole = 'https://api.whatsapp.com/send?phone=';
                 $icon = 'tio-whatsapp';
                 break;
             case 'github':
+                $protocole = 'https://github.com/';
                 $icon = 'tio-github';
                 break;
             default:
+                $protocole = 'https://www.facebook.com/';
                 $icon = 'tio-facebook-square';
                 break;
         }
@@ -129,7 +137,7 @@ class PublicController extends Controller
         $social->user_id = Auth::user()->id;
         $social->name = $validatedData['social'];
         $social->icon = $icon;
-        $social->url = $validatedData['link'];
+        $social->url = $protocole . $validatedData['link'];
         $social->save();
         return redirect()->back()->with('message', 'Your social information has been updated successfully');
     }
