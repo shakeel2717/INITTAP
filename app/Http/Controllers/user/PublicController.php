@@ -209,4 +209,16 @@ class PublicController extends Controller
         $social->save();
         return redirect()->back()->with('message', 'Your website has been updated successfully');
     }
+
+
+    public function aboutEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'about' => 'required|string',
+        ]);
+        $about = profile::find(Auth::user()->id);
+        $about->about = $validatedData['about'];
+        $about->save();
+        return redirect()->back()->with('message', 'Your About info has been updated successfully');
+    }
 }
