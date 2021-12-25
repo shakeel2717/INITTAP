@@ -247,11 +247,17 @@ class PublicController extends Controller
         $vcard->addName($fullname, $additional, $prefix, $suffix);
         // add work data
         $vcard->addJobtitle($user->profile->designation);
-        $vcard->addEmail($user->emails[0]->email);
-        $vcard->addPhoneNumber($user->phones[0]->phone, 'PREF;WORK');
+        if ($user->emails->cont() > 0) {
+            $vcard->addEmail($user->emails[0]->email);
+        }
+        if ($user->phones->count() > 0) {
+            $vcard->addPhoneNumber($user->phones[0]->phone, 'PREF;WORK');
+        }
         $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, $user->profile->country);
         $vcard->addLabel($user->profile->address, $user->profile->city, $user->profile->country);
-        $vcard->addURL($user->websites[0]->website);
+        if ($user->websites->count() > 0) {
+            $vcard->addURL($user->websites[0]->website);
+        }
         // return vcard as a download
         return $vcard->download();
     }
