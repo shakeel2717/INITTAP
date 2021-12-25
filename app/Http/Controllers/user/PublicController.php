@@ -263,6 +263,10 @@ class PublicController extends Controller
         foreach ($user->social as $social) {
             $vcard->addURL($social->url);
         }
+        if ($user->avatar != '') {
+            $img = 'assets/profiles/' . $user->avatar;
+            $vcard->addPhoto($img);
+        }
         $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, null, $user->profile->country);
         $vcard->addLabel('street, worktown, workpostcode Belgium', 'work');
         // return $vcard->getOutput();
