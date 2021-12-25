@@ -260,11 +260,10 @@ class PublicController extends Controller
         $vcard->addLabel('street, worktown, workpostcode Belgium', 'work');
         // $vcard->addPhoto($user->avatar != '' ? asset('assets/profiles/') . '/' . $user->avatar : asset('assets/img/160x160/img1.jpg'));
         // return vcard as a download
-        return $vcard->download();
+        $vcard->setSavePath('profiles/');
+        $vcard->save();
+        $path = strtolower(Str::slug($user->profile->title)) . '.vcf';
+        return response()->file('profiles/' . $path);
         // // return $vcard->download();
-        // $vcard->setSavePath('profiles/');
-        // $vcard->save();
-        // $path = strtolower(Str::slug($fullname)) . '.vcf';
-        // return response()->file('profiles/' . $path);
     }
 }
