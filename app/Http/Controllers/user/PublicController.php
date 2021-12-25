@@ -12,6 +12,7 @@ use App\Models\website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JeroenDesloovere\VCard\VCard;
+use Illuminate\Support\Str;
 
 class PublicController extends Controller
 {
@@ -259,6 +260,10 @@ class PublicController extends Controller
             $vcard->addURL($user->websites[0]->website);
         }
         // return vcard as a download
-        return $vcard->download();
+        // return $vcard->download();
+        $vcard->setSavePath('profiles/');
+        $vcard->save();
+        $path = strtolower(Str::slug($fullname)).'.vcf';
+        return response()->file('profiles/'.$path);
     }
 }
