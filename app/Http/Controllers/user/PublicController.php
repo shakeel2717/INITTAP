@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JeroenDesloovere\VCard\VCard;
 
 class PublicController extends Controller
 {
@@ -228,5 +229,30 @@ class PublicController extends Controller
         // getting this user detail
         $user = User::where('username', $username)->firstOrFail();
         return view('public.index', compact('user'));
+    }
+
+
+    public function publicProfileSave($username)
+    {
+        // getting this user detail
+        $user = User::where('username', $username)->firstOrFail();
+        // create a function to generate user's profile vcf file
+        $vcard = new VCard();
+        // define variables
+        $fullname = $user->profile->title;
+        $additional = '';
+        $prefix = '';
+        $suffix = '';
+        // add personal data
+        $vcard->addName($fullname, $additional, $prefix, $suffix);
+        // add work data
+        $vcard->addJobtitle($user->profile->designation);
+        $vcard->addEmail($user->emails[0]->email);
+        $vcard->addPhoneNumber($user->phones[0]->phone, 'PREF;WORK');
+        $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, $user->profile->country);
+        $vcard->addLabel($user->profile->address, $user->profile->city, $user->profile->country);
+        $vcard->addURL($user->websites[0]->website);
+        // return vcard as a download
+        return $vcard->download();
     }
 }

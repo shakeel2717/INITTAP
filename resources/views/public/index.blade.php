@@ -55,6 +55,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
+                        <a href="{{ route('user.public.profile.save',['username' => $user->username]) }}" class="btn btn-block btn-dark btn-lg"><i class="tio-user-add"></i> Save Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow-lg card-body mb-2">
                         <h5>About </h5>
                         <p>{{ $user->profile->about }}</p>
                     </div>

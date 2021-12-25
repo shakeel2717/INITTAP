@@ -20,6 +20,7 @@ Route::redirect('/', '/login', 301);
 Route::name('user.')->group(function () {
     // Public Profile Section
     Route::get('/public/{username}', [PublicController::class, 'publicProfile'])->name('public.profile');
+    Route::get('/public/save/{username}', [PublicController::class, 'publicProfileSave'])->name('public.profile.save');
 });
 
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
