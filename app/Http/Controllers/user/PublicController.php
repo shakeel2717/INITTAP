@@ -240,31 +240,30 @@ class PublicController extends Controller
         // create a function to generate user's profile vcf file
         $vcard = new VCard();
         // define variables
-        $firstname = $user->profile->title;
-        $lastname = '';
+        $fullname = $user->profile->title;
         $additional = '';
         $prefix = '';
         $suffix = '';
         // add personal data
-        $vcard->addName($firstname, $lastname, $additional, $prefix, $suffix);
+        $vcard->addName($fullname, $additional, $prefix, $suffix);
         // add work data
-        // $vcard->addJobtitle($user->profile->designation);
-        // if ($user->emails->count() > 0) {
-        //     $vcard->addEmail($user->emails[0]->email);
-        // }
-        if ($user->phones->count() > 0) {
-            $vcard->addPhoneNumber($user->phones[0]->phone, 'WORK');
+        $vcard->addJobtitle($user->profile->designation);
+        if ($user->emails->count() > 0) {
+            $vcard->addEmail($user->emails[0]->email);
         }
-        // $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, $user->profile->country);
-        // $vcard->addLabel($user->profile->address, $user->profile->city, $user->profile->country);
-        // if ($user->websites->count() > 0) {
-        //     $vcard->addURL($user->websites[0]->website);
-        // }
+        if ($user->phones->count() > 0) {
+            $vcard->addPhoneNumber($user->phones[0]->phone, 'PREF;WORK');
+        }
+        $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, $user->profile->country);
+        $vcard->addLabel($user->profile->address, $user->profile->city, $user->profile->country);
+        if ($user->websites->count() > 0) {
+            $vcard->addURL($user->websites[0]->website);
+        }
         // return vcard as a download
         // return $vcard->download();
         $vcard->setSavePath('profiles/');
         $vcard->save();
-        $path = strtolower(Str::slug($firstname)) . '.vcf';
-        return response()->file('profiles/' . $path);
+        $path = strtolower(Str::slug($fullname)).'.vcf';
+        return response()->file('profiles/'.$path);
     }
 }
