@@ -226,7 +226,7 @@ class PublicController extends Controller
     public function publicProfile($username)
     {
         // getting this user detail
-        $user = User::where('username', $username)->first();
-        return view('public.index');
+        $user = User::where('username', $username)->firstOrFail();
+        return view('public.index', compact('user'));
     }
 }

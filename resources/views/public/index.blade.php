@@ -25,30 +25,30 @@
                 <label class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar"
                     for="avatarUploader">
                     <img id="avatarImg" class="avatar-img"
-                        src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                        src="{{ $user->avatar != '' ? asset('assets/profiles/') . '/' . $user->avatar : asset('assets/img/160x160/img1.jpg') }}"
                         alt="Image Description">
                 </label>
                 <!-- End Avatar -->
 
-                <h1 class="page-header-title">{{ Auth::user()->profile->title }} <i class="tio-verified tio-lg text-primary"
+                <h1 class="page-header-title">{{ $user->profile->title }} <i class="tio-verified tio-lg text-primary"
                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i></h1>
 
                 <!-- List -->
                 <ul class="list-inline list-inline-m-1">
                     <li class="list-inline-item">
                         <i class="tio-poi-user mr-1"></i>
-                        <span>{{ Auth::user()->profile->designation ?? 'Designation' }}</span>
+                        <span>{{ $user->profile->designation ?? 'Designation' }}</span>
                     </li>
 
                     <li class="list-inline-item">
                         <i class="tio-poi-outlined mr-1"></i>
-                        <a href="#">{{ Auth::user()->profile->city }},</a>
-                        <a href="#">{{ Auth::user()->profile->country }}</a>
+                        <a href="#">{{ $user->profile->city }},</a>
+                        <a href="#">{{ $user->profile->country }}</a>
                     </li>
 
                     <li class="list-inline-item">
                         <i class="tio-date-range mr-1"></i>
-                        <span>{{ Auth::user()->created_at }}</span>
+                        <span>{{ $user->created_at }}</span>
                     </li>
                 </ul>
             </div>
@@ -56,21 +56,21 @@
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <h5>About </h5>
-                        <p>{{ Auth::user()->profile->about }}</p>
+                        <p>{{ $user->profile->about }}</p>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <h5>Address </h5>
-                        <p>{{ Auth::user()->profile->address }}, {{ Auth::user()->profile->city }}
-                            {{ Auth::user()->profile->country }}</p>
+                        <p>{{ $user->profile->address }}, {{ $user->profile->city }}
+                            {{ $user->profile->country }}</p>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <h5>Social Networks </h5>
                         <div class="row p-2">
-                            @foreach (Auth::user()->social as $social)
+                            @foreach ($user->social as $social)
                                 <a target="_blank" href="{{ $social->url }}" class="display-3"><i
                                         class="{{ $social->icon }}"></i></a>
                             @endforeach
@@ -81,8 +81,8 @@
                     <div class="card shadow-lg card-body mb-2">
                         <h5>Contact Info </h5>
                         <ul class="list-group list-group-flush list-group-no-gutters">
-                            @if (Auth::user()->websites->count() > 0)
-                                @forelse (Auth::user()->websites as $website)
+                            @if ($user->websites->count() > 0)
+                                @forelse ($user->websites as $website)
                                     <li class="list-group-item py-3">
                                         <div class="media">
                                             <a href="{{ $website->website }}">
@@ -100,8 +100,8 @@
                                     </div>
                                 @endforelse
                             @endif
-                            @if (Auth::user()->phones->count() > 0)
-                                @foreach (Auth::user()->phones as $phone)
+                            @if ($user->phones->count() > 0)
+                                @foreach ($user->phones as $phone)
                                     <li class="list-group-item py-3">
                                         <div class="media">
                                             <div
@@ -113,8 +113,8 @@
                                     </li>
                                 @endforeach
                             @endif
-                            @if (Auth::user()->emails->count() > 0)
-                                @foreach (Auth::user()->emails as $email)
+                            @if ($user->emails->count() > 0)
+                                @foreach ($user->emails as $email)
                                     <li class="list-group-item py-3">
                                         <div class="media">
                                             <div
