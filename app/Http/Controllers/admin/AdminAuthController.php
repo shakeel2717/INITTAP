@@ -18,12 +18,12 @@ class AdminAuthController extends Controller
     public function loginReq(Request $request)
     {
         $validatedData = $request->validate([
-            'username' => 'required|unique:admins,username',
+            'username' => 'required|exists:admins,username',
             'password' => 'required',
         ]);
         $admin = admin::first();
         // checking if password is same
-        
+
         if (!$passwrod = Hash::check($validatedData['password'], $admin->password)) {
             return redirect()->back()->withErrors('Invalid Password');
         }
