@@ -247,7 +247,7 @@ class PublicController extends Controller
         $vcard->addName($fullname, $additional, $prefix, $suffix);
         // add work data
         $vcard->addJobtitle($user->profile->designation);
-        if ($user->emails->cont() > 0) {
+        if ($user->emails->count() > 0) {
             $vcard->addEmail($user->emails[0]->email);
         }
         if ($user->phones->count() > 0) {
