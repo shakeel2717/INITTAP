@@ -31,6 +31,16 @@
                                 </div>
                             </div>
                             <div class="row form-group">
+                                <label for="username" class="col-sm-3 col-form-label input-label">Username
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-sm-down-break">
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="Username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
                                 <label for="password" class="col-sm-3 col-form-label input-label">Password
                                 </label>
                                 <div class="col-sm-9">
