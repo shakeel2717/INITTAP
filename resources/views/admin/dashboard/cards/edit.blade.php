@@ -15,7 +15,7 @@
                                     <!-- Avatar -->
                                     <label class="avatar avatar-xl avatar-square avatar-uploader mr-5" for="avatarUploader">
                                         <img id="avatarImg" class="avatar-img"
-                                            src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                            src="{{ asset('assets/img/160x160/img1.jpg') }}"
                                             alt="Image Description">
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
