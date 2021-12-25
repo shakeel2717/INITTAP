@@ -240,12 +240,13 @@ class PublicController extends Controller
         // create a function to generate user's profile vcf file
         $vcard = new VCard();
         // define variables
-        $fullname = $user->profile->title;
+        $firstname = $user->profile->title;
+        $lastname = '';
         $additional = '';
         $prefix = '';
         $suffix = '';
         // add personal data
-        $vcard->addName($fullname, $additional, $prefix, $suffix);
+        $vcard->addName($firstname,$lastname, $additional, $prefix, $suffix);
         // add work data
         $vcard->addJobtitle($user->profile->designation);
         if ($user->emails->count() > 0) {
@@ -263,7 +264,7 @@ class PublicController extends Controller
         // return $vcard->download();
         $vcard->setSavePath('profiles/');
         $vcard->save();
-        $path = strtolower(Str::slug($fullname)).'.vcf';
+        $path = strtolower(Str::slug($firstname)).'.vcf';
         return response()->file('profiles/'.$path);
     }
 }
