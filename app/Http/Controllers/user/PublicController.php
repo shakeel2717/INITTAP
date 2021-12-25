@@ -239,7 +239,7 @@ class PublicController extends Controller
     }
 
 
-    
+
 
 
     public function publicProfile($username)
@@ -275,10 +275,10 @@ class PublicController extends Controller
             $vcard->addPhoneNumber($phone->phone, 'PREF;WORK');
         }
         foreach ($user->websites as $website) {
-            $vcard->addURL($website->website);
+            $vcard->addURL($website->website,'Website');
         }
         foreach ($user->social as $social) {
-            $vcard->addURL($social->url);
+            $vcard->addURL($social->url, ucfirst($social->name));
         }
         if ($user->avatar != '') {
             $img = 'assets/profiles/' . $user->avatar;
