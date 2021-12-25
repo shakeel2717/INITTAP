@@ -217,7 +217,7 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.order.index') }}"
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.public.profile',['username' => Auth::user()->username]) }}"
                                 title="Layouts" data-placement="left">
                                 <i class="tio-earth-east nav-icon  text-white"></i>
                                 <span

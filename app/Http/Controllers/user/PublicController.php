@@ -221,4 +221,12 @@ class PublicController extends Controller
         $about->save();
         return redirect()->back()->with('message', 'Your About info has been updated successfully');
     }
+
+
+    public function publicProfile($username)
+    {
+        // getting this user detail
+        $user = User::where('username', $username)->first();
+        return view('public.index');
+    }
 }

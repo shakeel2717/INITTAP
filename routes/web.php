@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 Route::redirect('/', '/login', 301);
 
+
+Route::name('user.')->group(function () {
+    // Public Profile Section
+    Route::get('/public/{username}', [PublicController::class, 'publicProfile'])->name('public.profile');
+});
+
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::prefix('order')->name('order.')->group(function () {
@@ -35,10 +41,8 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::post('/phoneEdit', [PublicController::class, 'phoneEdit'])->name('phoneEdit');
         Route::post('/emailEdit', [PublicController::class, 'emailEdit'])->name('emailEdit');
         Route::post('/aboutEdit', [PublicController::class, 'aboutEdit'])->name('aboutEdit');
-
-        
-        
     });
+
 
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/index', [ProfileController::class, 'index'])->name('index');
@@ -64,7 +68,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::post('add-users', [AdminController::class, 'addUsersReq'])->name('addUsersReq');
     Route::get('user/edit/{id}', [AdminController::class, 'userEdit'])->name('userEdit');
     Route::post('user/userEditReq/', [AdminController::class, 'userEditReq'])->name('userEditReq');
-    
+
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');

@@ -17,11 +17,11 @@ class orderCardController extends Controller
             'heading' => 'required|string',
             'about' => 'nullable|string',
         ]);
-        // checking if this user already has ordered
-        $security = cardOrder::where('user_id', Auth::user()->id)->first();
-        if ($security != "") {
-            return "already have an Order";
-        }
+        // // checking if this user already has ordered
+        // $security = cardOrder::where('user_id', Auth::user()->id)->first();
+        // if ($security != "") {
+        //     return "already have an Order";
+        // }
 
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
