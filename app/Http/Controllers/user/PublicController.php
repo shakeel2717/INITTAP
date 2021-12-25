@@ -250,27 +250,20 @@ class PublicController extends Controller
         // add personal data
         $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
         // add work data
-        $vcard->addJobtitle($user->profile->designation);
-        foreach ($user->emails as $email) {
-            $vcard->addEmail($email->email);
-        }
-        foreach ($user->phones as $phone) {
-            $vcard->addPhoneNumber($phone->phone, 'PREF;WORK');
-        }
-        foreach ($user->websites as $website) {
-            $vcard->addURL($website->website);
-        }
-        foreach ($user->social as $social) {
-            $vcard->addURL($social->url);
-        }
-        $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, null, $user->profile->country);
+        $vcard->addCompany('Siesqo');
+        $vcard->addJobtitle('Web Developer');
+        $vcard->addEmail('info@jeroendesloovere.be');
+        $vcard->addPhoneNumber(1234121212, 'PREF;WORK');
+        $vcard->addPhoneNumber(123456789, 'WORK');
+        $vcard->addAddress(null, null, 'street', 'worktown', null, 'workpostcode', 'Belgium');
+        $vcard->addURL('http://www.jeroendesloovere.be');
         $vcard->addLabel('street, worktown, workpostcode Belgium', 'work');
-        // return $vcard->getOutput();
         // $vcard->addPhoto($user->avatar != '' ? asset('assets/profiles/') . '/' . $user->avatar : asset('assets/img/160x160/img1.jpg'));
         // return vcard as a download
         $vcard->setSavePath('profiles/');
         $vcard->save();
         $path = strtolower(Str::slug($user->profile->title)) . '.vcf';
         return response()->file('profiles/' . $path);
+        // // return $vcard->download();
     }
 }
