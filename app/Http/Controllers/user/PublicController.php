@@ -238,47 +238,33 @@ class PublicController extends Controller
         // getting this user detail
         $user = User::where('username', $username)->firstOrFail();
         // create a function to generate user's profile vcf file
-        // $vcard = new VCard();
-        // // define variables
-        // $fullname = $user->profile->title;
-        // $additional = '';
-        // $prefix = '';
-        // $suffix = '';
-        // // add personal data
-        // $vcard->addName($fullname, $additional, $prefix, $suffix);
-        // // add work data
-        // $vcard->addJobtitle($user->profile->designation);
-        if ($user->emails->count() > 0) {
-            // $vcard->addEmail($user->emails[0]->email);
-            $email = $user->emails[0]->email;
-        }
-        if ($user->phones->count() > 0) {
-            // $vcard->addPhoneNumber($user->phones[0]->phone, 'PREF;WORK');
-            $phone = $user->phones[0]->phone;
-        }
-        // $vcard->addAddress(null, null, $user->profile->address, $user->profile->city, null, $user->profile->country);
-        // $vcard->addLabel($user->profile->address, $user->profile->city, $user->profile->country);
-        if ($user->websites->count() > 0) {
-            // $vcard->addURL($user->websites[0]->website);
-            $website = $user->websites[0]->website;
-        }
-        // // return vcard as a download
-        // // return $vcard->download();
-        // $vcard->setSavePath('profiles/');
-        // $path = strtolower(Str::slug($fullname)).'.vcf';
-        // $vcard->save();
-        // return response()->file('profiles/'.$path);
-        $fullname = $user->profile->title;
-        $path = strtolower(Str::slug($fullname)) . '.vcf';
-        fopen("profiles/$path", "w") or die("Unable to Create file!");
-        $myfile = fopen("profiles/$path", "w") or die("Unable to Open file!");
-        $words = explode(" ", $fullname);
+        $words = explode(" ", $user->profile->title);
+        // define vcard
+        $vcard = new VCard();
+        // define variables
         $firstname = $words[0];
         $lastname = $words[1];
-        $jobTitle = $user->profile->designation;
-        $txt = "BEGIN:VCARD\nVERSION:3.0\nN:$lastname;$firstname;;;\nFN:$firstname.' '.$lastname\nTITLE:$jobTitle\nTEL;type=Home:$phone\nitem1.URL:$website\nitem1.X-ABLabel:OTHER\nitem2.EMAIL;type=INTERNET:$email\nitem2.X-ABLabel:Other\nEND:VCARD";
-        fwrite($myfile, $txt);
-        fclose($myfile);
-        return response()->file('profiles/' . $path);
+        $additional = '';
+        $prefix = '';
+        $suffix = '';
+        // add personal data
+        $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+        // add work data
+        $vcard->addCompany('Siesqo');
+        $vcard->addJobtitle('Web Developer');
+        $vcard->addEmail('info@jeroendesloovere.be');
+        $vcard->addPhoneNumber(1234121212, 'PREF;WORK');
+        $vcard->addPhoneNumber(123456789, 'WORK');
+        $vcard->addAddress(null, null, 'street', 'worktown', null, 'workpostcode', 'Belgium');
+        $vcard->addURL('http://www.jeroendesloovere.be');
+        $vcard->addLabel('street, worktown, workpostcode Belgium', 'work');
+        // $vcard->addPhoto($user->avatar != '' ? asset('assets/profiles/') . '/' . $user->avatar : asset('assets/img/160x160/img1.jpg'));
+        // return vcard as a download
+        return $vcard->download();
+        // // return $vcard->download();
+        // $vcard->setSavePath('profiles/');
+        // $vcard->save();
+        // $path = strtolower(Str::slug($fullname)) . '.vcf';
+        // return response()->file('profiles/' . $path);
     }
 }
