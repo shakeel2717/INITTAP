@@ -42,6 +42,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         Route::post('/phoneEdit', [PublicController::class, 'phoneEdit'])->name('phoneEdit');
         Route::post('/emailEdit', [PublicController::class, 'emailEdit'])->name('emailEdit');
         Route::post('/aboutEdit', [PublicController::class, 'aboutEdit'])->name('aboutEdit');
+        Route::post('/mainEdit', [PublicController::class, 'mainEdit'])->name('mainEdit');
     });
 
 

@@ -224,6 +224,23 @@ class PublicController extends Controller
         return redirect()->back()->with('message', 'Your About info has been updated successfully');
     }
 
+    public function mainEdit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'designation' => 'required|string',
+        ]);
+
+        $about = profile::find(Auth::user()->id);
+        $about->title = $validatedData['title'];
+        $about->designation = $validatedData['designation'];
+        $about->save();
+        return redirect()->back()->with('message', 'Your About info has been updated successfully');
+    }
+
+
+    
+
 
     public function publicProfile($username)
     {
