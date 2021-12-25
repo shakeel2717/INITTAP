@@ -1,26 +1,15 @@
 @extends('public.layout.app')
 @section('content')
-    <div class="row justify-content-lg-center">
-        <div class="col-lg-8">
-            <!-- Profile Cover -->
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-8">
+
             <div class="profile-cover">
                 <div class="profile-cover-img-wrapper">
                     <img id="profileCoverImg" class="profile-cover-img" src="{{ asset('assets/img/cover.png') }}"
                         alt="Image Description">
-                    {{-- <div class="profile-cover-content profile-cover-btn">
-                    <div class="custom-file-btn">
-                        <label class="custom-file-btn-label btn btn-sm btn-white" for="profileCoverUplaoder">
-                            <i class="tio-add-photo"></i>
-                            <span class="d-none d-sm-inline-block ml-1">Update Cover Photo</span>
-                        </label>
-                    </div>
-                </div> --}}
                 </div>
             </div>
-            <!-- End Profile Cover -->
-
-            <!-- Profile Header -->
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 mt-5 mt-md-3">
                 <!-- Avatar -->
                 <label class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar"
                     for="avatarUploader">
@@ -52,10 +41,12 @@
                     </li>
                 </ul>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
-                        <a href="{{ route('user.public.profile.save',['username' => $user->username]) }}" class="btn btn-block btn-dark btn-lg"><i class="tio-user-add"></i> Save Contact</a>
+                        <a href="{{ route('user.public.profile.save', ['username' => $user->username]) }}"
+                            class="btn btn-block btn-dark btn-lg"><i class="tio-user-add"></i> Save Contact</a>
                     </div>
                 </div>
             </div>

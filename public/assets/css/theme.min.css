@@ -24476,7 +24476,7 @@ label.btn {
 
 .profile-cover-img {
     width: 100%;
-    height: 7.5rem;
+    height: 10rem;
     -o-object-fit: cover;
     object-fit: cover;
     vertical-align: top;
@@ -24486,7 +24486,7 @@ label.btn {
 .profile-cover-avatar {
     display: -ms-flexbox;
     display: flex;
-    margin: -6.3rem auto .5rem auto
+    margin: -4.3rem auto .5rem auto
 }
 
 .profile-cover-content {
