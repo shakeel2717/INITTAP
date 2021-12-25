@@ -1,7 +1,7 @@
 @extends('public.layout.app')
 @section('content')
     <div class="row justify-content-md-center">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 mt-4">
 
             <div class="profile-cover">
                 <div class="profile-cover-img-wrapper">
