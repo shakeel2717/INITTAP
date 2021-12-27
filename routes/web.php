@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\StockController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
@@ -14,8 +15,8 @@ use App\Http\Controllers\user\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
-Route::redirect('/', '/login', 301);
 
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
 
 Route::name('user.')->group(function () {
     // Public Profile Section
