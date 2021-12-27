@@ -73,30 +73,6 @@ class clean extends Command
         $user->password = Hash::make('test');
         $user->save();
 
-        // creating pricing
-        $price = new pricing();
-        $price->title = "Classic";
-        $price->type = "Silver Foil on Matte Black";
-        $price->price = '79.99';
-        $price->img = '1.png';
-        $price->save();
-
-        // creating pricing
-        $price = new pricing();
-        $price->title = "Ceramic White";
-        $price->type = "Gold Foil on Matte White";
-        $price->price = '79.99';
-        $price->img = '2.png';
-        $price->save();
-
-        // creating pricing
-        $price = new pricing();
-        $price->title = "Classic Gold";
-        $price->type = "Gold Foil on Matte Black";
-        $price->price = '79.99';
-        $price->img = '3.png';
-        $price->save();
-
         return Command::SUCCESS;
     }
 }

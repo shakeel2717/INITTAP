@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    All Users
+    Add New Card
 @endsection
 @section('content')
     <div class="row">
@@ -15,18 +15,17 @@
                                     <!-- Avatar -->
                                     <label class="avatar avatar-xl avatar-square avatar-uploader mr-5" for="avatarUploader">
                                         <img id="avatarImg" class="avatar-img"
-                                            src="{{ asset('assets/img/160x160/img1.jpg') }}"
-                                            alt="Image Description">
+                                            src="{{ asset('assets/img/160x160/img1.jpg') }}" alt="Image Description">
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
                                             data-hs-file-attach-options='{
-                                                                                    "textTarget": "#avatarImg",
-                                                                                    "mode": "image",
-                                                                                    "targetAttr": "src",
-                                                                                    "resetTarget": ".js-file-attach-reset-img",
-                                                                                    "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                    "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                }' name="profile">
+                                                                                        "textTarget": "#avatarImg",
+                                                                                        "mode": "image",
+                                                                                        "targetAttr": "src",
+                                                                                        "resetTarget": ".js-file-attach-reset-img",
+                                                                                        "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                    }' name="profile">
 
                                         <span class="avatar-uploader-trigger">
                                             <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -37,9 +36,9 @@
                                     <button type="button" class="js-file-attach-reset-img btn btn-white">Delete</button>
                                 </div>
                             </div>
+
                             <div class="row form-group">
-                                <label for="title" class="col-sm-3 col-form-label input-label">Card Title <i
-                                        class="tio-help-outlined text-body ml-1"></i>
+                                <label for="title" class="col-sm-3 col-form-label input-label">Card Title
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
@@ -49,20 +48,30 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <label for="type" class="col-sm-3 col-form-label input-label">Card Type <i
-                                        class="tio-help-outlined text-body ml-1"></i>
+                                <label for="description" class="col-sm-3 col-form-label input-label">Card Description
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
-                                        <input type="text" class="form-control" name="type" id="type"
-                                            placeholder="Card Type">
+                                        <textarea name="description" id="description" cols="30" rows="10"
+                                            class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <label for="type" class="col-sm-3 col-form-label input-label">Card Price <i
-                                        class="tio-help-outlined text-body ml-1"></i>
+                                <label for="category" class="col-sm-3 col-form-label input-label">Card Category
                                 </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-sm-down-break">
+                                        <select name="category" id="category" class="form-control">
+                                            <option value="plastic">Plastic</option>
+                                            <option value="wood">Wood</option>
+                                            <option value="metal">Metal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="type" class="col-sm-3 col-form-label input-label">Card Price </label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
                                         <input type="text" class="form-control" name="price" id="price"
@@ -70,9 +79,49 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+                            <!-- Form Group -->
+                            <div class="js-add-field row form-group" data-hs-add-field-options='{
+                                                                "template": "#addAddressFieldEgTemplate",
+                                                                "container": "#addAddressFieldEgContainer",
+                                                                "defaultCreated": 0
+                                                            }'>
+                                <label for="email" class="col-sm-3 col-form-label input-label">Add Features</span></label>
+
+                                <div class="col-sm-9">
+                                    <input type="feature" class="form-control" data-name="feature" name="feature"
+                                        id="feature" placeholder="Add Features List" aria-label="Add Features List">
+
+                                    <!-- Container For Input Field -->
+                                    <div id="addAddressFieldEgContainer"></div>
+
+                                    <a href="javascript:;"
+                                        class="js-create-field form-link btn btn-sm btn-no-focus btn-ghost-primary">
+                                        <i class="tio-add"></i> Add more Features
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <!-- Add Phone Input Field -->
+                            <div id="addAddressFieldEgTemplate" style="display: none;">
+                                <div class="input-group-add-field">
+                                    <input type="feature" class="form-control" data-name="feature" name="feature"
+                                        id="feature" placeholder="Add Features List" aria-label="Add Features List">
+
+                                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+                                        <i class="tio-clear"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Add Phone Input Field -->
                         </div>
                         <div class="card-footer d-flex justify-content-end ">
-                            <button type="submit" class="btn btn-primary"> Add Card in System <i class="tio-checkmark-square"></i></button>
+                            <button type="submit" class="btn btn-primary"> Add Card in System <i
+                                    class="tio-checkmark-square"></i></button>
                         </div>
                     </div>
                 </form>
@@ -88,6 +137,15 @@
             // =======================================================
             $('.js-file-attach').each(function() {
                 var customFile = new HSFileAttach($(this)).init();
+            });
+        });
+    </script>
+    <script>
+        $(document).on('ready', function() {
+            // INITIALIZATION OF HS-ADD-FIELD
+            // =======================================================
+            $('.js-add-field').each(function() {
+                new HSAddField($(this)).init();
             });
         });
     </script>

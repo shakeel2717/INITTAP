@@ -15,7 +15,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Type</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">status</th>
                                 <th scope="col">Action</th>
@@ -26,8 +26,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pricing->title }}</td>
-                                    <td>{{ $pricing->type }}</td>
-                                    <td>{{ $pricing->price }}</td>
+                                    <td class="text-uppercase">{{ $pricing->category }}</td>
+                                    <td>{{ number_format($pricing->price, 2) }}</td>
                                     <td>{{ Str::ucfirst($pricing->status) }}</td>
                                     <td>
                                         <a href="{{ route('admin.dashboard.cards.edit', ['card' => $pricing->id]) }}"

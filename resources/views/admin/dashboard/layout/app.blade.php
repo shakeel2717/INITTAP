@@ -196,18 +196,22 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.cards.index') }}"
-                                title="Layouts" data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('admin.dashboard.cards.index') }}" title="Layouts"
+                                data-placement="left">
                                 <i class="tio-credit-cards nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All Cards</span>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                    Cards</span>
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.cards.create') }}"
-                                title="Layouts" data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('admin.dashboard.cards.create') }}" title="Layouts"
+                                data-placement="left">
                                 <i class="tio-credit-cards nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add new Card</span>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add new
+                                    Card</span>
                             </a>
                         </li>
 
@@ -307,6 +311,7 @@
     <script src="{{ asset('assets/vendor/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/hs-add-field/dist/hs-add-field.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net.extensions/select/select.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/clipboard/dist/clipboard.min.js') }}"></script>
@@ -317,45 +322,47 @@
 
     <!-- JS Plugins Init. -->
     <script>
-        $(document).on('ready', function () {
-          // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
-          // =======================================================
-          var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
-  
-  
-          // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
-          // =======================================================
-          $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
-  
-  
-          // INITIALIZATION OF GO TO
-          // =======================================================
-          $('.js-go-to').each(function () {
-            var goTo = new HSGoTo($(this)).init();
-          });
-  
-  
-          // INITIALIZATION OF NAV SCROLLER
-          // =======================================================
-          $('.js-nav-scroller').each(function () {
-            new HsNavScroller($(this), {
-              delay: 400,
-            }).init()
-          });
-  
-  
-          // INITIALIZATION OF LISTJS COMPONENT
-          // =======================================================
-          var docsSearch = $.HSCore.components.HSList.init('#docsSearch');
-  
-  
-          // GET JSON FILE RESULTS
-          // =======================================================
-          $.getJSON('../assets/json/docs-search.json', function(data) {
-            docsSearch.add(data);
-          });
+        $(document).on('ready', function() {
+            // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
+            // =======================================================
+            var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+
+            // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
+            // =======================================================
+            $('.js-nav-tooltip-link').tooltip({
+                boundary: 'window'
+            })
+
+
+            // INITIALIZATION OF GO TO
+            // =======================================================
+            $('.js-go-to').each(function() {
+                var goTo = new HSGoTo($(this)).init();
+            });
+
+
+            // INITIALIZATION OF NAV SCROLLER
+            // =======================================================
+            $('.js-nav-scroller').each(function() {
+                new HsNavScroller($(this), {
+                    delay: 400,
+                }).init()
+            });
+
+
+            // INITIALIZATION OF LISTJS COMPONENT
+            // =======================================================
+            var docsSearch = $.HSCore.components.HSList.init('#docsSearch');
+
+
+            // GET JSON FILE RESULTS
+            // =======================================================
+            $.getJSON('../assets/json/docs-search.json', function(data) {
+                docsSearch.add(data);
+            });
         });
-      </script>
+    </script>
 
     <!-- IE Support -->
     <script>

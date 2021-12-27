@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feature;
 use App\Models\pricing;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CardManageController extends Controller
     public function index()
     {
         $pricings = pricing::all();
-        return view('admin.dashboard.cards.index',compact('pricings'));
+        return view('admin.dashboard.cards.index', compact('pricings'));
     }
 
 
@@ -41,9 +42,11 @@ class CardManageController extends Controller
         $validatedData = $request->validate([
             'profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title' => 'required|string',
-            'type' => 'required|string',
+            'category' => 'required|string',
+            'description' => 'required|string',
             'price' => 'required|string',
         ]);
+
 
         $file = $request->profile;
         $name = time() . '.' . $file->getClientOriginalExtension();
@@ -51,10 +54,26 @@ class CardManageController extends Controller
         // updating the user profile
         $pricing = new pricing();
         $pricing->title = $validatedData['title'];
-        $pricing->type = $validatedData['type'];
+        $pricing->category = $validatedData['category'];
         $pricing->price = $validatedData['price'];
         $pricing->img = $name;
         $pricing->save();
+
+        $feature = $request->only([
+            'feature', 'feature_0', 'feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'feature_6', 'feature_7', 'feature_8', 'feature_9', 'feature_10',
+        ]);
+
+        // inserting the features
+        foreach ($feature as $featur) {
+            if ($featur) {
+                // inserting this user email
+                $feature = new Feature();
+                $feature->pricing_id = $pricing->id;
+                $feature->value = $featur;
+                $feature->save();
+            }
+        }
+
         return redirect()->back()->with('message', 'Card Added Successfully');
     }
 
@@ -74,7 +93,7 @@ class CardManageController extends Controller
         $pricing->save();
         return redirect()->back()->with('message', 'Card Paused Successfully');
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -95,7 +114,7 @@ class CardManageController extends Controller
     public function edit($id)
     {
         $pricing = pricing::find($id);
-        return view('admin.dashboard.cards.edit',compact('pricing'));
+        return view('admin.dashboard.cards.edit', compact('pricing'));
     }
 
     /**
