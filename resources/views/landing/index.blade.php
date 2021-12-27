@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Flexor Bootstrap Template - Index</title>
+    <title>{{ env('APP_NAME') }} - {{ env('APP_DESC') }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -22,19 +22,12 @@
     <link href="{{ asset('landing/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('landing/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="{{ asset('landing/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('landing/css/style.css') }}" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: Flexor - v4.7.0
-  * Template URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -49,7 +42,7 @@
             </div>
 
             <div class="cta d-none d-md-flex align-items-center">
-                <a href="#about" class="scrollto">Get Started</a>
+                <a href="#about" class="scrollto">Get {{ env('APP_NAME') }} Card</a>
             </div>
         </div>
     </section>
@@ -59,39 +52,16 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href="index.html">Flexor</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                <a href="index.html"><img src="{{ asset('assets/img/brand/logo-gold.svg') }}"
+                        alt="{{ env('APP_NAME') }}" width="150" class="img-fluid"></a>
             </div>
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('login') }}">Manage Your Profile</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('register') }}">Create Profile</a></li>
+                    <li><a class="nav-link scrollto" href="#">Contact</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -102,11 +72,11 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
         <div class="container" data-aos="fade-in">
-            <h1>Welcome to Flexor</h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
+            <h1>One Card for all Occassions</h1>
+            <h2>Switch to InitTap Card to present a stronger image when meeting prospective clients.</h2>
             <div class="d-flex align-items-center">
                 <i class="bx bxs-right-arrow-alt get-started-icon"></i>
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                <a href="{{ route('register') }}" class="btn-get-started scrollto">Get Started</a>
             </div>
         </div>
     </section><!-- End Hero -->
@@ -120,15 +90,19 @@
                 <div class="row">
                     <div class="col-xl-4 col-lg-5" data-aos="fade-up">
                         <div class="content">
-                            <h3>Why Choose Flexor for your company website?</h3>
+                            <h3>How to setup my card?</h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-                                optio ad corporis.
+                                Once you receive your card, you can tap or scan your card to activate and create your
+                                account. No application needed and it setup takes less than 2 minutes.
+
+                                At the time of your order, we only need to know what to print on your card. Everything
+                                else, you get to add to your account yourself at the time of activation of your
+                                {{ env('APP_NAME') }}
+                                account.
                             </p>
                             <div class="text-center">
-                                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                                <a href="{{ route('register') }}" class="more-btn">Get Started <i
+                                        class="bx bx-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -138,28 +112,27 @@
                                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up"
                                     data-aos-delay="100">
                                     <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-receipt"></i>
-                                        <h4>Corporis voluptates sit</h4>
-                                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-                                            aliquip</p>
+                                        <i class="bx bx-leaf"></i>
+                                        <h4>Reduce environmental problem</h4>
+                                        <p>Paper comprises 50% of business waste, 33% of municipal waste and 25% of
+                                            waste going to landfill</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up"
                                     data-aos-delay="200">
                                     <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-cube-alt"></i>
-                                        <h4>Ullamco laboris ladore pan</h4>
-                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                            deserunt</p>
+                                        <i class="bx bx-id-card"></i>
+                                        <h4>Provide smart and digital business card</h4>
+                                        <p>You don't need to carry 100's of business cards to make contact with other
+                                            people, use simple and smart INITTAP card</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up"
                                     data-aos-delay="300">
                                     <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-images"></i>
-                                        <h4>Labore consequatur</h4>
-                                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
-                                            facere</p>
+                                        <i class="bx bx-receipt"></i>
+                                        <h4>Empower better business relationship</h4>
+                                        <p>let your business stand out, smart things make difference</p>
                                     </div>
                                 </div>
                             </div>
@@ -177,36 +150,36 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative"
                         data-aos="fade-right">
-                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
                     </div>
 
                     <div
                         class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                         <h4 data-aos="fade-up">About us</h4>
-                        <h3 data-aos="fade-up">Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                        <p data-aos="fade-up">Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non
-                            ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores
-                            excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+                        <h3 data-aos="fade-up">Connect Smarter not Harder</h3>
+                        <p data-aos="fade-up">We are here to make your life easier by getting just one card for all your
+                            occasions Create an engaging and memorable experience for the people you meet while saving
+                            your contact information directly into their phone with Init Tap smart business card. Have
+                            them remember you long after the meeting is over.</p>
 
                         <div class="icon-box" data-aos="fade-up">
-                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint occaecati cupiditate non provident</p>
+                            <div class="icon"><i class="bx bx-leaf"></i></div>
+                            <h4 class="title"><a href="">Reduce environmental problem by eliminating paper
+                                    business cards</a></h4>
+                            <p class="description">Paper comprises 50% of business waste, 33% of municipal waste and
+                                25% of waste going to landfill</p>
                         </div>
 
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="bx bx-gift"></i></div>
-                            <h4 class="title"><a href="">Nemo Enim</a></h4>
-                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                blanditiis praesentium voluptatum deleniti atque</p>
+                            <div class="icon"><i class="bx bx-id-card"></i></div>
+                            <h4 class="title"><a href="">Provide smart and digital business card</a></h4>
+                            <p class="description">You don't need to carry 100's of business cards to make contact
+                                with other people, use simple and smart INITTAP card</p>
                         </div>
 
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon"><i class="bx bx-atom"></i></div>
-                            <h4 class="title"><a href="">Dine Pad</a></h4>
-                            <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et
-                                veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                            <div class="icon"><i class="bx bx-receipt"></i></div>
+                            <h4 class="title"><a href="">Empower better business relationship</a></h4>
+                            <p class="description">let your business stand out, smart things make difference</p>
                         </div>
 
                     </div>
@@ -215,148 +188,46 @@
             </div>
         </section><!-- End About Section -->
 
-        <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
-            <div class="container" data-aos="fade-up">
-
-                <div class="clients-slider swiper">
-                    <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid"
-                                alt=""></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-        </section><!-- End Clients Section -->
-
-        <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
-            <div class="container">
-
-                <div class="section-title" data-aos="fade-up">
-                    <h2>Services</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-briefcase"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint occaecati cupiditate non provident</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat tarad limino ata</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-bar-chart"></i></div>
-                            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-binoculars"></i></div>
-                            <h4 class="title"><a href="">Magni Dolores</a></h4>
-                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-                            <h4 class="title"><a href="">Nemo Enim</a></h4>
-                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                blanditiis praesentium voluptatum deleniti atque</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-                            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam
-                                libero tempore, cum soluta nobis est eligendi</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Services Section -->
-
         <!-- ======= Values Section ======= -->
         <section id="values" class="values">
             <div class="container">
 
                 <div class="row">
                     <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="card" style="background-image: url(assets/img/values-1.jpg);">
+                        <div class="card" style="background-image: url(landing/img/values-1.jpg);">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="">Our Mission</a></h5>
                                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod
                                     tempor ut labore et dolore magna aliqua.</p>
-                                <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read
-                                        More</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up"
                         data-aos-delay="100">
-                        <div class="card" style="background-image: url(assets/img/values-2.jpg);">
+                        <div class="card" style="background-image: url(landing/img/values-2.jpg);">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="">Our Plan</a></h5>
                                 <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit
                                     voluptatem doloremque laudantium, totam rem.</p>
-                                <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read
-                                        More</a></div>
                             </div>
                         </div>
 
                     </div>
                     <div class="col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card" style="background-image: url(assets/img/values-3.jpg);">
+                        <div class="card" style="background-image: url(landing/img/values-3.jpg);">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="">Our Vision</a></h5>
                                 <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut
                                     fugit, sed quia magni dolores.</p>
-                                <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read
-                                        More</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card" style="background-image: url(assets/img/values-4.jpg);">
+                        <div class="card" style="background-image: url(landing/img/values-4.jpg);">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="">Our Care</a></h5>
                                 <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro
                                     quisquam laudantium voluptatem.</p>
-                                <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read
-                                        More</a></div>
                             </div>
                         </div>
                     </div>
@@ -364,331 +235,6 @@
 
             </div>
         </section><!-- End Values Section -->
-
-        <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials">
-            <div class="container position-relative" data-aos="fade-up">
-
-                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                    rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                    risus at semper.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                    cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                    legam anim culpa.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                    veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                    minim.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                    fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                    dolore labore illum veniam.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                    veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
-                                    culpa fore nisi cillum quid.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-        </section><!-- End Testimonials Section -->
-
-        <!-- ======= Portfolio Section ======= -->
-        <section id="portfolio" class="portfolio">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2 data-aos="fade-up">Portfolio</h2>
-                    <p data-aos="fade-up">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid
-                        fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-                        impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 1</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 1"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 2</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 1"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 3</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Portfolio Section -->
-
-        <!-- ======= Team Section ======= -->
-        <section id="team" class="team section-bg">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2 data-aos="fade-up">Team</h2>
-                    <p data-aos="fade-up">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid
-                        fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-                        impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Team Section -->
 
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
@@ -782,83 +328,142 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2 data-aos="fade-up">F.A.Q</h2>
-                    <p data-aos="fade-up">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid
-                        fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-                        impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <h2 data-aos="fade-up">Frequently asked Questions</h2>
                 </div>
 
                 <div class="faq-list">
                     <ul>
                         <li data-aos="fade-up">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at
-                                lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i
+                                class="collapse" data-bs-target="#faq-list-1">What phones are compatible? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                                 <p>
-                                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                                    non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                                    purus non.
+                                    Between Tap or Scan feature, [] works with all modern smartphones.
+
+                                    Tap function is compatible with NFC Technology enabled Smartphones
+
+                                    iPhones made in 2018 and newer
+                                    Most Android phones
+
+                                    For all other phones, please have your client scan the QR code on the back of your
+                                    card.
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi
-                                enim nunc? <i class="bx bx-chevron-down icon-show"></i><i
+                                data-bs-target="#faq-list-2" class="collapsed">Can I design my InitTap Card? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                                    velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                                    donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                                    cursus turpis massa tincidunt dui.
+                                    Yes! We have an amazing graphic design team in-house that will ensure your logo and
+                                    artwork translate perfectly into the card. Design your card here
+
+                                    Shortly after you place your order, we will provide you with mockup designs to
+                                    review and choose from. Please make sure you provide us with high quality files in
+                                    Vector, Ai, PSD, EPS, PDF, or PNG for the best result possible.
+
+                                    Design limitations:
+
+                                    We can print Silver or Gold foil on matte black cards
+                                    You can only design the front of your card
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="200">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur
-                                adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i
+                                data-bs-target="#faq-list-3" class="collapsed">How to setup my card? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                                    pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                                    Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                                    tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                    Once you receive your card, you can tap or scan your card to activate and create
+                                    your account. No application needed and it setup takes less than 2 minutes.
+
+                                    At the time of your order, we only need to know what to print on your card.
+                                    Everything else, you get to add to your account yourself at the time of activation
+                                    of your {{ env('APP_NAME') }} account.
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam
-                                aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i
+                                data-bs-target="#faq-list-4" class="collapsed">What is InitTap's privacy policy?
+                                <i class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                                    est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                    suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                                    We don’t ask our users for any sensitive information nor their social media logins.
+                                    You can share as much or as little information as you’d like on your
+                                    {{ env('APP_NAME') }} profile.
+                                    {{ env('APP_NAME') }} profiles are public landing pages that hosts your
+                                    information and make it
+                                    easily sharable to people you meet.
+
+                                    Read our Privacy Policy and Terms of Agreement
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="400">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare.
-                                Varius vel pharetra vel turpis nunc eget lorem dolor? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
+                                data-bs-target="#faq-list-5" class="collapsed">How does InitTap get the other
+                                person's information? <i class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo
-                                    integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc
-                                    eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                                    Your profile comes with two main buttons for people to navigate to. In addition to
+                                    your social accounts and contact details people can either Save your contact or
+                                    Connect with you.
+
+                                    Our connect feature allows people to quickly enter their name, email, and any other
+                                    information they wish to share with you. We email their details to you and your
+                                    detail to them.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="400">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                                data-bs-target="#faq-list-6" class="collapsed">What material is InitTap Card? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
+                                    class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    InitTap Card is made of durable and waterproof plastic. Our cards are sturdy and yet
+                                    flexible. In addition, the matte finish adds a premium feel that is incomparable to
+                                    most cards in the market today.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="400">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                                data-bs-target="#faq-list-7" class="collapsed">How long is the shipping? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
+                                    class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Orders are processed daily and shipping varies between 3-5 business days.
+
+                                    For branded cards, add another 2-3 business days for us to create your design proof
+                                    and the approval process.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="400">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                                data-bs-target="#faq-list-8" class="collapsed">What is the return policy? <i
+                                    class="bx bx-chevron-down icon-show"></i><i
+                                    class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    You can get a full refund within 30 days of your purchase date. You don’t need to
+                                    ship your card back to us, we will deactivate your InitTap card remotely.
                                 </p>
                             </div>
                         </li>
@@ -874,10 +479,9 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2 data-aos="fade-up">Contact</h2>
-                    <p data-aos="fade-up">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid
-                        fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-                        impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <h2 data-aos="fade-up">Contact Us</h2>
+                    <p data-aos="fade-up">If you have any questions, feel free to contact us. If you have any questions,
+                        feel free to contact us..</p>
                 </div>
 
                 <div class="row justify-content-center">
@@ -886,7 +490,7 @@
                         <div class="info-box">
                             <i class="bx bx-map"></i>
                             <h3>Our Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>Taleex, Mogadishu, Somalia</p>
                         </div>
                     </div>
 
@@ -894,14 +498,14 @@
                         <div class="info-box">
                             <i class="bx bx-envelope"></i>
                             <h3>Email Us</h3>
-                            <p>info@example.com<br>contact@example.com</p>
+                            <p>{{ env('APP_EMAIL') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="info-box">
                             <i class="bx bx-phone-call"></i>
                             <h3>Call Us</h3>
-                            <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                            <p>{{ env('APP_PHONE') }}</p>
                         </div>
                     </div>
                 </div>
@@ -998,7 +602,7 @@
         <div class="container d-lg-flex py-4">
 
             <div class="me-lg-auto text-center text-lg-start">
-                
+
             </div>
             <div class="social-links text-center text-lg-right pt-3 pt-lg-0">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
