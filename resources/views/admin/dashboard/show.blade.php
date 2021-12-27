@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    All Users
+    {{ $user->name }} Address
 @endsection
 @section('content')
     <div id="addUserStepProfile" class="card card-lg active">

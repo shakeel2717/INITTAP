@@ -1,11 +1,11 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    All Users
+    All Users Shipping Address
 @endsection
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">All Users</h2>
+            <h2 class="card-title">All Users Shipping Address</h2>
         </div>
         <div class="card-body">
             <div class="row justify-content-between align-items-center flex-grow-1">

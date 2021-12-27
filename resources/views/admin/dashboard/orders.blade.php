@@ -1,11 +1,11 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    All Users
+    All Orders
 @endsection
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">All Users</h2>
+            <h2 class="card-title">All Orders</h2>
         </div>
         <div class="card-body">
             <div class="row justify-content-between align-items-center flex-grow-1">

@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    Add a User
+    {{ $user->name }} Profile Edit
 @endsection
 @section('content')
     <div class="row">
