@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class pricing extends Model
 {
     use HasFactory;
+
+
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
 }
