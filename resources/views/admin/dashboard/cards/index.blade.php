@@ -16,6 +16,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">status</th>
                                 <th scope="col">Action</th>
@@ -27,6 +28,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pricing->title }}</td>
                                     <td class="text-uppercase">{{ $pricing->category }}</td>
+                                    <td>{{ $pricing->description }}</td>
                                     <td>{{ number_format($pricing->price, 2) }}</td>
                                     <td>{{ Str::ucfirst($pricing->status) }}</td>
                                     <td>

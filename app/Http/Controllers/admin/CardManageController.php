@@ -55,6 +55,7 @@ class CardManageController extends Controller
         $pricing = new pricing();
         $pricing->title = $validatedData['title'];
         $pricing->category = $validatedData['category'];
+        $pricing->description = $validatedData['description'];
         $pricing->price = $validatedData['price'];
         $pricing->img = $name;
         $pricing->save();
@@ -126,7 +127,21 @@ class CardManageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|string',
+        ]);
+
+
+        $pricing = pricing::find($id);
+        $pricing->title = $validatedData['title'];
+        $pricing->category = $validatedData['category'];
+        $pricing->description = $validatedData['description'];
+        $pricing->price = $validatedData['price'];
+        $pricing->save();
+        return redirect()->back()->with('message', 'Card Updated Successfully');
     }
 
     /**

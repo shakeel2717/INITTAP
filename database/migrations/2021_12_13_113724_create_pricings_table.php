@@ -17,6 +17,7 @@ class CreatePricingsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('category');
+            $table->text('description')->nullable();
             $table->string('price');
             $table->string('img');
             $table->string('status')->default('active');
