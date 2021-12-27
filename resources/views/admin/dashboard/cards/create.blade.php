@@ -19,13 +19,13 @@
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
                                             data-hs-file-attach-options='{
-                                                                                        "textTarget": "#avatarImg",
-                                                                                        "mode": "image",
-                                                                                        "targetAttr": "src",
-                                                                                        "resetTarget": ".js-file-attach-reset-img",
-                                                                                        "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                    }' name="profile">
+                                                                                                "textTarget": "#avatarImg",
+                                                                                                "mode": "image",
+                                                                                                "targetAttr": "src",
+                                                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                            }' name="profile">
 
                                         <span class="avatar-uploader-trigger">
                                             <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -43,7 +43,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
                                         <input type="text" class="form-control" name="title" id="title"
-                                            placeholder="Card Title">
+                                            placeholder="Card Title" value="{{ old('title') }}">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
                                         <textarea name="description" id="description" cols="30" rows="10"
-                                            class="form-control"></textarea>
+                                            class="form-control">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
                                         <input type="text" class="form-control" name="price" id="price"
-                                            placeholder="Card Price">
+                                            placeholder="Card Price" value="{{ old('price') }}">
                                     </div>
                                 </div>
                             </div>
@@ -85,10 +85,10 @@
 
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                "template": "#addAddressFieldEgTemplate",
-                                                                "container": "#addAddressFieldEgContainer",
-                                                                "defaultCreated": 0
-                                                            }'>
+                                                                        "template": "#addAddressFieldEgTemplate",
+                                                                        "container": "#addAddressFieldEgContainer",
+                                                                        "defaultCreated": 0
+                                                                    }'>
                                 <label for="email" class="col-sm-3 col-form-label input-label">Add Features</span></label>
 
                                 <div class="col-sm-9">
