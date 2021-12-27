@@ -32,9 +32,9 @@
             <div class="navbar-nav-wrap-content-left">
                 <!-- Navbar Vertical Toggle -->
                 <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
-                    <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
+                    <i class="text-white tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
                         data-placement="right" title="Collapse"></i>
-                    <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
+                    <i class="text-white tio-last-page navbar-vertical-aside-toggle-full-align"
                         data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
                         data-toggle="tooltip" data-placement="right" title="Expand"></i>
                 </button>
@@ -53,7 +53,7 @@
                        "target": "#notificationDropdown",
                        "type": "css-animation"
                      }'>
-                                <i class="tio-notifications-on-outlined"></i>
+                                <i class="text-white tio-notifications-on-outlined"></i>
                                 <span class="btn-status btn-sm-status btn-status-success"></span>
                             </a>
 
@@ -81,7 +81,7 @@
                                 <!-- Card Footer -->
                                 <a class="card-footer text-center" href="#">
                                     View all notifications
-                                    <i class="tio-chevron-right"></i>
+                                    <i class="text-white tio-chevron-right"></i>
                                 </a>
                                 <!-- End Card Footer -->
                             </div>
@@ -115,13 +115,22 @@
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <span class="card-title h5">{{ session('admin')->username }}</span>
-                                            <span class="card-text">Super Admin</span>
+                                            <span class="card-title h5">Admin</span>
+                                            <span class="card-text">admin@admin.com</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="{{ route('user.profile.index') }}">
+                                    <span class="text-truncate pr-2" title="Profile &amp; account">Profile &amp;
+                                        account</span>
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('user.profile.password') }}">
+                                    <span class="text-truncate pr-2" title="Settings">Change Password</span>
+                                </a>
 
                                 <div class="dropdown-divider"></div>
                                 <form action="{{ route('logout') }}" method="POST">
@@ -138,45 +147,45 @@
     <aside
         class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
         <div class="navbar-vertical-container">
-            <div class="navbar-vertical-footer-offset">
+            <div class="navbar-vertical-footer-offset bg-dark">
                 <div class="navbar-brand-wrapper justify-content-between">
-                    <a class="navbar-brand" href="./index.html" aria-label="Front">
-                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                    <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
+                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-gold.svg') }}"
                             alt="Logo">
                         <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
                             alt="Logo">
                     </a>
                     <button type="button"
                         class="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
-                        <i class="tio-clear tio-lg"></i>
+                        <i class="text-white tio-clear tio-lg"></i>
                     </button>
                 </div>
                 <div class="navbar-vertical-content">
                     <ul class="navbar-nav navbar-nav-lg nav-tabs">
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Admin Overview</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.index') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
+                                <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Dashboard</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Dashboard</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Users Management</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.users') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-group-senior nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                <i class="text-white tio-group-senior nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All
                                     Users</span>
                             </a>
                         </li>
@@ -184,23 +193,23 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.addUsers') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-user-add nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add
+                                <i class="text-white tio-user-add nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Add
                                     Users</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Card Management</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link "
                                 href="{{ route('admin.dashboard.cards.index') }}" title="Layouts"
                                 data-placement="left">
-                                <i class="tio-credit-cards nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                <i class="text-white tio-credit-cards nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All
                                     Cards</span>
                             </a>
                         </li>
@@ -209,23 +218,23 @@
                             <a class="js-nav-tooltip-link nav-link "
                                 href="{{ route('admin.dashboard.cards.create') }}" title="Layouts"
                                 data-placement="left">
-                                <i class="tio-credit-cards nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Add new
+                                <i class="text-white tio-credit-cards nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Add new
                                     Card</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Orders Management</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
 
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.orders') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All
                                     Orders</span>
                             </a>
                         </li>
@@ -233,8 +242,8 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.shipping') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-dashboard-vs-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">All
+                                <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All
                                     Users Shipping</span>
                             </a>
                         </li>
@@ -242,10 +251,10 @@
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.logout') }}"
                                 title="Layouts" data-placement="left">
-                                <i class="tio-sign-out nav-icon"></i>
+                                <i class="text-white tio-sign-out nav-icon"></i>
                                 <form action="{{ route('admin.dashboard.logout') }}" method="POST">
                                     @csrf
-                                    <button class="bg-white border-0 text-truncate">Sign
+                                    <button class="border-0 bg-dark text-white">Sign
                                         Out</button>
                                 </form>
                             </a>
@@ -253,6 +262,23 @@
                     </ul>
                 </div>
                 <!-- End Content -->
+
+                <!-- Footer -->
+                <div class="navbar-vertical-footer">
+                    <ul class="navbar-vertical-footer-list">
+                        <li class="navbar-vertical-footer-list-item">
+                            <!-- Unfold -->
+                            <div class="hs-unfold">
+                                <a class="btn btn-icon btn-ghost-secondary rounded-circle"
+                                    href="{{ route('user.profile.index') }}">
+                                    <i class="text-white tio-tune"></i>
+                                </a>
+                            </div>
+                            <!-- End Unfold -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Footer -->
             </div>
         </div>
     </aside>
@@ -273,7 +299,7 @@
 
                     <div class="col-sm-auto">
                         <a class="btn btn-primary" href="{{ route('admin.dashboard.orders') }}">
-                            <i class="tio-user mr-1"></i> Manage Orders
+                            <i class="text-white tio-user mr-1"></i> Manage Orders
                         </a>
                     </div>
                 </div>
