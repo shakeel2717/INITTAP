@@ -1,11 +1,11 @@
 @extends('admin.dashboard.layout.app')
 @section('title')
-    All Users
+    All Cards
 @endsection
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">All Users</h2>
+            <h2 class="card-title">All Cards</h2>
         </div>
         <div class="card-body">
             <div class="row justify-content-between align-items-center flex-grow-1">
@@ -30,6 +30,8 @@
                                     <td>{{ number_format($pricing->price, 2) }}</td>
                                     <td>{{ Str::ucfirst($pricing->status) }}</td>
                                     <td>
+                                        <a href="{{ route('admin.dashboard.feature.show', ['feature' => $pricing->id]) }}"
+                                            class="btn btn-sm btn-primary">Features</a>
                                         <a href="{{ route('admin.dashboard.cards.edit', ['card' => $pricing->id]) }}"
                                             class="btn btn-sm btn-primary">Edit</a>
                                         @if ($pricing->status == 'active')

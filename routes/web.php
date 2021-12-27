@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\StockController;
+use App\Http\Controllers\AdminFeatureController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
@@ -77,6 +78,10 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
     Route::get('cards/pause/{card}', [CardManageController::class, 'cardPause'])->name('cards.pause');
     Route::get('cards/active/{card}', [CardManageController::class, 'cardActive'])->name('cards.active');
+    Route::get('cards/feature/{feature}', [AdminFeatureController::class, 'show'])->name('feature.show');
+    Route::get('cards/feature/{feature}/edit', [AdminFeatureController::class, 'edit'])->name('feature.edit');
+    Route::get('cards/feature/{feature}/delete', [AdminFeatureController::class, 'delete'])->name('feature.delete');
+    Route::post('cards/feature/update', [AdminFeatureController::class, 'update'])->name('feature.update');
     Route::resource('cards', CardManageController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
