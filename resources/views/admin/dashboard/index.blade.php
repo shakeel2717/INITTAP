@@ -150,7 +150,7 @@
                                         <div class="col-auto">
                                             <a class="btn btn-sm btn-primary"
                                                 href="{{ route('admin.dashboard.users') }}">
-                                                Go to Uses Section<i class="tio-open-in-new ml-1"></i>
+                                                Go to Users Section<i class="tio-open-in-new ml-1"></i>
                                             </a>
                                         </div>
                                     </div>

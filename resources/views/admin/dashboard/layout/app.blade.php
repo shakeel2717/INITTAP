@@ -16,13 +16,13 @@
 </head>
 
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
-    <script src="./assets/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+    <script src="{{ asset('assets/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js') }}"></script>
     <header id="header"
         class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
-                <a class="navbar-brand" href="./index.html" aria-label="Front">
+                <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
                     <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}" alt="Logo">
                     <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}" alt="Logo">
                 </a>
@@ -32,9 +32,9 @@
             <div class="navbar-nav-wrap-content-left">
                 <!-- Navbar Vertical Toggle -->
                 <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
-                    <i class="text-white tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
+                    <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
                         data-placement="right" title="Collapse"></i>
-                    <i class="text-white tio-last-page navbar-vertical-aside-toggle-full-align"
+                    <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
                         data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
                         data-toggle="tooltip" data-placement="right" title="Expand"></i>
                 </button>
@@ -53,7 +53,7 @@
                        "target": "#notificationDropdown",
                        "type": "css-animation"
                      }'>
-                                <i class="text-white tio-notifications-on-outlined"></i>
+                                <i class="tio-notifications-on-outlined"></i>
                                 <span class="btn-status btn-sm-status btn-status-success"></span>
                             </a>
 
@@ -81,7 +81,7 @@
                                 <!-- Card Footer -->
                                 <a class="card-footer text-center" href="#">
                                     View all notifications
-                                    <i class="text-white tio-chevron-right"></i>
+                                    <i class="tio-chevron-right"></i>
                                 </a>
                                 <!-- End Card Footer -->
                             </div>
@@ -116,21 +116,10 @@
                                         </div>
                                         <div class="media-body">
                                             <span class="card-title h5">Admin</span>
-                                            <span class="card-text">admin@admin.com</span>
+                                            <span class="card-text">Admin</span>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="{{ route('user.profile.index') }}">
-                                    <span class="text-truncate pr-2" title="Profile &amp; account">Profile &amp;
-                                        account</span>
-                                </a>
-
-                                <a class="dropdown-item" href="{{ route('user.profile.password') }}">
-                                    <span class="text-truncate pr-2" title="Settings">Change Password</span>
-                                </a>
 
                                 <div class="dropdown-divider"></div>
                                 <form action="{{ route('logout') }}" method="POST">
@@ -337,66 +326,17 @@
     <script src="{{ asset('assets/vendor/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendor/hs-add-field/dist/hs-add-field.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net.extensions/select/select.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/clipboard/dist/clipboard.min.js') }}"></script>
-
-
-    <!-- JS Front -->
+    <script src="{{ asset('assets/vendor/hs-add-field/dist/hs-add-field.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
-
-    <!-- JS Plugins Init. -->
-    <script>
-        $(document).on('ready', function() {
-            // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
-            // =======================================================
-            var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
 
-            // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
-            // =======================================================
-            $('.js-nav-tooltip-link').tooltip({
-                boundary: 'window'
-            })
-
-
-            // INITIALIZATION OF GO TO
-            // =======================================================
-            $('.js-go-to').each(function() {
-                var goTo = new HSGoTo($(this)).init();
-            });
-
-
-            // INITIALIZATION OF NAV SCROLLER
-            // =======================================================
-            $('.js-nav-scroller').each(function() {
-                new HsNavScroller($(this), {
-                    delay: 400,
-                }).init()
-            });
-
-
-            // INITIALIZATION OF LISTJS COMPONENT
-            // =======================================================
-            var docsSearch = $.HSCore.components.HSList.init('#docsSearch');
-
-
-            // GET JSON FILE RESULTS
-            // =======================================================
-            $.getJSON('../assets/json/docs-search.json', function(data) {
-                docsSearch.add(data);
-            });
-        });
-    </script>
-
-    <!-- IE Support -->
-    <script>
-        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write(
-            '<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
-    </script>
 </body>
 <x-alert />
 @yield('footer')
 
 </html>
+
