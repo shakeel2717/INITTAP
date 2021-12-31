@@ -502,7 +502,8 @@
 
                 <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="col-xl-9 col-lg-12 mt-4">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('guest.form.store') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
@@ -521,11 +522,22 @@
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message"
                                     required></textarea>
                             </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="my-3">
+                                        <div class="Error">Error</div>
+                                        <div class="error-message"></div>
+                                        <div class="sent-message">{{ $error }}</div>
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if (session('success'))
+                                <div class="my-3">
+                                    <div class="Error">Error</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">{{ session('success') }}</div>
+                                </div>
+                            @endif
                             <div class="text-center"><button type="submit">Send Message</button></div>
                         </form>
                     </div>
