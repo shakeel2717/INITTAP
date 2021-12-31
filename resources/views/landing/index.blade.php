@@ -42,7 +42,7 @@
             </div>
 
             <div class="cta d-none d-md-flex align-items-center">
-                <a href="#about" class="scrollto">Get {{ env('APP_NAME') }} Card</a>
+                <a href="{{ route('register') }}" class="scrollto">Get {{ env('APP_NAME') }} Card</a>
             </div>
         </div>
     </section>
