@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/home', [LandingPageController::class, 'index'])->name('home');
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::post('/form-store', [LandingPageController::class, 'store'])->name('guest.form.store');
 
 Route::name('user.')->group(function () {
