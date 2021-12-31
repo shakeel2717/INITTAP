@@ -29,9 +29,43 @@ class AdminController extends Controller
     }
 
 
+    public function allAdmin()
+    {
+        $admins = admin::get();
+        return view('admin.dashboard.allAdmin', compact('admins'));
+    }
+
+
     public function addAdmin()
     {
         return view('admin.dashboard.addAdmin');
+    }
+
+    public function editAdmin($id)
+    {
+        $admin = admin::find($id);
+        return view('admin.dashboard.editAdmin', compact('admin'));
+    }
+
+    public function deleteAdmin($id)
+    {
+        $admin = admin::find($id);
+        $admin->delete();
+        return redirect()->back()->with('message', 'Admin Deleted Successfully');
+    }
+
+    public function adminUpdate(Request $request)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|max:255',
+            'password' => 'required|max:255',
+        ]);
+
+        $admin = admin::find($request->admin_id);
+        $admin->username = $validatedData['username'];
+        $admin->password = Hash::make($validatedData['password']);
+        $admin->save();
+        return redirect()->back()->with('message', 'Admin Updated Successfully');
     }
 
 

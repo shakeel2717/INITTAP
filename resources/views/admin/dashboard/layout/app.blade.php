@@ -187,6 +187,22 @@
                                     Users</span>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Admin Management</small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.allAdmin') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="text-white tio-user-add nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All
+                                    Admin</span>
+                            </a>
+                        </li>
+
+
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.addAdmin') }}"
                                 title="Layouts" data-placement="left">
