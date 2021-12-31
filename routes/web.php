@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/home', [LandingPageController::class, 'index'])->name('home');
 
 Route::name('user.')->group(function () {
     // Public Profile Section
