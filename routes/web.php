@@ -70,6 +70,8 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('users', [AdminController::class, 'users'])->name('users');
     Route::get('add-users', [AdminController::class, 'addUsers'])->name('addUsers');
+    Route::get('add-admin', [AdminController::class, 'addAdmin'])->name('addAdmin');
+    Route::post('add-admin', [AdminController::class, 'addAdminReq'])->name('addAdminReq');
     Route::post('add-users', [AdminController::class, 'addUsersReq'])->name('addUsersReq');
     Route::get('user/edit/{id}', [AdminController::class, 'userEdit'])->name('userEdit');
     Route::post('user/userEditReq/', [AdminController::class, 'userEditReq'])->name('userEditReq');

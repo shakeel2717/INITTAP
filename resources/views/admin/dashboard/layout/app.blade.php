@@ -187,6 +187,14 @@
                                     Users</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.addAdmin') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="text-white tio-user-add nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Add
+                                    Admin</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Card Management</small>

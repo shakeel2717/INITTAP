@@ -29,9 +29,29 @@ class AdminController extends Controller
     }
 
 
+    public function addAdmin()
+    {
+        return view('admin.dashboard.addAdmin');
+    }
+
+
     public function addUsers()
     {
         return view('admin.dashboard.addUsers');
+    }
+
+    public function addAdminReq(Request $request)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|unique:admins',
+            'password' => 'required|min:8',
+        ]);
+        
+        $admin = new admin();
+        $admin->username = $request->username;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
+        return redirect()->back()->with('message', 'Admin Added Successfully');
     }
 
     public function addUsersReq(Request $request)
