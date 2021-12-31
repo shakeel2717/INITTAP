@@ -286,11 +286,7 @@
                         <h1 class="page-header-title">@yield('title')</h1>
                     </div>
 
-                    <div class="col-sm-auto">
-                        <a class="btn btn-primary" href="{{ route('admin.dashboard.orders') }}">
-                            <i class="text-white tio-user mr-1"></i> Manage Orders
-                        </a>
-                    </div>
+                    @yield('globalButton')
                 </div>
             </div>
             <!-- End Page Header -->

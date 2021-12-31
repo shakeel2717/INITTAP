@@ -2,6 +2,13 @@
 @section('title')
     Dashboard
 @endsection
+@section('globalButton')
+    <div class="col-sm-auto">
+        <a class="btn btn-primary" href="{{ route('admin.dashboard.orders') }}">
+            <i class="text-white tio-user mr-1"></i> Manage Orders
+        </a>
+    </div>
+@endsection
 @section('content')
     <div class="row gx-2 gx-lg-3">
         <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
@@ -82,7 +89,7 @@
         <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
             <div class="card h-100">
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-2">Pending Orders</h6>
+                    <h6 class="card-subtitle mb-2">Registered Cards</h6>
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
@@ -101,7 +108,7 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="0">{{  $orders->count() }}</span>
+                            <span class="js-counter display-4 text-dark" data-value="0">{{ $orders->count() }}</span>
                             <span class="text-body font-size-sm ml-1">Cards Solid</span>
                         </div>
                     </div>
@@ -115,7 +122,8 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="{{ number_format($amount,2) }}">$ {{ number_format($amount,2) }}</span>
+                            <span class="js-counter display-4 text-dark" data-value="{{ number_format($amount, 2) }}">$
+                                {{ number_format($amount, 2) }}</span>
                             <span class="text-body font-size-sm ml-1"></span>
                         </div>
                     </div>
