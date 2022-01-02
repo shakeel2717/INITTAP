@@ -18,9 +18,11 @@
                                 <th scope="col">Card Price</th>
                                 <th scope="col">Card Title</th>
                                 <th scope="col">Card Designation</th>
-                                <th scope="col">Order Status</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Order Date</th>
                                 <th scope="col">Action</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Logo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +34,7 @@
                                     <td>{{ $order->card_title }}</td>
                                     <td>{{ $order->card_designation }}</td>
                                     <td><span class="badge badge-primary">{{ Str::ucfirst($order->status) }}</span></td>
+
                                     <td>{{ $order->created_at }}</td>
                                     <td>
                                         <form action="{{ route('admin.dashboard.order.update', ['id' => $order->id]) }}"
@@ -51,6 +54,19 @@
                                             </div>
                                         </form>
                                     </td>
+                                    @if ($order->type != 'inittap')
+                                        <td><span class="badge badge-primary">{{ Str::ucfirst($order->type) }}</span></td>
+                                        <td>
+                                            <a href="{{ asset('logo/') . '/' . $order->logo }}">
+                                                <img class="avatar" src="{{ asset('logo/') . '/' . $order->logo }}"
+                                                    alt="Custom logo Image">
+                                            </a>
+                                        </td>
+                                    @else
+                                        <td>INITTAP</td>
+                                        <td>INITTAP</td>
+                                    @endif
+
                                 </tr>
                             @empty
                                 <tr>
