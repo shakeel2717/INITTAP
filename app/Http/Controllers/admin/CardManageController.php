@@ -61,7 +61,7 @@ class CardManageController extends Controller
         $pricing->save();
 
         $feature = $request->only([
-            'feature', 'feature_0', 'feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'feature_6', 'feature_7', 'feature_8', 'feature_9', 'feature_10',
+            'feature_0', 'feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'feature_6', 'feature_7', 'feature_8', 'feature_9', 'feature_10',
         ]);
 
         // inserting the features

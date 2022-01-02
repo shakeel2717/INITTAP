@@ -19,13 +19,13 @@
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
                                             data-hs-file-attach-options='{
-                                                                                                "textTarget": "#avatarImg",
-                                                                                                "mode": "image",
-                                                                                                "targetAttr": "src",
-                                                                                                "resetTarget": ".js-file-attach-reset-img",
-                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                            }' name="profile">
+                                                    "textTarget": "#avatarImg",
+                                                    "mode": "image",
+                                                    "targetAttr": "src",
+                                                    "resetTarget": ".js-file-attach-reset-img",
+                                                    "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                    "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                }' name="profile">
 
                                         <span class="avatar-uploader-trigger">
                                             <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -79,22 +79,16 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
-                                                                        "template": "#addAddressFieldEgTemplate",
-                                                                        "container": "#addAddressFieldEgContainer",
-                                                                        "defaultCreated": 0
-                                                                    }'>
+                                        "template": "#addAddressFieldEgTemplate",
+                                        "container": "#addAddressFieldEgContainer",
+                                        "defaultCreated": 1,
+                                        "limit": 10
+                                    }'>
                                 <label for="email" class="col-sm-3 col-form-label input-label">Add Features</span></label>
 
                                 <div class="col-sm-9">
-                                    <input type="feature" class="form-control" data-name="feature" name="feature"
-                                        id="feature" placeholder="Add Features List" aria-label="Add Features List">
-
                                     <!-- Container For Input Field -->
                                     <div id="addAddressFieldEgContainer"></div>
 
@@ -109,7 +103,7 @@
                             <!-- Add Phone Input Field -->
                             <div id="addAddressFieldEgTemplate" style="display: none;">
                                 <div class="input-group-add-field">
-                                    <input type="feature" class="form-control" data-name="feature" name="feature"
+                                    <input type="text" class="form-control" data-name="feature" name="feature"
                                         id="feature" placeholder="Add Features List" aria-label="Add Features List">
 
                                     <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
@@ -137,15 +131,6 @@
             // =======================================================
             $('.js-file-attach').each(function() {
                 var customFile = new HSFileAttach($(this)).init();
-            });
-        });
-    </script>
-    <script>
-        $(document).on('ready', function() {
-            // INITIALIZATION OF HS-ADD-FIELD
-            // =======================================================
-            $('.js-add-field').each(function() {
-                new HSAddField($(this)).init();
             });
         });
     </script>
