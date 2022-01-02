@@ -12,35 +12,13 @@ class orderCardController extends Controller
 {
     public function store(Request $reqeust)
     {
-        $validatedData = $reqeust->validate([
-            'desg' => 'required|string',
-            'heading' => 'required|string',
-            'about' => 'nullable|string',
-        ]);
+        
         // // checking if this user already has ordered
         // $security = cardOrder::where('user_id', Auth::user()->id)->first();
         // if ($security != "") {
         //     return "already have an Order";
         // }
 
-        $task = cardOrder::updateOrCreate([
-            'user_id' => Auth::user()->id,
-        ], [
-            'pricing_id' => 1,
-            'card_title' => $validatedData['heading'],
-            'card_designation' => $validatedData['desg'],
-            'about' => $validatedData['about'],
-        ]);
-
-        // updating the record in profile
-        $profile = profile::updateOrCreate(
-            [
-                'user_id' => Auth::user()->id
-            ],
-            [
-                'title' => $validatedData['heading'],  'designation' => $validatedData['desg'], 'about' => $validatedData['about']
-            ]
-        );
         return response()->json(['success' => 'success'], 200);
     }
 }

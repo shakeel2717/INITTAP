@@ -18,18 +18,63 @@
                                 </div>
                                 <div class="card-right">
                                     <img src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Logo">
-                                    <h2 id="heading">{{ Auth::user()->name }}</h2>
-                                    <h4 id="desg">Designation</h4>
+                                    <h2 id="heading" class="display-4">{{ Auth::user()->name }}</h2>
+                                    <h4 id="desg" class="display-4">Designation</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8 mx-auto">
-                            <form action="#" method="POST">
+                    <form action="{{ route('api.success') }}" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="card_name">Card Type</label>
+                                            <!-- Select2 -->
+                                            <select id="type" name="type" class="js-select2-custom custom-select" size="1"
+                                                style="opacity: 0;" data-hs-select2-options='{
+                                                                            "placeholder": "Select wallet"
+                                                                            }'>
+                                                <option value="inittap" selected>
+                                                    INITTAP branded card
+                                                </option>
+                                                <option value="custom">
+                                                    Custom Branded Card
+                                                </option>
+                                            </select>
+                                            <!-- End Select2 -->
+                                        </div>
+                                        <div class="row form-group d-none justify-content-center" id="custom">
+                                            <div class="d-flex align-items-center">
+                                                <!-- Avatar -->
+                                                <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
+                                                    for="avatarUploader">
+                                                    <img id="avatarImg" class="avatar-img"
+                                                        src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                                        alt="Image Description">
+
+                                                    <input type="file" class="js-file-attach avatar-uploader-input"
+                                                        id="avatarUploader" data-hs-file-attach-options='{
+                                                                            "textTarget": "#avatarImg",
+                                                                            "mode": "image",
+                                                                            "targetAttr": "src",
+                                                                            "resetTarget": ".js-file-attach-reset-img",
+                                                                            "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                            "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                        }' name="custom">
+
+                                                    <span class="avatar-uploader-trigger">
+                                                        <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
+                                                    </span>
+                                                </label>
+                                                <!-- End Avatar -->
+
+                                                <button type="button"
+                                                    class="js-file-attach-reset-img btn btn-white">Delete</button>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="card_name">Card Name</label>
                                             <input type="text" class="form-control" id="card_name" name="card_name"
@@ -42,35 +87,33 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="designation">About / Tag Line</label>
-                                            <textarea name="about" id="about" cols="30" rows="10" class="form-control" placeholder="Type Your Tagline, or About You!"></textarea>
+                                            <textarea name="about" id="about" cols="30" rows="10" class="form-control"
+                                                placeholder="Type Your Tagline, or About You!"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 mx-auto">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a href="{{ route('user.order.index') }}"
-                                        class="btn btn-lg btn-block btn-white">Change the Card</a>
-                                </div>
-                                <div class="col-md-6">
-                                    {{-- <form action="{{ $data->params->hppUrl }}" method="POST"> --}}
-                                    <form action="{{ route('api.success') }}" method="POST">
-                                        @csrf
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{ route('user.order.index') }}"
+                                            class="btn btn-lg btn-block btn-white">Change the Card</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{-- <form action="{{ $data->params->hppUrl }}" method="POST"> --}}
                                         <input type="hidden" name="referenceId" id="referenceId"
                                             value="{{ $data->params->referenceId }}">
                                         <input type="hidden" name="hppRequestId" id="hppRequestId"
                                             value="{{ $data->params->hppRequestId }}">
                                         <button type="submit" class="btn btn-lg btn-block btn-primary">Proceed to
                                             Checkout</button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -80,6 +123,11 @@
 @section('footer')
     <script>
         $(document).ready(function() {
+            // $('#custom').addClass('d-none');
+            $('#type').change(function() {
+                $("#custom").toggleClass('d-none');
+            });
+
             $("#card_name").on("input", function() {
                 var heading = $(this).val();
                 if (heading == "") {
@@ -107,38 +155,46 @@
                 var desg = $("#designation").val();
                 var about = $("#about").val();
                 // running the ajax function
-                ajaxFunction(heading, desg,about);
+                // ajaxFunction(heading, desg, about);
             });
             $("#designation").on("blur", function() {
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
                 var about = $("#about").val();
                 // running the ajax function
-                ajaxFunction(heading, desg, about);
+                // ajaxFunction(heading, desg, about);
             });
             $("#about").on("blur", function() {
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
                 var about = $("#about").val();
                 // running the ajax function
-                ajaxFunction(heading, desg, about);
+                // ajaxFunction(heading, desg, about);
             });
             // creating ajax function
-            function ajaxFunction(heading, desg,about) {
-                $.ajax({
-                    url: "{{ route('store') }}",
-                    method: "POST",
-                    data: {
-                        _token : csrf,
-                        heading: heading,
-                        desg: desg,
-                        about: about,
-                    },
-                    success: function(data) {
-                        console.log(data);
-                    }
-                });
-            }
+            // function ajaxFunction(heading, desg, about) {
+            //     $.ajax({
+            //         url: "{{ route('store') }}",
+            //         method: "POST",
+            //         data: {
+            //             _token: csrf,
+            //             heading: heading,
+            //             desg: desg,
+            //             about: about,
+            //         },
+            //         success: function(data) {
+            //             console.log(data);
+            //         }
+            //     });
+            // }
+        });
+    </script>
+    <script src="{{ asset('assets/vendor/hs-file-attach/dist/hs-file-attach.min.js') }}"></script>
+    <script>
+        $(document).on('ready', function() {
+            $('.js-file-attach').each(function() {
+                var customFile = new HSFileAttach($(this)).init();
+            });
         });
     </script>
 @endsection

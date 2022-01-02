@@ -18,6 +18,8 @@ class CreateCardOrdersTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('pricing_id')->constrained();
             $table->string('card_title');
+            $table->string('type')->default('inittap');
+            $table->string('logo')->default('inittap');
             $table->text('about')->nullable();
             $table->string('status')->default('pending');
             $table->string('card_designation');

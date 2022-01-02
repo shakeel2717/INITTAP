@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/profiles
+/public/logo
+/public/assets/cards
 /public/storage
 /storage/*.key
 /vendor
