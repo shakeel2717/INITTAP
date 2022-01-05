@@ -22,6 +22,8 @@
                                 <th scope="col">Shipping Address</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">View Profile</th>
+                                <th scope="col">QR SVG</th>
+                                <th scope="col">QR EPS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,11 +41,11 @@
 
                                             <a class="js-clipboard input-group-append" href="javascript:;"
                                                 data-hs-clipboard-options='{
-                                                        "contentTarget": "#iconExample",
-                                                        "classChangeTarget": "#iconExampleLinkIcon",
-                                                        "defaultClass": "tio-copy",
-                                                        "successClass": "tio-done"
-                                                    }'>
+                                                                "contentTarget": "#iconExample",
+                                                                "classChangeTarget": "#iconExampleLinkIcon",
+                                                                "defaultClass": "tio-copy",
+                                                                "successClass": "tio-done"
+                                                            }'>
                                                 <span class="input-group-text">
                                                     <span id="iconExampleLinkIcon" class="tio-copy"></span>
                                                 </span>
@@ -57,6 +59,12 @@
                                     <td><a target="_blank"
                                             href="{{ route('user.public.profile', ['username' => $user->username]) }}"
                                             class="btn btn-sm btn-primary">View Profile</a></td>
+                                    <td><a
+                                            href="{{ route('admin.dashboard.order.qrDownload', ['format' => 'svg', 'user' => $user->id]) }}"><i
+                                                class="tio-download display-4"></i></a></td>
+                                    <td><a
+                                            href="{{ route('admin.dashboard.order.qrDownload', ['format' => 'eps', 'user' => $user->id]) }}"><i
+                                                class="tio-download display-4"></i></a></td>
                                 </tr>
                             @empty
                                 <tr>
