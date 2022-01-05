@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminController extends Controller
 {
@@ -80,7 +81,7 @@ class AdminController extends Controller
             'username' => 'required|unique:admins',
             'password' => 'required|min:8',
         ]);
-        
+
         $admin = new admin();
         $admin->username = $request->username;
         $admin->password = Hash::make($request->password);
@@ -180,5 +181,20 @@ class AdminController extends Controller
         // getting all shipping address
         $addresses = address::get();
         return view('admin.dashboard.shipping', compact('addresses'));
+    }
+
+
+    public function qrDownload($format, $user)
+    {
+        if (!$format == 'svg' || !$format == 'eps') {
+            return redirect()->back()->with('message', 'Invalid Format');
+        }
+        $user = User::findOrFail($user);
+        $qrCode = QrCode::size(250)->format($format)->generate(route('user.public.profile', ['username' => $user->username]));
+        // save this qr code to public folder
+        $path = public_path('qr/' . $user->username . '.' . $format);
+        file_put_contents($path, $qrCode);
+        // download this qr code
+        return response()->download($path);
     }
 }

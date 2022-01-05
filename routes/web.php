@@ -82,6 +82,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
 
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::post('order/update/{id}', [AdminController::class, 'oderUpdate'])->name('order.update');
+    Route::get('order/qr/{format}/{user}', [AdminController::class, 'qrDownload'])->name('order.qrDownload');
     Route::get('shipping', [AdminController::class, 'shipping'])->name('shipping');
     Route::get('cards/pause/{card}', [CardManageController::class, 'cardPause'])->name('cards.pause');
     Route::get('cards/active/{card}', [CardManageController::class, 'cardActive'])->name('cards.active');

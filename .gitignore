@@ -2,6 +2,7 @@
 /public/hot
 /public/profiles
 /public/logo
+/public/qr
 /public/assets/cards
 /public/storage
 /storage/*.key

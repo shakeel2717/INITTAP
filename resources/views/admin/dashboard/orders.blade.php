@@ -23,6 +23,8 @@
                                 <th scope="col">Action</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Logo</th>
+                                <th scope="col">QR SVG</th>
+                                <th scope="col">QR EPS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +60,8 @@
                                         <td><span class="badge badge-primary">{{ Str::ucfirst($order->type) }}</span></td>
                                         <td>
                                             <a href="{{ asset('logo/') . '/' . $order->logo }}">
-                                                <img class="avatar" src="{{ asset('logo/') . '/' . $order->logo }}"
+                                                <img class="avatar"
+                                                    src="{{ asset('logo/') . '/' . $order->logo }}"
                                                     alt="Custom logo Image">
                                             </a>
                                         </td>
@@ -66,7 +69,8 @@
                                         <td>INITTAP</td>
                                         <td>INITTAP</td>
                                     @endif
-
+                                    <td><a href="{{ route('admin.dashboard.order.qrDownload',['format' => 'svg', 'user' => $order->user->id]) }}"><i class="tio-download display-4"></i></a></td>
+                                    <td><a href="{{ route('admin.dashboard.order.qrDownload',['format' => 'eps', 'user' => $order->user->id]) }}"><i class="tio-download display-4"></i></a></td>
                                 </tr>
                             @empty
                                 <tr>
