@@ -12,18 +12,72 @@
                     <div class="row text-center">
                         <div class="col-md-8 mx-auto">
                             <p>Preview of your Card</p>
-                            <div class="card-box">
-                                <div class="card-left">
-                                    <img src="{{ asset('assets/img/card/man.png') }}" alt="Profile Picture">
+                            {{-- <div class="card-box mx-auto" style="max-width: 520px;">
+                                <div class="card-left border border-dark">
+                                    <h2 id="heading" class="display-4 text-dark">{{ Auth::user()->name }}</h2>
+                                    <img src="{{ asset('assets/img/hr.svg') }}" alt="H Row">
+                                    <h4 id="desg" class="display-5" style="color:gold">Designation</h4>
                                 </div>
                                 <div class="card-right">
                                     <img src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Logo">
-                                    <h2 id="heading" class="display-4">{{ Auth::user()->name }}</h2>
-                                    <h4 id="desg" class="display-4">Designation</h4>
+                                </div>
+                            </div> --}}
+                            {{-- <div class="card border border-dark mx-auto"
+                                style="max-width: 290px; min-width: 290px; max-height:165px; min-height:165px;">
+                                <div class="card-body p-0" style="overflow: hidden; border-radius: 12px;">
+                                    <div class="row">
+                                        <div class="col-6 d-flex flex-column align-items-center justify-content-around">
+                                            <div class="top">
+                                                <h4 id="heading" class="m-0 text-center text-dark"
+                                                    style="line-height: 20px;">{{ Auth::user()->name }}</h4>
+                                                <h5 id="desg" class="m-0" style="color:gold">Designation</h5>
+                                                <img class="img-fluid" src="{{ asset('assets/img/hr.svg') }}"
+                                                    alt="H Row" width="100%">
+                                            </div>
+                                            <div class="bottom">
+                                                <img class="img-fluid" width="10px"
+                                                    src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{ route('user.public.profile', ['username' => Auth::user()->username]) }}&chld=L|1&choe=UTF-8, 'QrCode.png', 'image/png' }}"
+                                                    alt="QR Code">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 p-0" style="background-color: black">
+                                            <div class="brand mr-3 d-flex align-items-center justify-content-center h-100">
+                                                <img src="{{ asset('assets/img/brand/logo-gold.svg') }}" alt="Logo"
+                                                    width="80%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <div class="card-box">
+                                <div class="card-group shadow-lg" style="">
+                                    <div class="card border">
+                                        <div
+                                            class="card-body d-flex flex-column justify-content-between align-items-center">
+                                            <div class="first">
+                                                <h4 id="heading" class="card-title">{{ Auth::user()->name }}</h4>
+                                                <h5 id="desg" class="card-title" style="color:gold">Designation</h5>
+                                                <img class="img-fluid" src="{{ asset('assets/img/hr.svg') }}"
+                                                    alt="H Row" width="100%">
+                                            </div>
+                                            <div class="second">
+                                                <img class="img-fluid"
+                                                    src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{ route('user.public.profile', ['username' => Auth::user()->username]) }}&chld=L|1&choe=UTF-8, 'QrCode.png', 'image/png' }}"
+                                                    alt="QR Code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card border-0" style="background-color:black">
+                                        <div class="card-body d-flex justify-content-center align-items-center">
+                                            <img src="{{ asset('assets/img/brand/logo-gold.svg') }}" alt="Logo"
+                                                width="80%">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <form action="{{ route('api.success') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-8 mx-auto">
@@ -35,8 +89,8 @@
                                             <!-- Select2 -->
                                             <select id="type" name="type" class="js-select2-custom custom-select" size="1"
                                                 style="opacity: 0;" data-hs-select2-options='{
-                                                                            "placeholder": "Select wallet"
-                                                                            }'>
+                                                                                                                "placeholder": "Select wallet"
+                                                                                                                }'>
                                                 <option value="inittap" selected>
                                                     INITTAP branded card
                                                 </option>
@@ -57,13 +111,14 @@
 
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
                                                         id="avatarUploader" data-hs-file-attach-options='{
-                                                                            "textTarget": "#avatarImg",
-                                                                            "mode": "image",
-                                                                            "targetAttr": "src",
-                                                                            "resetTarget": ".js-file-attach-reset-img",
-                                                                            "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                        }' name="custom">
+                                                                                                                "textTarget": "#avatarImg",
+                                                                                                                "mode": "image",
+                                                                                                                "targetAttr": "src",
+                                                                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                                            }'
+                                                        name="custom">
 
                                                     <span class="avatar-uploader-trigger">
                                                         <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -76,9 +131,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="card_name">Card Name</label>
+                                            <label for="card_name">Card Title</label>
                                             <input type="text" class="form-control" id="card_name" name="card_name"
-                                                placeholder="Enter Card Name" value="{{ Auth::user()->name }}">
+                                                placeholder="Enter Card Title" value="{{ Auth::user()->name }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="designation">Designation</label>
@@ -171,22 +226,6 @@
                 // running the ajax function
                 // ajaxFunction(heading, desg, about);
             });
-            // creating ajax function
-            // function ajaxFunction(heading, desg, about) {
-            //     $.ajax({
-            //         url: "{{ route('store') }}",
-            //         method: "POST",
-            //         data: {
-            //             _token: csrf,
-            //             heading: heading,
-            //             desg: desg,
-            //             about: about,
-            //         },
-            //         success: function(data) {
-            //             console.log(data);
-            //         }
-            //     });
-            // }
         });
     </script>
     <script src="{{ asset('assets/vendor/hs-file-attach/dist/hs-file-attach.min.js') }}"></script>

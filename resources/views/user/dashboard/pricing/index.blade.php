@@ -5,7 +5,7 @@
 @section('content')
     <div class="row gx-2 gx-lg-3">
         @foreach ($price as $card)
-            <div class="col-md-4">
+            <div class="col-md-4 mx-auto">
                 <div class="card">
                     <div class="card-body">
                         {{-- <hr> --}}
