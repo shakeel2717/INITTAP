@@ -45,7 +45,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-end ">
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="{{ route('admin.dashboard.userPublicEdit',['id' => $user->id]) }}" class="btn btn-primary">Update Public Profile</a>
                             <button type="submit" class="btn btn-primary"> Update This User <i
                                     class="tio-checkmark-square"></i></button>
                         </div>

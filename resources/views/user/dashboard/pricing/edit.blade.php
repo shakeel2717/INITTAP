@@ -125,7 +125,7 @@
                                             value="{{ $data->params->referenceId }}">
                                         <input type="hidden" name="hppRequestId" id="hppRequestId"
                                             value="{{ $data->params->hppRequestId }}">
-                                        <button type="submit" class="btn btn-lg btn-block btn-primary">Proceed to
+                                        <button type="submit" id="checkout-button" class="btn btn-lg btn-block btn-primary">Proceed to
                                             Checkout</button>
                                     </div>
                                 </div>
@@ -141,6 +141,7 @@
 @section('footer')
     <script>
         $(document).ready(function() {
+            $('#checkout-button').prop('disabled', true);
             // $('#custom').addClass('d-none');
             $('#type').change(function() {
                 $("#custom").toggleClass('d-none');
@@ -150,6 +151,8 @@
                 var heading = $(this).val();
                 if (heading == "") {
                     $("#heading").text("{{ Auth::user()->name }}");
+                    // checkout button active again
+                    $('#checkout-button').prop('disabled', false);
                 } else {
                     $("#heading").text(heading);
                 }
@@ -159,6 +162,7 @@
                 var desg = $(this).val();
                 if (desg == "") {
                     $("#desg").text("Accountant");
+                    $('#checkout-button').prop('disabled', false);
                 } else {
                     $("#desg").text(desg);
                 }
@@ -172,6 +176,7 @@
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
                 var about = $("#about").val();
+                $('#checkout-button').prop('disabled', false);
                 // running the ajax function
                 // ajaxFunction(heading, desg, about);
             });
@@ -179,6 +184,7 @@
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
                 var about = $("#about").val();
+                $('#checkout-button').prop('disabled', false);
                 // running the ajax function
                 // ajaxFunction(heading, desg, about);
             });
@@ -186,6 +192,7 @@
                 var heading = $("#card_name").val();
                 var desg = $("#designation").val();
                 var about = $("#about").val();
+                $('#checkout-button').prop('disabled', false);
                 // running the ajax function
                 // ajaxFunction(heading, desg, about);
             });

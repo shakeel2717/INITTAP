@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\address;
 use App\Models\admin;
 use App\Models\cardOrder;
+use App\Models\email;
+use App\Models\phone;
 use App\Models\profile;
+use App\Models\social;
 use App\Models\User;
+use App\Models\website;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -196,5 +201,131 @@ class AdminController extends Controller
         file_put_contents($path, $qrCode);
         // download this qr code
         return response()->download($path);
+    }
+
+
+    public function userPublicEdit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.dashboard.userPublicEdit', compact('user'));
+    }
+
+
+    public function userPublicStore(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $validatedData = $request->validate([
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('profile')) {
+            $file = $request->profile;
+            $name = time() . $user->code . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/assets/profiles/', $name);
+            // updating the user profile
+            $profile = $user;
+            $profile->avatar = $name;
+            $profile->save();
+        }
+        $emails = $request->only([
+            'email', 'email_0', 'email_1', 'email_2', 'email_3', 'email_4', 'email_5', 'email_6', 'email_7', 'email_8', 'email_9', 'email_10',
+        ]);
+
+        $phones = $request->only([
+            'phone', 'phone_0', 'phone_1', 'phone_2', 'phone_3', 'phone_4', 'phone_5', 'phone_6', 'phone_7', 'phone_8', 'phone_9', 'phone_10',
+        ]);
+
+        $websites = $request->only([
+            'website', 'website_0', 'website_1', 'website_2', 'website_3', 'website_4', 'website_5', 'website_6', 'website_7', 'website_8', 'website_9', 'website_10',
+        ]);
+
+        // inserting new email for this user
+        foreach ($emails as $email) {
+            if ($email) {
+                // inserting this user email
+                $publicEmail = new email();
+                $publicEmail->user_id = $user->id;
+                $publicEmail->email = $email;
+                $publicEmail->save();
+            }
+        }
+        // inserting new Phones for this user
+        foreach ($phones as $phone) {
+            if ($phone) {
+                // inserting this user email
+                $publicPhone = new phone();
+                $publicPhone->user_id = $user->id;
+                $publicPhone->phone = $phone;
+                $publicPhone->save();
+            }
+        }
+        // inserting new Websites for this user
+        foreach ($websites as $website) {
+            if ($website) {
+                // inserting this user email
+                $publicWebsite = new website();
+                $publicWebsite->user_id = $user->id;
+                $publicWebsite->website = $website;
+                $publicWebsite->save();
+            }
+        }
+
+        return redirect()->back()->with('message', 'Your public information has been updated successfully');
+    }
+
+
+    public function userPublicSocial($id, Request $request)
+    {
+        $validatedData = $request->validate([
+            'social' => 'required',
+            'link' => 'required',
+        ]);
+        $user = User::findOrFail($id);
+        switch ($validatedData['social']) {
+            case 'facebook':
+                $icon = 'tio-facebook-square';
+                $protocole = 'https://www.facebook.com/';
+                break;
+            case 'instagram':
+                $icon = 'tio-instagram';
+                $protocole = 'https://www.instagram.com/';
+                break;
+            case 'twitter':
+                $protocole = 'https://twitter.com/';
+                $icon = 'tio-twitter';
+                break;
+            case 'youtube':
+                $protocole = 'https://www.youtube.com/';
+                $icon = 'tio-youtube';
+                break;
+            case 'linkedin':
+                $protocole = 'https://www.linkedin.com/';
+                $icon = 'tio-linkedin-square';
+                break;
+            case 'skype':
+                $protocole = 'https://www.skype.com/';
+                $icon = 'tio-skype';
+                break;
+            case 'whatsapp':
+                $protocole = 'https://api.whatsapp.com/send?phone=';
+                $icon = 'tio-whatsapp';
+                break;
+            case 'github':
+                $protocole = 'https://github.com/';
+                $icon = 'tio-github';
+                break;
+            default:
+                $protocole = 'https://www.facebook.com/';
+                $icon = 'tio-facebook-square';
+                break;
+        }
+
+        $social = new social();
+        $social->user_id = $user->id;
+        $social->name = $validatedData['social'];
+        $social->icon = $icon;
+        $social->url = $protocole . $validatedData['link'];
+        $social->save();
+        return redirect()->back()->with('message', 'Your social information has been updated successfully');
     }
 }

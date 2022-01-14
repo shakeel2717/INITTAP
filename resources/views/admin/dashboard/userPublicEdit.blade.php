@@ -1,4 +1,4 @@
-@extends('user.dashboard.layout.app')
+@extends('admin.dashboard.layout.app')
 @section('title')
     Dashboard
 @endsection
@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-8 mx-auto">
             <div id="addUserStepFormContent">
-                <form action="{{ route('user.public.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.dashboard.userPublicStore',['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div id="addUserStepProfile" class="card card-lg active">
                         <div class="card-body">
@@ -23,13 +23,13 @@
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
                                             data-hs-file-attach-options='{
-                                                                                    "textTarget": "#avatarImg",
-                                                                                    "mode": "image",
-                                                                                    "targetAttr": "src",
-                                                                                    "resetTarget": ".js-file-attach-reset-img",
-                                                                                    "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                    "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                }' name="profile">
+                                                "textTarget": "#avatarImg",
+                                                "mode": "image",
+                                                "targetAttr": "src",
+                                                "resetTarget": ".js-file-attach-reset-img",
+                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                            }' name="profile">
 
                                         <span class="avatar-uploader-trigger">
                                             <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -212,7 +212,7 @@
                     </span>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('user.public.social') }}" method="POST">
+                    <form action="{{ route('admin.dashboard.userPublicSocial',['id' => $user->id]) }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
