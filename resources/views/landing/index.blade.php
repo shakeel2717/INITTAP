@@ -239,7 +239,7 @@
 
                 <div class="row">
                     @forelse ($cards as $card)
-                        <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-3 col-md-6 mt-4 mt-md-0 mx-auto" data-aos="fade-up" data-aos-delay="100">
                             <div class="box featured border border-primary">
                                 <h3>{{ $card->title }}</h3>
                                 <div class="card-image w-100 text-center">
