@@ -9,48 +9,11 @@
                 <div class="card-body">
                     <h2 class="card-title">Your Selected Card {{ url('api/payment/success') }}</h2>
                     <hr>
-                    <div class="row text-center">
-                        <div class="col-md-8 mx-auto">
+                    <div class="row">
+                        <div class="mx-auto text-center">
                             <p>Preview of your Card</p>
-                            {{-- <div class="card-box mx-auto" style="max-width: 520px;">
-                                <div class="card-left border border-dark">
-                                    <h2 id="heading" class="display-4 text-dark">{{ Auth::user()->name }}</h2>
-                                    <img src="{{ asset('assets/img/hr.svg') }}" alt="H Row">
-                                    <h4 id="desg" class="display-5" style="color:gold">Designation</h4>
-                                </div>
-                                <div class="card-right">
-                                    <img src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Logo">
-                                </div>
-                            </div> --}}
-                            {{-- <div class="card border border-dark mx-auto"
-                                style="max-width: 290px; min-width: 290px; max-height:165px; min-height:165px;">
-                                <div class="card-body p-0" style="overflow: hidden; border-radius: 12px;">
-                                    <div class="row">
-                                        <div class="col-6 d-flex flex-column align-items-center justify-content-around">
-                                            <div class="top">
-                                                <h4 id="heading" class="m-0 text-center text-dark"
-                                                    style="line-height: 20px;">{{ Auth::user()->name }}</h4>
-                                                <h5 id="desg" class="m-0" style="color:gold">Designation</h5>
-                                                <img class="img-fluid" src="{{ asset('assets/img/hr.svg') }}"
-                                                    alt="H Row" width="100%">
-                                            </div>
-                                            <div class="bottom">
-                                                <img class="img-fluid" width="10px"
-                                                    src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{ route('user.public.profile', ['username' => Auth::user()->username]) }}&chld=L|1&choe=UTF-8, 'QrCode.png', 'image/png' }}"
-                                                    alt="QR Code">
-                                            </div>
-                                        </div>
-                                        <div class="col-6 p-0" style="background-color: black">
-                                            <div class="brand mr-3 d-flex align-items-center justify-content-center h-100">
-                                                <img src="{{ asset('assets/img/brand/logo-gold.svg') }}" alt="Logo"
-                                                    width="80%">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <div class="card-box">
-                                <div class="card-group shadow-lg" style="">
+                            <div class="mx-auto nfc-card">
+                                <div class="card-group shadow-lg">
                                     <div class="card border">
                                         <div
                                             class="card-body d-flex flex-column justify-content-between align-items-center">

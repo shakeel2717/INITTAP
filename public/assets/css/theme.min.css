@@ -5608,58 +5608,67 @@ input[type=submit].btn-block {
     margin-bottom: 15px
 }
 
-@media (min-width:576px) {
-    .card-group {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-flow: row wrap;
-        flex-flow: row wrap
-    }
 
-    .card-group>.card {
-        -ms-flex: 1 0 0%;
-        flex: 1 0 0%;
-        margin-bottom: 0
-    }
+.card-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap
+}
 
-    .card-group>.card+.card {
-        margin-left: 0;
-        border-left: 0
-    }
+.card-group>.card {
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-bottom: 0
+}
 
-    .card-group>.card:not(:last-child) {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0
-    }
+.card-group>.card+.card {
+    margin-left: 0;
+    border-left: 0
+}
 
-    .card-group>.card:not(:last-child) .card-header,
-    .card-group>.card:not(:last-child) .card-img-top {
-        border-top-right-radius: 0
-    }
+.card-group>.card:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
 
-    .card-group>.card:not(:last-child) .card-footer,
-    .card-group>.card:not(:last-child) .card-img-bottom {
-        border-bottom-right-radius: 0
-    }
+.card-group>.card:not(:last-child) .card-header,
+.card-group>.card:not(:last-child) .card-img-top {
+    border-top-right-radius: 0
+}
 
-    .card-group>.card:not(:first-child) {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0
-    }
+.card-group>.card:not(:last-child) .card-footer,
+.card-group>.card:not(:last-child) .card-img-bottom {
+    border-bottom-right-radius: 0
+}
 
-    .card-group>.card:not(:first-child) .card-header,
-    .card-group>.card:not(:first-child) .card-img-top {
-        border-top-left-radius: 0
-    }
+.card-group>.card:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
 
-    .card-group>.card:not(:first-child) .card-footer,
-    .card-group>.card:not(:first-child) .card-img-bottom {
-        border-bottom-left-radius: 0
-    }
+.card-group>.card:not(:first-child) .card-header,
+.card-group>.card:not(:first-child) .card-img-top {
+    border-top-left-radius: 0
+}
+
+.card-group>.card:not(:first-child) .card-footer,
+.card-group>.card:not(:first-child) .card-img-bottom {
+    border-bottom-left-radius: 0
 }
 
 .card-columns .card {
     margin-bottom: 1.3125rem
+}
+
+.nfc-card {
+    width:28rem;
+}
+
+@media (max-width:425px) {
+    .nfc-card {
+        width:22rem;
+    }
 }
 
 @media (min-width:576px) {
