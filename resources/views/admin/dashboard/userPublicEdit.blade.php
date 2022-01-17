@@ -18,7 +18,7 @@
                                     <!-- Avatar -->
                                     <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5" for="avatarUploader">
                                         <img id="avatarImg" class="avatar-img"
-                                            src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
+                                            src="{{ $user->avatar != '' ? asset('assets/profiles/') . '/' . $user->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                             alt="Image Description">
 
                                         <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader"
@@ -48,7 +48,7 @@
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break">
                                         <input type="text" class="form-control" name="firstName" id="firstNameLabel"
-                                            placeholder="First Name" value="{{ auth()->user()->name }}">
+                                            placeholder="First Name" value="{{ $user->name }}">
                                     </div>
                                 </div>
                             </div>
