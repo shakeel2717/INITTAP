@@ -299,7 +299,7 @@ class AdminController extends Controller
                 $icon = 'tio-youtube';
                 break;
             case 'linkedin':
-                $protocole = 'https://www.linkedin.com/';
+                $protocole = 'https://www.linkedin.com/in/';
                 $icon = 'tio-linkedin-square';
                 break;
             case 'skype':
