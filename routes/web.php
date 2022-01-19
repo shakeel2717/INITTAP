@@ -95,6 +95,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::post('cards/feature/update', [AdminFeatureController::class, 'update'])->name('feature.update');
     Route::resource('cards', CardManageController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
+    Route::post('user/show/update', [AdminController::class, 'userUpdate'])->name('userUpdate');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 

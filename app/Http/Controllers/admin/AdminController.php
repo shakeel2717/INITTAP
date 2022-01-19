@@ -157,6 +157,38 @@ class AdminController extends Controller
         return view('admin.dashboard.show', compact('user'));
     }
 
+    public function userUpdate(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'zip' => 'required|string',
+            'country' => 'required|string',
+            'designation' => 'required|string',
+            'about' => 'required|string',
+        ]);
+
+        // updating user profile email
+        if ($validatedData['email'] != Auth::user()->email) {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->email = $validatedData['email'];
+            $user->save();
+        }
+
+        $profile = profile::where('user_id', Auth::user()->id)->firstOrFail();
+        $profile->title = $validatedData['name'];
+        $profile->address = $validatedData['address'];
+        $profile->city = $validatedData['city'];
+        $profile->zip = $validatedData['zip'];
+        $profile->country = $validatedData['country'];
+        $profile->designation = $validatedData['designation'];
+        $profile->about = $validatedData['about'];
+        $profile->save();
+        return redirect()->back()->with('message', 'Profile updated successfully');
+    }
+
 
     public function orders()
     {
