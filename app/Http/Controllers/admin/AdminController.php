@@ -106,7 +106,7 @@ class AdminController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'username' => $request->email,
+            'username' => $request->username,
             'code' => userCode(),
             'password' => Hash::make($request->password),
         ]);
