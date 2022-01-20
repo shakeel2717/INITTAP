@@ -164,7 +164,7 @@ class AdminController extends Controller
             'email' => 'required|string',
             'address' => 'required|string',
             'city' => 'required|string',
-            'zip' => 'required|string',
+            'zip' => 'nullable|string',
             'country' => 'required|string',
             'designation' => 'required|string',
             'about' => 'required|string',
