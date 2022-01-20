@@ -170,7 +170,7 @@ class AdminController extends Controller
             'about' => 'required|string',
             'user_id' => 'required|integer',
         ]);
-        $user = user::findOrFail($validatedData['user_id']);
+        $user = User::findOrFail($validatedData['user_id']);
 
         // updating user profile email
         if ($validatedData['email'] != $user()->email) {
