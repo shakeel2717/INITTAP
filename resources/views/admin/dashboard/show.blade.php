@@ -95,6 +95,7 @@
                         <textarea name="about" id="about" class="form-control" cols="30" rows="10">{{ $user->profile->about }}</textarea>
                     </div>
                 </div>
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <!-- End Form Group -->
 
 
