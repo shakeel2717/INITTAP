@@ -300,7 +300,7 @@ class PublicController extends Controller
 
     public function qrDownload()
     {
-        $format = 'svg';
+        $format = 'png';
         $user = Auth::user();
         $qrCode = QrCode::size(250)->format($format)->generate(route('user.public.profile', ['username' => $user->username]));
         // save this qr code to public folder
