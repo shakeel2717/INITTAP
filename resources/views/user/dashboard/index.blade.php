@@ -141,7 +141,23 @@
                 </div>
             @endif
         @endif
-        <div class="col-md-8">
+        <div class="col-md-4">
+            <div class="card card-lg mb-3 mb-lg-5">
+                <div class="card-body text-center">
+                    <div class="w-50 mx-auto mb-4">
+                        <img class="img-fluid" src="{{ asset('assets/img/qr-code.png') }}" alt="QR Code Download"
+                            width="160">
+                    </div>
+                    <div class="mb-3">
+                        <h3>Download Your QR!</h3>
+                        <p>You can Download your {{ env('APP_NAME') }} Public Profile QR Code
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ route('user.public.single') }}">Download now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">
                     <h2 class="card-header-title h5">Recent Activities</h2>
