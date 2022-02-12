@@ -46,7 +46,7 @@
                 <div class="col-12">
                     <div class="card shadow-lg">
                         <div class="card-body text-center">
-                            <h2 class="card-title">{{ $user->profile->title }}</h2>
+                            <h2 class="card-title">{{ $user->profile->title }}'s QR Code</h2>
                             <hr>
                             <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!} " alt="">
                         </div>
