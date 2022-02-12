@@ -48,7 +48,7 @@
                         <div class="card-body text-center">
                             <h2 class="card-title">{{ $user->profile->title }}</h2>
                             <hr>
-                            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->format('svg')->generate(route('user.public.profile', ['username' => $user->username]))) !!} " alt="">
+                            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!} " alt="">
                         </div>
                     </div>
                 </div>
