@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JeroenDesloovere\VCard\VCard;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PublicController extends Controller
 {
@@ -293,5 +294,19 @@ class PublicController extends Controller
         $vcard->save();
         $path = strtolower(Str::slug($user->profile->title)) . '.vcf';
         return response()->file('profiles/' . $path);
+    }
+
+
+
+    public function qrDownload()
+    {
+        $format = 'svg';
+        $user = Auth::user();
+        $qrCode = QrCode::size(250)->format($format)->generate(route('user.public.profile', ['username' => $user->username]));
+        // save this qr code to public folder
+        $path = public_path('qr/' . $user->username . '.' . $format);
+        file_put_contents($path, $qrCode);
+        // download this qr code
+        return response()->download($path);
     }
 }

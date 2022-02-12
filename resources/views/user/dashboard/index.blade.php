@@ -153,7 +153,7 @@
                         <p>You can Download your {{ env('APP_NAME') }} Public Profile QR Code
                         </p>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('user.public.single') }}">Download now</a>
+                    <a class="btn btn-primary" href="{{ route('user.public.qr.download') }}">Download now</a>
                 </div>
             </div>
         </div>
