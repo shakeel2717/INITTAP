@@ -44,6 +44,18 @@
 
             <div class="row">
                 <div class="col-12">
+                    <div class="card shadow-lg">
+                        <div class="card-body text-center">
+                            <h2 class="card-title">{{ $user->profile->title }}</h2>
+                            <hr>
+                            <img src="{{ QrCode::size(150)->format('png')->generate(route('user.public.profile', ['username' => $user->username])) }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
                         <a href="{{ route('user.public.profile.save', ['username' => $user->username]) }}"
                             class="btn btn-block btn-dark btn-lg"><i class="tio-user-add"></i> Save Contact</a>
