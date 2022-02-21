@@ -1,4 +1,7 @@
 @extends('public.layout.app')
+@section('title')
+    {{ $user->profile->title }}
+@endsection
 @section('content')
     <div class="row justify-content-md-center">
         <div class="col-12 col-md-8 mt-4">
