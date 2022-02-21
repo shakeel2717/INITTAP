@@ -13,6 +13,8 @@
                 <label class="avatar avatar-xxl avatar-border-lg avatar-uploader profile-cover-avatar" for="avatarUploader">
                     <img id="avatarImg" class="avatar-img" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!}" alt="QR Code">
                 </label>
+                <h1 class="page-header-title">{{ $user->profile->title }} <i class="tio-verified tio-lg text-primary"
+                    data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i></h1>
             </div>
         </div>
     </div>
