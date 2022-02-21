@@ -23,6 +23,7 @@ Route::post('/form-store', [LandingPageController::class, 'store'])->name('guest
 Route::name('user.')->group(function () {
     // Public Profile Section
     Route::get('/public/{username}', [PublicController::class, 'publicProfile'])->name('public.profile');
+    Route::get('/public/{username}/qr', [PublicController::class, 'publicQr'])->name('public.profile.qr');
     Route::get('/public/save/{username}', [PublicController::class, 'publicProfileSave'])->name('public.profile.save');
 });
 

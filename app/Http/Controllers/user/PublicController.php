@@ -309,4 +309,11 @@ class PublicController extends Controller
         // download this qr code
         return response()->download($path);
     }
+
+
+    public function publicQr($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        return view('public.qr',compact('user'));
+    }
 }
