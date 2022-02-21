@@ -228,6 +228,17 @@
                             </a>
                         </li>
 
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('user.public.profile.qr', ['username' => Auth::user()->username]) }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-earth-east nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Preview
+                                    QR Code</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">My Account</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>

@@ -18,6 +18,8 @@
                 </label>
                 <h1 class="page-header-title">{{ $user->profile->title }} <i class="tio-verified tio-lg text-primary"
                     data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i></h1>
+                <hr>
+                <a class="btn btn-primary btn-lg" href="{{ route('user.dashboard.index') }}">Go Back</a>
             </div>
         </div>
     </div>
