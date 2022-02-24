@@ -48,9 +48,23 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <img id="avatarImg" class="avatar-img mx-auto"
-                            src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!}"
-                            alt="QR Code">
+                            {{-- Background QR Frame Image --}}
+                            <div class="card-header-image qr-box">
+                                <img class="card-header-image-img" src="{{ asset('assets/img/qr-frame.svg') }}"
+                                    alt="Image Description">
+                                {{-- <div class="qr-code">
+                                    <img src="{{ asset('assets/img/test-qr.png') }}" alt="Image Description">
+                                </div> --}}
+                                <div class="qr-code">
+                                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!}" alt="QR Code Scan me">
+                                </div>
+                            </div>
+                            {{-- End Background QR Frame Image --}}
+
+                            {{-- <img id="avatarImg" class="avatar-img mx-auto" --}}
+                            {{-- src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('user.public.profile', ['username' => $user->username]))) !!}" --}}
+                            {{-- src="{{ asset('assets/img/test-qr.png') }}" --}}
+                            {{-- alt="QR Code"> --}}
                         </div>
                     </div>
                 </div>
