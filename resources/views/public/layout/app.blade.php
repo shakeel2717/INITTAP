@@ -18,11 +18,15 @@
             @yield('content')
         </div>
         <div class="footer text-center">
-            <ul class="list-inline list-separator">
+            <ul class="list-inline list-separator mb-2">
                 <li class="list-inline-item">
-                    <a class="btn btn-sm btn-dark" href="{{ route('user.dashboard.index') }}"> Get your Card <i class="tio-open-in-new"></i></a>
+                    <a class="btn btn-sm btn-dark" href="{{ route('user.dashboard.index') }}"> Get your Card <i
+                            class="tio-open-in-new"></i></a>
                 </li>
             </ul>
+            <div class="bg-dark p-2">
+                <p class="mb-0">{{ env('APP_NAME') }} © {{ date('Y') }} All right reserved</p>
+            </div>
         </div>
     </main>
     <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
