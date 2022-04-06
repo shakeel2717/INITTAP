@@ -16,6 +16,8 @@ class VerifyCsrfToken extends Middleware
         'https://inittap.asanhub.com/store',
         'https://inittap.asanhub.com/api/payment/success',
         'http://inittap.asanhub.com/api/payment/success',
+        'https://inittap.asanhub.com/api/payment/failed',
+        'http://inittap.asanhub.com/api/payment/failed',
         'http://127.0.0.1:8000/api/payment/success',
     ];
 }
