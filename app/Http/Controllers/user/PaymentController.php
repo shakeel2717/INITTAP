@@ -8,6 +8,7 @@ use App\Models\payment;
 use App\Models\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -20,6 +21,7 @@ class PaymentController extends Controller
             'type' => 'required|string',
             'custom' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
+        Log::info("WebHook Reached.");
         $type = 'inittap';
         $logo = 'inittap';
         // checking if the card type is custom
@@ -41,6 +43,7 @@ class PaymentController extends Controller
             'card_designation' => $validatedData['designation'],
             'about' => $validatedData['about'],
         ]);
+        Log::info("Card Order Placed or Updated.");
 
 
 
@@ -53,9 +56,16 @@ class PaymentController extends Controller
                 'title' => $validatedData['card_name'],  'designation' => $validatedData['designation'], 'about' => $validatedData['about']
             ]
         );
+        Log::info("Profile Updated.");
         // $payment = new payment();
         // $payment->description = "Api Success";
         // $payment->save();
         return view('payments.success');
+    }
+
+
+    public function failed()
+    {
+        Log::info("WebHook Failed.");
     }
 }
