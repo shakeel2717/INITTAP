@@ -12,12 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://127.0.0.1:8000/store',
-        'https://inittap.asanhub.com/store',
-        'https://inittap.asanhub.com/api/payment/*',
-        'http://inittap.asanhub.com/api/payment/*',
-        'https://inittap.asanhub.com/api/payment/*',
-        'http://inittap.asanhub.com/api/payment/*',
-        'http://127.0.0.1:8000/api/payment/*',
+        'store',
+        'api/*',
     ];
 }
