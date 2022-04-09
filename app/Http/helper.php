@@ -32,13 +32,13 @@ function hook()
     $datas->serviceParams->storeId = "1000238";
     $datas->serviceParams->hppKey = "HPP-961814494";
     $datas->serviceParams->paymentMethod = "MWALLET_ACCOUNT";
+    $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.asanhub.com/api/payment/success";
+    $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.asanhub.com/api/payment/failed";
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
     $datas->serviceParams->transactionInfo = new \stdClass();
     $datas->serviceParams->transactionInfo->referenceId = rand(1, 1000000);
-    $datas->serviceParams->transactionInfo->hppSuccessCallbackUrl = "https://inittap.asanhub.com/api/payment/success";
-    $datas->serviceParams->transactionInfo->hppFailureCallbackUrl = "https://inittap.asanhub.com/api/payment/failed";
-    $datas->serviceParams->transactionInfo->invoiceId = "1933090";
+    $datas->serviceParams->transactionInfo->invoiceId = "19330545490";
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
     $datas->serviceParams->transactionInfo->description = "Testing";
