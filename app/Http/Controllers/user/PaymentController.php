@@ -32,20 +32,23 @@ class PaymentController extends Controller
             $logo = $name;
         }
 
+        $cardOrderAlready = cardOrder::where('user_id', Auth::user()->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
+        if ($cardOrderAlready) {
+            return redirect()->back()->with('error', 'You have already a card order, Please Contact us for more information');
+        }
+
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
         ], [
             'pricing_id' => 1,
             'type' => $type,
             'logo' => $logo,
+            'status' => 'initiate',
             'card_title' => $validatedData['card_name'],
             'card_designation' => $validatedData['designation'],
             'about' => $validatedData['about'],
         ]);
         Log::info("Card Order Placed or Updated.");
-
-
-
         // updating the record in profile
         $profile = profile::updateOrCreate(
             [
@@ -76,6 +79,13 @@ class PaymentController extends Controller
         $payment->hppResultToken = $request->hppResultToken;
         $payment->HRDF = $request->HRDF;
         $payment->save();
+        Log::info("Payment Record Saved.");
+
+        // activating this user card order
+        $cardOrder = cardOrder::where('user_id', Auth::user()->id)->where('status', 'initiate')->first();
+        $cardOrder->status = 'pending';
+        $cardOrder->save();
+        Log::info("Card Order Activated.");
         return view('payments.success');
     }
 }

@@ -139,6 +139,25 @@
                         </div>
                     </div>
                 </div>
+            @elseif (Auth::user()->cardOrder[0]->status == 'initiate')
+                <div class="col-md-4">
+                    <div class="card card-lg mb-3 mb-lg-5">
+                        <div class="card-body text-center">
+                            <div class="w-50 mx-auto mb-4">
+                                <img class="img-fluid" src="{{ asset('assets/img/complete.svg') }}"
+                                    alt="Image Description" width="300">
+                            </div>
+
+                            <div class="mb-3">
+                                <h3>Waiting Payment...!</h3>
+                                <p>Your Order Placed, Please wait for the payment confirmation.
+                                </p>
+                            </div>
+
+                            <a class="btn btn-primary" href="{{ route('user.public.single') }}">View Profile</a>
+                        </div>
+                    </div>
+                </div>
             @endif
         @endif
         <div class="col-md-4">

@@ -73,6 +73,17 @@ class clean extends Command
         $user->password = Hash::make('test');
         $user->save();
 
+
+        // create a card
+        $pricing = new pricing();
+        $pricing->title = "test";
+        $pricing->category = "plastic";
+        $pricing->description = "test";
+        $pricing->price = "49";
+        $pricing->img = "1649583667.jpg";
+        $pricing->status = "active";
+        $pricing->save();
+
         return Command::SUCCESS;
     }
 }
