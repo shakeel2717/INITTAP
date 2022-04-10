@@ -43,7 +43,6 @@ class PaymentController extends Controller
             'pricing_id' => 1,
             'type' => $type,
             'logo' => $logo,
-            'status' => 'initiate',
             'card_title' => $validatedData['card_name'],
             'card_designation' => $validatedData['designation'],
             'about' => $validatedData['about'],

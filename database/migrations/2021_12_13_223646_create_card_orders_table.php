@@ -21,7 +21,7 @@ class CreateCardOrdersTable extends Migration
             $table->string('type')->default('inittap');
             $table->string('logo')->default('inittap');
             $table->text('about')->nullable();
-            $table->string('status')->default('pending');
+            $table->string('status')->default('initiate');
             $table->string('card_designation');
             $table->timestamps();
         });
