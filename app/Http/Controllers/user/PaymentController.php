@@ -67,5 +67,6 @@ class PaymentController extends Controller
     public function failed()
     {
         Log::info("WebHook Failed.");
+        return view('payments.failed');
     }
 }
