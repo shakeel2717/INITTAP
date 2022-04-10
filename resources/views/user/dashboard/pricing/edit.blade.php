@@ -52,8 +52,8 @@
                                             <!-- Select2 -->
                                             <select id="type" name="type" class="js-select2-custom custom-select" size="1"
                                                 style="opacity: 0;" data-hs-select2-options='{
-                                                                                                                        "placeholder": "Select wallet"
-                                                                                                                        }'>
+                                                                            "placeholder": "Select wallet"
+                                                                            }'>
                                                 <option value="inittap" selected>
                                                     INITTAP branded card
                                                 </option>
@@ -73,15 +73,15 @@
                                                         alt="Image Description">
 
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
-                                                        id="avatarUploader" data-hs-file-attach-options='{
-                                                                                                                        "textTarget": "#avatarImg",
-                                                                                                                        "mode": "image",
-                                                                                                                        "targetAttr": "src",
-                                                                                                                        "resetTarget": ".js-file-attach-reset-img",
-                                                                                                                        "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                                                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                                                    }'
-                                                        name="custom">
+                                                        id="avatarUploader"
+                                                        data-hs-file-attach-options='{
+                                                                                                                                "textTarget": "#avatarImg",
+                                                                                                                                "mode": "image",
+                                                                                                                                "targetAttr": "src",
+                                                                                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                                                            }' name="custom">
 
                                                     <span class="avatar-uploader-trigger">
                                                         <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -108,6 +108,21 @@
                                             <textarea name="about" id="about" cols="30" rows="10" class="form-control"
                                                 placeholder="Type Your Tagline, or About You!"></textarea>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="card_name">Payment Type</label>
+                                            <select id="type" name="payment_type" class="form-control" size="1">
+                                                <option value="MWALLET_ACCOUNT" selected>
+                                                    EVCPlus/ZAAD/SAHAL
+                                                </option>
+                                                <option value="MWALLET_BANKACCOUNT">
+                                                    Salaam Bank
+                                                </option>
+                                                <option value="CREDIT_CARD">
+                                                    CREDIT CARD
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,6 +134,7 @@
                                         <a href="{{ route('user.order.index') }}"
                                             class="btn btn-lg btn-block btn-white">Change the Card</a>
                                     </div>
+                                    <input type="hidden" name="order_id" value="{{ $order }}">
                                     <div class="col-md-6">
                                         <button type="submit" id="checkout-button"
                                             class="btn btn-lg btn-block btn-primary">Proceed to

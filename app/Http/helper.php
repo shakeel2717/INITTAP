@@ -16,10 +16,10 @@ function userCode()
     }
 }
 
-function hook()
+function hook($amount,$type)
 {
 
-    $amount =  "79.99"; // pass the amount from your application
+    $amount =  $amount;
     $mobile_number = "252615550008"; //enter your number to test payment
     $datas = new \stdClass();
     $datas->schemaVersion = "1.0";
@@ -31,7 +31,7 @@ function hook()
     $datas->serviceParams->merchantUid = "M0912255";
     $datas->serviceParams->storeId = "1000238";
     $datas->serviceParams->hppKey = "HPP-961814494";
-    $datas->serviceParams->paymentMethod = "MWALLET_ACCOUNT";
+    $datas->serviceParams->paymentMethod = $type;
     $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.asanhub.com/api/payment/success";
     $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.asanhub.com/api/payment/failed";
     $datas->serviceParams->payerInfo = new \stdClass();

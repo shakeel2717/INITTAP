@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\cardOrder;
 use App\Models\payment;
+use App\Models\pricing;
 use App\Models\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,10 @@ class PaymentController extends Controller
             'about' => 'nullable|string',
             'type' => 'required|string',
             'custom' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'order_id' => 'required|integer',
+            'payment_type' => 'required|string',
         ]);
+        $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
         $logo = 'inittap';
         // checking if the card type is custom
@@ -58,7 +62,7 @@ class PaymentController extends Controller
             ]
         );
         Log::info("Profile Updated.");
-        $data = hook();
+        $data = hook($order->price, $validatedData['payment_type']);
         return view('payments.init', compact('data'));
     }
 

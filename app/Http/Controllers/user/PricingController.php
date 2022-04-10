@@ -24,6 +24,6 @@ class PricingController extends Controller
 
     public function edit($order)
     {
-        return view('user.dashboard.pricing.edit');
+        return view('user.dashboard.pricing.edit',compact('order'));
     }
 }
