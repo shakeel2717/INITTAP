@@ -33,6 +33,7 @@
     <script src="{{ asset('assets/vendor/hs-toggle-password/dist/js/hs-toggle-password.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
+    @yield('footer')
 </body>
 
 </html>
