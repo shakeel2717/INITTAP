@@ -57,7 +57,7 @@ class PaymentController extends Controller
         );
         Log::info("Profile Updated.");
         $data = hook();
-        return view('payments.init',compact('data'));
+        return view('payments.init', compact('data'));
     }
 
 
@@ -67,15 +67,15 @@ class PaymentController extends Controller
         return view('payments.failed');
     }
 
-    public function success()
+    public function success(Request $request)
     {
         Log::info("WebHook Reached.");
         $payment = new payment();
         $payment->description = "Api Success";
-        $payment->callbackurl = "Api Success";
-        $payment->hppResultToken = "Api Success";
-        $payment->HRDF = "Api Success";
+        $payment->callbackurl = $request->callbackurl;
+        $payment->hppResultToken = $request->hppResultToken;
+        $payment->HRDF = $request->HRDF;
         $payment->save();
-        return view('payments.failed');
+        return view('payments.success');
     }
 }
