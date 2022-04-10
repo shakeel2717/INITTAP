@@ -105,6 +105,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
 Route::post('store', [orderCardController::class, 'store'])->name('store');
 
 Route::prefix('api')->name('api.')->group(function () {
+    Route::post('payment/init', [PaymentController::class, 'init'])->name('init');
     Route::post('payment/success', [PaymentController::class, 'success'])->name('success');
     Route::post('payment/failed', [PaymentController::class, 'failed'])->name('failed');
 });

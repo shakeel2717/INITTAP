@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <hr>
-                    {{-- <form action="{{ route('api.success') }}" method="POST" enctype="multipart/form-data"> --}}
+                    <form action="{{ route('api.init') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-8 mx-auto">
                                 @csrf
@@ -52,8 +52,8 @@
                                             <!-- Select2 -->
                                             <select id="type" name="type" class="js-select2-custom custom-select" size="1"
                                                 style="opacity: 0;" data-hs-select2-options='{
-                                                                                                                    "placeholder": "Select wallet"
-                                                                                                                    }'>
+                                                                                                                        "placeholder": "Select wallet"
+                                                                                                                        }'>
                                                 <option value="inittap" selected>
                                                     INITTAP branded card
                                                 </option>
@@ -74,13 +74,13 @@
 
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
                                                         id="avatarUploader" data-hs-file-attach-options='{
-                                                                                                                    "textTarget": "#avatarImg",
-                                                                                                                    "mode": "image",
-                                                                                                                    "targetAttr": "src",
-                                                                                                                    "resetTarget": ".js-file-attach-reset-img",
-                                                                                                                    "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                                                    "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                                                }'
+                                                                                                                        "textTarget": "#avatarImg",
+                                                                                                                        "mode": "image",
+                                                                                                                        "targetAttr": "src",
+                                                                                                                        "resetTarget": ".js-file-attach-reset-img",
+                                                                                                                        "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                                                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                                                    }'
                                                         name="custom">
 
                                                     <span class="avatar-uploader-trigger">
@@ -120,20 +120,14 @@
                                             class="btn btn-lg btn-block btn-white">Change the Card</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <form action="{!! $data->params->hppUrl !!}" method="POST">
-                                            <input type="hidden" name="referenceId" id="referenceId"
-                                                value="{{ $data->params->referenceId }}">
-                                            <input type="hidden" name="hppRequestId" id="hppRequestId"
-                                                value="{{ $data->params->hppRequestId }}">
-                                            <button type="submit" id="checkout-button"
-                                                class="btn btn-lg btn-block btn-primary">Proceed to
-                                                Checkout</button>
-                                        </form>
+                                        <button type="submit" id="checkout-button"
+                                            class="btn btn-lg btn-block btn-primary">Proceed to
+                                            Checkout</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
