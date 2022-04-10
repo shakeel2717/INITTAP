@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <hr>
-                    {{-- <form action="{{ route('api.success') }}" method="POST" enctype="multipart/form-data"> --}}
+                    <form action="{{ route('api.success') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-8 mx-auto">
                                 @csrf
@@ -120,20 +120,20 @@
                                             class="btn btn-lg btn-block btn-white">Change the Card</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <form action="{!! $data->params->hppUrl !!}" method="POST">
+                                        {{-- <form action="{!! $data->params->hppUrl !!}" method="POST">
                                             <input type="hidden" name="referenceId" id="referenceId"
                                                 value="{{ $data->params->referenceId }}">
                                             <input type="hidden" name="hppRequestId" id="hppRequestId"
-                                                value="{{ $data->params->hppRequestId }}">
+                                                value="{{ $data->params->hppRequestId }}"> --}}
                                             <button type="submit" id="checkout-button"
                                                 class="btn btn-lg btn-block btn-primary">Proceed to
                                                 Checkout</button>
-                                        </form>
+                                        {{-- </form> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
