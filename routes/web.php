@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CardManageController;
+use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
 use App\Http\Controllers\LandingPageController;
@@ -98,6 +99,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::resource('cards', CardManageController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
     Route::post('user/show/update', [AdminController::class, 'userUpdate'])->name('userUpdate');
+    Route::get('payments/index', [AdminPaymentController::class, 'index'])->name('payment.index');
     Route::get('contact/forms', [AdminController::class, 'contactForm'])->name('contact.form');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

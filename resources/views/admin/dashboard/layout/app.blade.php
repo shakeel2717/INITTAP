@@ -253,6 +253,16 @@
                         </li>
 
                         <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.payment.index') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Payments</span>
+                            </a>
+                        </li>
+
+
+
+                        <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.shipping') }}"
                                 title="Layouts" data-placement="left">
                                 <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
@@ -268,6 +278,8 @@
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Contact Form</span>
                             </a>
                         </li>
+
+
 
                         <li class="nav-item ">
                             <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.logout') }}"
