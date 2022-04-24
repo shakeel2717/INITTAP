@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\address;
 use App\Models\admin;
 use App\Models\cardOrder;
+use App\Models\Contact;
 use App\Models\email;
 use App\Models\phone;
 use App\Models\profile;
@@ -361,5 +362,12 @@ class AdminController extends Controller
         $social->url = $protocole . $validatedData['link'];
         $social->save();
         return redirect()->back()->with('message', 'Your social information has been updated successfully');
+    }
+
+
+    public function contactForm()
+    {
+        $contacts = Contact::get();
+        return view('admin.dashboard.contactForm', compact('contacts'));
     }
 }

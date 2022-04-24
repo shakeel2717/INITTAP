@@ -98,6 +98,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::resource('cards', CardManageController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
     Route::post('user/show/update', [AdminController::class, 'userUpdate'])->name('userUpdate');
+    Route::get('contact/forms', [AdminController::class, 'contactForm'])->name('contact.form');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 

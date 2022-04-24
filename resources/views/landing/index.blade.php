@@ -489,7 +489,7 @@
                             @endif
                             @if (session('success'))
                                 <div class="my-3">
-                                    <div class="Error">Error</div>
+                                    <div class="Error">Success</div>
                                     <div class="error-message"></div>
                                     <div class="sent-message">{{ session('success') }}</div>
                                 </div>
