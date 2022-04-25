@@ -36,9 +36,9 @@
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center"><a
-                        href="mailto:contact@example.com">contact@example.com</a></i>
-                <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+                 <i class="bi bi-envelope d-flex align-items-center"><a
+                        href="mailto:info@inittap.com">{{ env('APP_EMAIL') }}</a></i>
+                <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{ env('APP_PHONE') }}</span></i>
             </div>
 
             <div class="cta d-none d-md-flex align-items-center">
@@ -92,13 +92,7 @@
                         <div class="content">
                             <h3>How to setup my card?</h3>
                             <p>
-                                Once you receive your card, you can tap or scan your card to activate and create your
-                                account. No application needed and it setup takes less than 2 minutes.
-
-                                At the time of your order, we only need to know what to print on your card. Everything
-                                else, you get to add to your account yourself at the time of activation of your
-                                {{ env('APP_NAME') }}
-                                account.
+                                No app required to setup {{ env('APP_NAME') }} card, register, place your order, update your personal information
                             </p>
                             <div class="text-center">
                                 <a href="{{ route('register') }}" class="more-btn">Get Started <i
@@ -270,7 +264,7 @@
         </section><!-- End Pricing Section -->
 
         <!-- ======= F.A.Q Section ======= -->
-        <section id="faq" class="faq section-bg">
+          <section id="faq" class="faq section-bg">
             <div class="container">
 
                 <div class="section-title">
@@ -281,139 +275,40 @@
                     <ul>
                         <li data-aos="fade-up">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                class="collapse" data-bs-target="#faq-list-1">What phones are compatible? <i
+                                class="collapse" data-bs-target="#faq-list-1">Which phones are compatible? <i
                                     class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                                 <p>
-                                    Between Tap or Scan feature, [] works with all modern smartphones.
-
-                                    Tap function is compatible with NFC Technology enabled Smartphones
-
-                                    iPhones made in 2018 and newer
-                                    Most Android phones
-
-                                    For all other phones, please have your client scan the QR code on the back of your
-                                    card.
+                                {{ env('APP_NAME') }} is comptabile with all smart phone with NFC Technology enabled, Iphone X and newer, most of samsung devices. if your phone don't support NFC please scan QR code
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-2" class="collapsed">Can I design my InitTap Card? <i
+                                data-bs-target="#faq-list-2" class="collapsed">Can I have my {{ env('APP_NAME') }} Csutom designed Card? <i
                                     class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    Yes! We have an amazing graphic design team in-house that will ensure your logo and
-                                    artwork translate perfectly into the card. Design your card here
-
-                                    Shortly after you place your order, we will provide you with mockup designs to
-                                    review and choose from. Please make sure you provide us with high quality files in
-                                    Vector, Ai, PSD, EPS, PDF, or PNG for the best result possible.
-
-                                    Design limitations:
-
-                                    We can print Silver or Gold foil on matte black cards
-                                    You can only design the front of your card
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-3" class="collapsed">How to setup my card? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Once you receive your card, you can tap or scan your card to activate and create
-                                    your account. No application needed and it setup takes less than 2 minutes.
-
-                                    At the time of your order, we only need to know what to print on your card.
-                                    Everything else, you get to add to your account yourself at the time of activation
-                                    of your {{ env('APP_NAME') }} account.
+                                   You can only design the front of your card, when placing your order, choose custom designed card then attach your design either as AI or PDF
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-4" class="collapsed">What is InitTap's privacy policy?
+                                data-bs-target="#faq-list-4" class="collapsed">What is the {{ env('APP_NAME') }} privacy policy?
                                 <i class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                    We don’t ask our users for any sensitive information nor their social media logins.
-                                    You can share as much or as little information as you’d like on your
-                                    {{ env('APP_NAME') }} profile.
-                                    {{ env('APP_NAME') }} profiles are public landing pages that hosts your
-                                    information and make it
-                                    easily sharable to people you meet.
-
-                                    Read our Privacy Policy and Terms of Agreement
+                                    We don't ask any sensitive information or their social media logins.
+                                    {{ env('APP_NAME') }} stores only your public contact/social information and social media
                                 </p>
                             </div>
                         </li>
-
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-5" class="collapsed">How does InitTap get the other
-                                person's information? <i class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Your profile comes with two main buttons for people to navigate to. In addition to
-                                    your social accounts and contact details people can either Save your contact or
-                                    Connect with you.
-
-                                    Our connect feature allows people to quickly enter their name, email, and any other
-                                    information they wish to share with you. We email their details to you and your
-                                    detail to them.
-                                </p>
-                            </div>
-                        </li>
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-6" class="collapsed">What material is InitTap Card? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    InitTap Card is made of durable and waterproof plastic. Our cards are sturdy and yet
-                                    flexible. In addition, the matte finish adds a premium feel that is incomparable to
-                                    most cards in the market today.
-                                </p>
-                            </div>
-                        </li>
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-7" class="collapsed">How long is the shipping? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Orders are processed daily and shipping varies between 3-5 business days.
-
-                                    For branded cards, add another 2-3 business days for us to create your design proof
-                                    and the approval process.
-                                </p>
-                            </div>
-                        </li>
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-8" class="collapsed">What is the return policy? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    You can get a full refund within 30 days of your purchase date. You don’t need to
-                                    ship your card back to us, we will deactivate your InitTap card remotely.
-                                </p>
-                            </div>
-                        </li>
-
                     </ul>
                 </div>
 
