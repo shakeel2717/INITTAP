@@ -20,7 +20,7 @@ function hook($amount,$type)
 {
 
     $amount =  $amount;
-    $mobile_number = "252615550008"; //enter your number to test payment
+    $mobile_number = ""; //enter your number to test payment
     $datas = new \stdClass();
     $datas->schemaVersion = "1.0";
     $datas->requestId = "586476d0-fdad-11ea-8081-1d2bf4d9c134";
@@ -33,8 +33,8 @@ function hook($amount,$type)
     
     $datas->serviceParams->hppKey = "HPP-961814494";
     $datas->serviceParams->paymentMethod = $type;
-    $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.asanhub.com/api/payment/success";
-    $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.asanhub.com/api/payment/failed";
+    $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.com/api/payment/success";
+    $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.com/api/payment/failed";
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
     $datas->serviceParams->transactionInfo = new \stdClass();
