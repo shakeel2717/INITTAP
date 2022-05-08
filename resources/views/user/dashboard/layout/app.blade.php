@@ -191,6 +191,7 @@
                                     Card</span>
                             </a>
                         </li>
+                        @if (Auth::user()->cardOrder()->count() > 1)
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Profile Managent</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
@@ -238,7 +239,7 @@
                                     QR Code</span>
                             </a>
                         </li>
-
+                        @endif
                         <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">My Account</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
