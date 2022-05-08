@@ -19,6 +19,10 @@ function userCode()
 function hook($amount,$type)
 {
 
+    $key =  env('HPP_KEY');
+    $storeId =  env('HPP_USERID');
+    $merchantUid =  env('MERCHANT_UID');
+    $hpp_url =  env('HPP_URL');
     $amount =  $amount;
     $mobile_number = ""; //enter your number to test payment
     $datas = new \stdClass();
@@ -28,10 +32,9 @@ function hook($amount,$type)
     $datas->channelName = "WEB";
     $datas->serviceName = "HPP_PURCHASE";
     $datas->serviceParams = new \stdClass();
-    $datas->serviceParams->merchantUid = "M0912255";
-    $datas->serviceParams->storeId = "1000238";
-    
-    $datas->serviceParams->hppKey = "HPP-961814494";
+    $datas->serviceParams->merchantUid = $merchantUid;
+    $datas->serviceParams->storeId = $storeId;
+    $datas->serviceParams->hppKey = $key;
     $datas->serviceParams->paymentMethod = $type;
     $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.com/api/payment/success";
     $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.com/api/payment/failed";
@@ -43,7 +46,7 @@ function hook($amount,$type)
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
     $datas->serviceParams->transactionInfo->description = "Testing";
-    $url = 'https://sandbox.waafipay.net/asm';
+    $url = $hpp_url;
     $options = array(
         'http' => array(
             'method'  => 'POST',
