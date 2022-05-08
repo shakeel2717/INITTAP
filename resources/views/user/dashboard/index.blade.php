@@ -160,7 +160,7 @@
                 </div>
             @endif
         @endif
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
             <div class="card card-lg mb-3 mb-lg-5">
                 <div class="card-body text-center">
                     <div class="w-50 mx-auto mb-4">
@@ -175,7 +175,7 @@
                     <a class="btn btn-primary" href="{{ route('user.public.qr.download') }}">Download now</a>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="col-md-4">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">
