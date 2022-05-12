@@ -25,6 +25,7 @@
             </div>
         </div>
         <x-input name="email" type="email" placeholder="Email Address" value="{{ old('email') }}" />
+        <x-input name="mobile" type="text" placeholder="Mobile Number" value="{{ old('mobile') }}" />
         <div class="row">
             <div class="col-6">
                 <x-input name="password" type="password" placeholder="Type Password." />
