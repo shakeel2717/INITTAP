@@ -13,8 +13,11 @@ class UserDashboard extends Controller
     {
         // getting all order of this user
         $cardOrder = cardOrder::where('user_id', auth()->user()->id)->first();
-        $price = $cardOrder->pricing->price;
-        $payment_type = $cardOrder->payment_type;
-        return view('user.dashboard.index', compact('price', 'payment_type'));
+        if ($cardOrder != null) {
+            $price = $cardOrder->pricing->price;
+            $payment_type = $cardOrder->payment_type;
+            return view('user.dashboard.index', compact('price', 'payment_type'));
+        }
+        return view('user.dashboard.index');
     }
 }
