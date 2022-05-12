@@ -24,6 +24,8 @@ class PricingController extends Controller
 
     public function edit($order)
     {
+        $order = pricing::find($order);
+        // return $order;
         return view('user.dashboard.pricing.edit',compact('order'));
     }
 }

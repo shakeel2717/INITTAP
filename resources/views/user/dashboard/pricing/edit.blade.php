@@ -52,8 +52,8 @@
                                             <!-- Select2 -->
                                             <select id="type" name="type" class="js-select2-custom custom-select" size="1"
                                                 style="opacity: 0;" data-hs-select2-options='{
-                                                                            "placeholder": "Select wallet"
-                                                                            }'>
+                                                                                            "placeholder": "Select wallet"
+                                                                                            }'>
                                                 <option value="inittap" selected>
                                                     INITTAP branded card
                                                 </option>
@@ -69,19 +69,20 @@
                                                 <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
                                                     for="avatarUploader">
                                                     <img id="avatarImg" class="avatar-img"
-                                                        src="{{ Auth::user()->avatar != ''? asset('assets/profiles/') . '/' . Auth::user()->avatar: asset('assets/img/160x160/img1.jpg') }}"
+                                                        src="{{ Auth::user()->avatar != '' ? asset('assets/profiles/') . '/' . Auth::user()->avatar : asset('assets/img/160x160/img1.jpg') }}"
                                                         alt="Image Description">
 
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
                                                         id="avatarUploader"
                                                         data-hs-file-attach-options='{
-                                                                                                                                "textTarget": "#avatarImg",
-                                                                                                                                "mode": "image",
-                                                                                                                                "targetAttr": "src",
-                                                                                                                                "resetTarget": ".js-file-attach-reset-img",
-                                                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                                                            }' name="custom">
+                                                                                                                                                "textTarget": "#avatarImg",
+                                                                                                                                                "mode": "image",
+                                                                                                                                                "targetAttr": "src",
+                                                                                                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                                                                                                            }'
+                                                        name="custom">
 
                                                     <span class="avatar-uploader-trigger">
                                                         <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
@@ -125,6 +126,36 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col mx-auto">
+                                        <h2>Payment Receipt</h2>
+                                        <div class="card-body" style="background-color: rgb(238, 236, 236);">
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="row">
+                                                        <div class="col col-md-4 align-self-center">
+                                                            <div class="avatar avatar-xl">
+                                                                <img class="avatar avatar-xl card-fluid"
+                                                                    src="{{ asset('assets/cards/') }}/{{ $order->img }}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-md-4 align-self-center">
+                                                            <h5>Price: ${{ number_format($order->price, 2) }}</h5>
+                                                        </div>
+                                                        <!-- End Col -->
+
+                                                        <div class="col col-md-4 align-self-center text-end">
+                                                            <h2 class="text-primary">Total: ${{ number_format($order->price, 2) }}</h2>
+                                                        </div>
+                                                        <!-- End Col -->
+                                                    </div>
+                                                    <!-- End Row -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -134,7 +165,7 @@
                                         <a href="{{ route('user.order.index') }}"
                                             class="btn btn-lg btn-block btn-white">Change the Card</a>
                                     </div>
-                                    <input type="hidden" name="order_id" value="{{ $order }}">
+                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
                                     <div class="col-md-6">
                                         <button type="submit" id="checkout-button"
                                             class="btn btn-lg btn-block btn-primary">Proceed to
