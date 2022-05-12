@@ -48,6 +48,7 @@ class PaymentController extends Controller
             'pricing_id' => 1,
             'type' => $type,
             'logo' => $logo,
+            'payment_type' => $validatedData['payment_type'],
             'mobile' => $validatedData['mobile'],
             'card_title' => $validatedData['card_name'],
             'card_designation' => $validatedData['designation'],
@@ -93,5 +94,17 @@ class PaymentController extends Controller
         $cardOrder->save();
         Log::info("Card Order Activated.");
         return view('payments.success');
+    }
+
+
+    public function attemptPayment(Request $request)
+    {
+        $validatedData = $request->validate([
+            'price' => 'required|integer',
+            'payment_type' => 'required|string'
+        ]);
+
+        $data = hook($validatedData['price'], $validatedData['payment_type']);
+        return view('payments.init', compact('data'));
     }
 }

@@ -48,7 +48,8 @@
 
                     <div class="row align-items-center gx-2">
                         <div class="col">
-                            <span class="js-counter display-4 text-dark" data-value="0">{{ Auth::user()->cardOrder()->count() }} </span>
+                            <span class="js-counter display-4 text-dark"
+                                data-value="0">{{ Auth::user()->cardOrder()->count() }} </span>
                             <span class="text-body font-size-sm ml-1">Card</span>
                         </div>
                     </div>
@@ -153,29 +154,33 @@
                                 <p>Your Order Placed, Please wait for the payment confirmation.
                                 </p>
                             </div>
-
-                            <a class="btn btn-primary" href="{{ route('user.public.single') }}">View Profile</a>
+                            <form action="{{ route('api.attempt') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="price" value="{{ $price }}">
+                                <input type="hidden" name="payment_type" value="{{ $payment_type }}">
+                                <button class="btn btn-primary" type="submit">Pay Now</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             @endif
         @endif
         <!--<div class="col-md-4">
-            <div class="card card-lg mb-3 mb-lg-5">
-                <div class="card-body text-center">
-                    <div class="w-50 mx-auto mb-4">
-                        <img class="img-fluid" src="{{ asset('assets/img/qr-code.png') }}" alt="QR Code Download"
-                            width="160">
-                    </div>
-                    <div class="mb-3">
-                        <h3>Download Your QR!</h3>
-                        <p>You can Download your {{ env('APP_NAME') }} Public Profile QR Code
-                        </p>
-                    </div>
-                    <a class="btn btn-primary" href="{{ route('user.public.qr.download') }}">Download now</a>
-                </div>
-            </div>
-        </div>-->
+                        <div class="card card-lg mb-3 mb-lg-5">
+                            <div class="card-body text-center">
+                                <div class="w-50 mx-auto mb-4">
+                                    <img class="img-fluid" src="{{ asset('assets/img/qr-code.png') }}" alt="QR Code Download"
+                                        width="160">
+                                </div>
+                                <div class="mb-3">
+                                    <h3>Download Your QR!</h3>
+                                    <p>You can Download your {{ env('APP_NAME') }} Public Profile QR Code
+                                    </p>
+                                </div>
+                                <a class="btn btn-primary" href="{{ route('user.public.qr.download') }}">Download now</a>
+                            </div>
+                        </div>
+                    </div>-->
         <div class="col-md-4">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">
