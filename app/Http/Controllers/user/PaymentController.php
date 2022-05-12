@@ -23,6 +23,7 @@ class PaymentController extends Controller
             'custom' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'order_id' => 'required|integer',
             'payment_type' => 'required|string',
+            'mobile' => 'required|string',
         ]);
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
@@ -47,6 +48,7 @@ class PaymentController extends Controller
             'pricing_id' => 1,
             'type' => $type,
             'logo' => $logo,
+            'mobile' => $validatedData['mobile'],
             'card_title' => $validatedData['card_name'],
             'card_designation' => $validatedData['designation'],
             'about' => $validatedData['about'],

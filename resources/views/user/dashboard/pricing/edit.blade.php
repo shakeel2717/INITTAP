@@ -124,6 +124,11 @@
                                                 </option>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile Number</label>
+                                            <input type="text" class="form-control" id="mobile" name="mobile"
+                                                placeholder="Your Mobile Number">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
