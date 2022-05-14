@@ -47,7 +47,7 @@ class PaymentController extends Controller
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
         ], [
-            'pricing_id' => 1,
+            'pricing_id' =>$validatedData['order_id'],
             'type' => $type,
             'logo' => $logo,
             'payment_type' => $validatedData['payment_type'],
