@@ -158,6 +158,7 @@
                                 @csrf
                                 <input type="hidden" name="price" value="{{ $price }}">
                                 <input type="hidden" name="payment_type" value="{{ $payment_type }}">
+                                <input type="hidden" name="type" value="{{ $type }}">
                                 <button class="btn btn-primary" type="submit">Pay Now</button>
                             </form>
                         </div>

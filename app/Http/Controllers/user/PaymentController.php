@@ -28,6 +28,7 @@ class PaymentController extends Controller
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
         $logo = 'inittap';
+        $custom_cost=0;
         // checking if the card type is custom
         if ($validatedData['type'] == 'custom') {
             $type = 'custom';
@@ -35,6 +36,7 @@ class PaymentController extends Controller
             $name = time() . Auth::user()->code . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/logo', $name);
             $logo = $name;
+            $custom_cost=env('CUSTOM_DESIGN_COST');
         }
 
         $cardOrderAlready = cardOrder::where('user_id', Auth::user()->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
@@ -65,7 +67,7 @@ class PaymentController extends Controller
             ]
         );
         Log::info("Profile Updated.");
-        $data = hook($order->price, $validatedData['payment_type']);
+        $data = hook($order->price + env('SHIPPING_COST') +$custom_cost, $validatedData['payment_type']);
         return view('payments.init', compact('data'));
     }
 
@@ -101,10 +103,14 @@ class PaymentController extends Controller
     {
         $validatedData = $request->validate([
             'price' => 'required|integer',
-            'payment_type' => 'required|string'
+            'payment_type' => 'required|string',
+            'type' => 'required|string'
         ]);
-
-        $data = hook($validatedData['price'], $validatedData['payment_type']);
+        $custom1_cost=0;
+        if ($validatedData['type'] == 'custom') {
+            $custom1_cost=env('CUSTOM_DESIGN_COST');
+        }
+        $data = hook($validatedData['price'] + env('SHIPPING_COST') +$custom1_cost, $validatedData['payment_type']);
         return view('payments.init', compact('data'));
     }
 }

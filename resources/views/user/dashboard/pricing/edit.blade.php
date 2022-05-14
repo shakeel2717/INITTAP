@@ -145,12 +145,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col col-md-4 align-self-center">
-                                                            <h5>Price: ${{ number_format($order->price, 2) }}</h5>
+                                                            <h5 id="price_cost">Price: ${{ number_format($order->price, 2) }} </br>
+                                                                Shipping Cost: ${{ number_format(env('SHIPPING_COST'),2) }}
+                                                            </h5>
                                                         </div>
                                                         <!-- End Col -->
 
                                                         <div class="col col-md-4 align-self-center text-end">
-                                                            <h2 class="text-primary">Total: ${{ number_format($order->price, 2) }}</h2>
+                                                            <h2 class="text-primary">Total: ${{ number_format($order->price + env('SHIPPING_COST') , 2) }}</h2>
                                                         </div>
                                                         <!-- End Col -->
                                                     </div>

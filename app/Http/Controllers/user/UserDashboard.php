@@ -16,7 +16,8 @@ class UserDashboard extends Controller
         if ($cardOrder != null) {
             $price = $cardOrder->pricing->price;
             $payment_type = $cardOrder->payment_type;
-            return view('user.dashboard.index', compact('price', 'payment_type'));
+            $type = $cardOrder->type;
+            return view('user.dashboard.index', compact('price', 'payment_type','type'));
         }
         return view('user.dashboard.index');
     }
