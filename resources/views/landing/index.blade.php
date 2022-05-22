@@ -52,7 +52,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <a href="index.html"><img src="{{ asset('assets/img/brand/logo-gold.svg') }}"
+                <a href="/"><img src="{{ asset('assets/img/brand/logo-gold.svg') }}"
                         alt="{{ env('APP_NAME') }}" width="150" class="img-fluid"></a>
             </div>
 
