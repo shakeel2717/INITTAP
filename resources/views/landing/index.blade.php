@@ -331,7 +331,7 @@
                         <div class="info-box">
                             <i class="bx bx-map"></i>
                             <h3>Our Address</h3>
-                            <p>Taleex, Mogadishu, Somalia</p>
+                            <p>{{ env('APP_ADDRESS') }}</p>
                         </div>
                     </div>
 
