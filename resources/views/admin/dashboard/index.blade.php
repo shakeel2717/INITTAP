@@ -109,7 +109,7 @@
                     <div class="row align-items-center gx-2">
                         <div class="col">
                             <span class="js-counter display-4 text-dark" data-value="0">{{ $orders->count() }}</span>
-                            <span class="text-body font-size-sm ml-1">Cards Solid</span>
+                            <span class="text-body font-size-sm ml-1">Cards Sold</span>
                         </div>
                     </div>
                 </div>
