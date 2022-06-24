@@ -166,6 +166,7 @@
                 </div>
             @endif
         @endif
+        @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder[0]->status != 'initiate')
         <div class="col-md-4">
                         <div class="card card-lg mb-3 mb-lg-5">
                             <div class="card-body text-center">
@@ -174,14 +175,15 @@
                                         width="160">
                                 </div>
                                 <div class="mb-3">
-                                    <h3>Download Your QR!</h3>
+                                    <h3>Download Your QR Code</h3>
                                     <p>You can Download your {{ env('APP_NAME') }} Public Profile QR Code
                                     </p>
                                 </div>
                                 <a class="btn btn-primary" href="{{ route('user.public.qr.download') }}">Download now</a>
                             </div>
                         </div>
-                    </div>
+         </div>
+         @endif
         <div class="col-md-4">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">
