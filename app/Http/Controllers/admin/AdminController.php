@@ -255,7 +255,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('profile')) {
             $file = $request->profile;
-            $name = time() . $user->code . '.' . $file->getClientOriginalExtension();
+            $name = time() . $user->username . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/assets/profiles/', $name);
             // updating the user profile
             $profile = $user;

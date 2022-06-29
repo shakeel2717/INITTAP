@@ -4,18 +4,6 @@ use App\Models\cardOrder;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
-// generate 6 digit unique random number
-function userCode()
-{
-    $randomNumber = rand(100000, 999999);
-    $check = User::where('code', $randomNumber)->first();
-    if ($check) {
-        userCode();
-    } else {
-        return $randomNumber;
-    }
-}
-
 function hook($amount,$type)
 {
 
