@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
+use App\Http\Controllers\CorporateAuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
@@ -103,6 +104,18 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('contact/forms', [AdminController::class, 'contactForm'])->name('contact.form');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
+
+
+
+// Corporate Login Routes
+Route::prefix('corporate')->name('corporate.')->group(function () {
+    Route::get('auth/login', [CorporateAuthController::class, 'login'])->name('auth.login');
+    Route::post('auth/login', [CorporateAuthController::class, 'loginReq'])->name('auth.login.req');
+    Route::resource('auth', CorporateAuthController::class);
+});
+
+
+
 
 // Payment Getway URL
 Route::post('store', [orderCardController::class, 'store'])->name('store');

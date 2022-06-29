@@ -36,7 +36,7 @@
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
-                 <i class="bi bi-envelope d-flex align-items-center"><a
+                <i class="bi bi-envelope d-flex align-items-center"><a
                         href="mailto:info@inittap.com">{{ env('APP_EMAIL') }}</a></i>
                 <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{ env('APP_PHONE') }}</span></i>
             </div>
@@ -92,7 +92,8 @@
                         <div class="content">
                             <h3>How to setup my card?</h3>
                             <p>
-                                No app required to setup {{ env('APP_NAME') }} card, register, place your order, update your personal information
+                                No app required to setup {{ env('APP_NAME') }} card, register, place your order,
+                                update your personal information
                             </p>
                             <div class="text-center">
                                 <a href="{{ route('register') }}" class="more-btn">Get Started <i
@@ -150,7 +151,8 @@
                         class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                         <h4 data-aos="fade-up">About us</h4>
                         <h3 data-aos="fade-up">Connect Smarter not Harder</h3>
-                        <p data-aos="fade-up">We are here to make your life easier by getting just one card for all your
+                        <p data-aos="fade-up">We are here to make your life easier by getting just one card for all
+                            your
                             occasions Create an engaging and memorable experience for the people you meet while saving
                             your contact information directly into their phone with Init Tap smart business card. Have
                             them remember you long after the meeting is over.</p>
@@ -190,7 +192,8 @@
                     <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="card" style="background-image: url(landing/img/values-1.jpg);">
                             <div class="card-body d-flex align-items-center justify-content-center">
-                                <h5 class="card-title"><a href="">Metal Contactless Digital Business Card</a></h5>
+                                <h5 class="card-title"><a href="">Metal Contactless Digital Business Card</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -198,7 +201,8 @@
                         data-aos-delay="100">
                         <div class="card" style="background-image: url(landing/img/values-2.jpg);">
                             <div class="card-body d-flex align-items-center justify-content-center">
-                                <h5 class="card-title"><a href="">Wooden Contactless Digital Business Cards</a></h5>
+                                <h5 class="card-title"><a href="">Wooden Contactless Digital Business Cards</a>
+                                </h5>
                             </div>
                         </div>
 
@@ -263,8 +267,59 @@
             </div>
         </section><!-- End Pricing Section -->
 
+        <!-- ======= corporate Section ======= -->
+        <section id="corporate" class="corporate section-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div
+                        class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-5">
+                        <h4 data-aos="fade-up">{{ env('APP_NAME') }} Card for Corporations</h4>
+                        <h3 data-aos="fade-up">Open new Corporate Account</h3>
+                        <p data-aos="fade-up">We are here to make your life easier by getting just one card for all
+                            your
+                            occasions Create an engaging and memorable experience for the people you meet while saving
+                            your contact information directly into their phone with Init Tap smart business card. Have
+                            them remember you long after the meeting is over.</p>
+
+                        <div class="icon-box" data-aos="fade-up">
+                            <div class="icon"><i class="bx bx-leaf"></i></div>
+                            <h4 class="title"><a href="">Manage all Employees</a></h4>
+                            <p class="description">Paper comprises 50% of business waste, 33% of municipal waste and
+                                25% of waste going to landfill</p>
+                        </div>
+
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="bx bx-id-card"></i></div>
+                            <h4 class="title"><a href="">Create new Employee Card</a></h4>
+                            <p class="description">You don't need to carry 100's of business cards to make contact
+                                with other people, use simple and smart INITTAP card</p>
+                        </div>
+
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="bx bx-receipt"></i></div>
+                            <h4 class="title"><a href="">Manage Billing Reports</a></h4>
+                            <p class="description">let your business stand out, smart things make difference</p>
+                        </div>
+
+                        <br>
+
+                        <a href="{{ route('corporate.auth.create') }}" class="btn btn-lg btn-dark">Get Corporate Account</a>
+
+                    </div>
+                    <div class="col-xl-5 col-lg-6 "
+                        data-aos="fade-right">
+                        <img src="{{ asset('landing/corporate.jpg') }}" alt="">
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section><!-- End corporate Section -->
+
         <!-- ======= F.A.Q Section ======= -->
-          <section id="faq" class="faq section-bg">
+        <section id="faq" class="faq section-bg">
             <div class="container">
 
                 <div class="section-title">
@@ -274,38 +329,43 @@
                 <div class="faq-list">
                     <ul>
                         <li data-aos="fade-up">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                class="collapse" data-bs-target="#faq-list-1">Which phones are compatible? <i
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
+                                data-bs-target="#faq-list-1">Which phones are compatible? <i
                                     class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                                 <p>
-                                {{ env('APP_NAME') }} is comptabile with all smart phone with NFC Technology enabled, Iphone X and newer, most of samsung devices. if your phone don't support NFC please scan QR code
+                                    {{ env('APP_NAME') }} is comptabile with all smart phone with NFC Technology
+                                    enabled, Iphone X and newer, most of samsung devices. if your phone don't support
+                                    NFC please scan QR code
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-2" class="collapsed">Can I have my {{ env('APP_NAME') }} Csutom designed Card? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
+                                data-bs-target="#faq-list-2" class="collapsed">Can I have my {{ env('APP_NAME') }}
+                                Csutom designed Card? <i class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <p>
-                                   You can only design the front of your card, when placing your order, choose custom designed card then attach your design either as AI or PDF
+                                    You can only design the front of your card, when placing your order, choose custom
+                                    designed card then attach your design either as AI or PDF
                                 </p>
                             </div>
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-4" class="collapsed">What is the {{ env('APP_NAME') }} privacy policy?
+                                data-bs-target="#faq-list-4" class="collapsed">What is the {{ env('APP_NAME') }}
+                                privacy policy?
                                 <i class="bx bx-chevron-down icon-show"></i><i
                                     class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     We don't ask any sensitive information or their social media logins.
-                                    {{ env('APP_NAME') }} stores only your public contact/social information and social media
+                                    {{ env('APP_NAME') }} stores only your public contact/social information and
+                                    social media
                                 </p>
                             </div>
                         </li>
@@ -321,7 +381,8 @@
 
                 <div class="section-title">
                     <h2 data-aos="fade-up">Contact Us</h2>
-                    <p data-aos="fade-up">If you have any questions, feel free to contact us. If you have any questions,
+                    <p data-aos="fade-up">If you have any questions, feel free to contact us. If you have any
+                        questions,
                         feel free to contact us..</p>
                 </div>
 
@@ -370,8 +431,7 @@
                                     placeholder="Subject" required>
                             </div>
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"
-                                    required></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                             </div>
                             @if ($errors->any())
                                 @foreach ($errors->all() as $error)
