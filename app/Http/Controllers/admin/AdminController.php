@@ -210,9 +210,10 @@ class AdminController extends Controller
         $order->status = $validatedData['status'];
         $order->save();
         // updating this user status
-        $user = auth()->user();
+        $user = User::find($order->user_id);
         $user->status = 'active';
         $user->save();
+
         return redirect()->back()->with('message', 'Order Updated Successfully');
     }
 
