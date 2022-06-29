@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('status')->default('pending');
+            $table->string('mobile')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

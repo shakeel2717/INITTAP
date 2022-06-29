@@ -126,7 +126,8 @@
                                 </div>
 
                                 <div class="dropdown-divider"></div>
-                                <form action="{{ route('logout') }}" method="POST">
+                                <form action="{{ route('corporate.auth.destroy',['auth' => true]) }}" method="POST">
+                                    @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item">Sign out</button>
                                 </form>

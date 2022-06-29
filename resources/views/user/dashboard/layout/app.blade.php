@@ -23,8 +23,10 @@
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
-                    <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}" alt="Logo">
-                    <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}" alt="Logo">
+                    <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                        alt="Logo">
+                    <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
+                        alt="Logo">
                 </a>
                 <!-- End Logo -->
             </div>
@@ -49,7 +51,8 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                                href="javascript:;" data-hs-unfold-options='{
+                                href="javascript:;"
+                                data-hs-unfold-options='{
                        "target": "#notificationDropdown",
                        "type": "css-animation"
                      }'>
@@ -310,7 +313,9 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col-sm mb-2 mb-sm-0">
-                        <h1 class="page-header-title">Dashboard</h1>
+                        <h1 class="page-header-title">Dashboard
+                            {{ auth()->user()->corporate_id ? 'Managed By: ' . auth()->user()->corporate->name : '' }}
+                        </h1>
                     </div>
 
                     <div class="col-sm-auto">

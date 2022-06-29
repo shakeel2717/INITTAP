@@ -131,8 +131,9 @@ class CorporateAuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $request->session()->forget('corporate');
+        return redirect()->route('corporate.auth.login');
     }
 }

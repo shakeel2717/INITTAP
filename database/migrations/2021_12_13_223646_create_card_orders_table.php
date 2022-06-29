@@ -23,6 +23,8 @@ class CreateCardOrdersTable extends Migration
             $table->text('about')->nullable();
             $table->string('status')->default('initiate');
             $table->string('card_designation');
+            $table->string('mobile')->nullable();
+            $table->string('payment_type');
             $table->timestamps();
         });
     }
