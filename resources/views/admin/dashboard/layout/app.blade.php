@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    @livewireStyles
+    @powerGridStyles
 </head>
 
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
@@ -23,8 +25,10 @@
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
-                    <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}" alt="Logo">
-                    <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}" alt="Logo">
+                    <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                        alt="Logo">
+                    <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
+                        alt="Logo">
                 </a>
                 <!-- End Logo -->
             </div>
@@ -49,7 +53,8 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                                href="javascript:;" data-hs-unfold-options='{
+                                href="javascript:;"
+                                data-hs-unfold-options='{
                        "target": "#notificationDropdown",
                        "type": "css-animation"
                      }'>
@@ -110,8 +115,7 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
-                                            <img class="avatar-img"
-                                                src="{{ asset('assets/img/160x160/img1.jpg') }}"
+                                            <img class="avatar-img" src="{{ asset('assets/img/160x160/img1.jpg') }}"
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
@@ -253,10 +257,12 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.payment.index') }}"
-                                title="Layouts" data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('admin.dashboard.payment.index') }}" title="Layouts"
+                                data-placement="left">
                                 <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Payments</span>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Payments</span>
                             </a>
                         </li>
 
@@ -272,10 +278,12 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('admin.dashboard.contact.form') }}"
-                                title="Layouts" data-placement="left">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('admin.dashboard.contact.form') }}" title="Layouts"
+                                data-placement="left">
                                 <i class="text-white tio-dashboard-vs-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Contact Form</span>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Contact
+                                    Form</span>
                             </a>
                         </li>
 
@@ -377,6 +385,7 @@
 </body>
 <x-alert />
 @yield('footer')
+@livewireScripts
+@powerGridScripts
 
 </html>
-
