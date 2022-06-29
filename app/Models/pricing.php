@@ -9,6 +9,15 @@ class pricing extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'category',
+        'description',
+        'price',
+        'img',
+        'status',
+    ];
+
 
     public function features()
     {

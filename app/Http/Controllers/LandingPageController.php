@@ -10,7 +10,7 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        $cards = pricing::where('status','active')->get();
+        $cards = pricing::where('status', true)->get();
         return view('landing.index', compact('cards'));
     }
 

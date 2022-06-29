@@ -12,7 +12,7 @@ class PricingController extends Controller
 {
     public function index()
     {
-        $price = pricing::where('status', 'active')->get();
+        $price = pricing::where('status', true)->get();
         return view('user.dashboard.pricing.index', compact('price'));
     }
 
