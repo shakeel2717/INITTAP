@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function cardOrder()
     {
-        return $this->hasMany(cardOrder::class);
+        return $this->hasOne(cardOrder::class);
     }
 
 

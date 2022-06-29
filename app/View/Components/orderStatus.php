@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class orderStatus extends Component
 {
+    public $cardOrder;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($cardOrder)
     {
-        //
+        $this->cardOrder = $cardOrder;
     }
 
     /**

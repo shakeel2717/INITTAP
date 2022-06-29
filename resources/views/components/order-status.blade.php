@@ -1,4 +1,4 @@
-@if (Auth::user()->cardOrder()->count() < 1)
+@if ($cardOrder)
             <div class="col-md-4">
                 <div class="card card-lg mb-3 mb-lg-5">
                     <div class="card-body text-center">
@@ -18,8 +18,8 @@
                     </div>
                 </div>
             </div>
-        @elseif (Auth::user()->cardOrder()->count() > 0)
-            @if (Auth::user()->cardOrder[0]->status == 'pending')
+        @elseif ($cardOrder)
+            @if ($cardOrder->status == 'pending')
                 <div class="col-md-4">
                     <div class="card card-lg mb-3 mb-lg-5">
                         <div class="card-body text-center">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-            @elseif (Auth::user()->cardOrder[0]->status == 'shipped')
+            @elseif (Auth::user()->cardOrder->status == 'shipped')
                 <div class="col-md-4">
                     <div class="card card-lg mb-3 mb-lg-5">
                         <div class="card-body text-center">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-            @elseif (Auth::user()->cardOrder[0]->status == 'complete')
+            @elseif (Auth::user()->cardOrder->status == 'complete')
                 <div class="col-md-4">
                     <div class="card card-lg mb-3 mb-lg-5">
                         <div class="card-body text-center">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-            @elseif (Auth::user()->cardOrder[0]->status == 'initiate')
+            @elseif (Auth::user()->cardOrder->status == 'initiate')
                 <div class="col-md-4">
                     <div class="card card-lg mb-3 mb-lg-5">
                         <div class="card-body text-center">
@@ -94,9 +94,9 @@
                             </div>
                             <form action="{{ route('api.attempt') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="price" value="{{ $price }}">
-                                <input type="hidden" name="payment_type" value="{{ $payment_type }}">
-                                <input type="hidden" name="type" value="{{ $type }}">
+                                <input type="hidden" name="price" value="{{ $cardOrder->pricing->price }}">
+                                <input type="hidden" name="payment_type" value="{{ $cardOrder->payment_type }}">
+                                <input type="hidden" name="type" value="{{ $cardOrder->type }}">
                                 <button class="btn btn-primary" type="submit">Pay Now</button>
                             </form>
                         </div>
@@ -104,7 +104,7 @@
                 </div>
             @endif
         @endif
-        @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder[0]->status != 'initiate')
+        @if ($cardOrder == true && $cardOrder->status != 'initiate')
             <div class="col-md-4">
                 <div class="card card-lg mb-3 mb-lg-5">
                     <div class="card-body text-center">

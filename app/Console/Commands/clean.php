@@ -43,47 +43,17 @@ class clean extends Command
      */
     public function handle()
     {
-        Artisan::call('migrate:fresh');
-        Artisan::call('cache:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
-        Artisan::call('route:clear');
-
-        // creating a new user
-        $user = new User();
-        $user->name = 'Shakeel Ahmad';
-        $user->username = 'shakeel2717';
-        $user->email = 'shakeel2717@gmail.com';
-        $user->password = Hash::make('asdfasdf');
-        $user->code = userCode();
-        $user->save();
-
-        // creating a new profile
-        $profile = new profile();
-        $profile->user_id = $user->id;
-        $profile->title = "Shakeel Ahmad";
-        $profile->about = "Hi, I\'m Graphic Designer, Please let me know if you have any questions.";
-        $profile->save();
-
-
+        $this->call('migrate:fresh');
+        $this->call('cache:clear');
+        $this->call('config:clear');
+        $this->call('view:clear');
+        $this->call('route:clear');
+        $this->call('clear-compiled');
 
         // creating a new admin
         $user = new admin();
         $user->username = 'test';
         $user->password = Hash::make('test');
         $user->save();
-
-
-        // create a card
-        $pricing = new pricing();
-        $pricing->title = "test";
-        $pricing->category = "plastic";
-        $pricing->description = "test";
-        $pricing->price = "49";
-        $pricing->img = "1649583667.jpg";
-        $pricing->status = "active";
-        $pricing->save();
-
-        return Command::SUCCESS;
     }
 }

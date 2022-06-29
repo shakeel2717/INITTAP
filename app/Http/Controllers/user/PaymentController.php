@@ -25,10 +25,11 @@ class PaymentController extends Controller
             'payment_type' => 'required|string',
             'mobile' => 'required|string',
         ]);
+
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
         $logo = 'inittap';
-        $custom_cost=0;
+        $custom_cost = 0;
         // checking if the card type is custom
         if ($validatedData['type'] == 'custom') {
             $type = 'custom';
@@ -36,7 +37,7 @@ class PaymentController extends Controller
             $name = time() . Auth::user()->code . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/logo', $name);
             $logo = $name;
-            $custom_cost=env('CUSTOM_DESIGN_COST');
+            $custom_cost = env('CUSTOM_DESIGN_COST');
         }
 
         $cardOrderAlready = cardOrder::where('user_id', Auth::user()->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
@@ -47,7 +48,7 @@ class PaymentController extends Controller
         $task = cardOrder::updateOrCreate([
             'user_id' => Auth::user()->id,
         ], [
-            'pricing_id' =>$validatedData['order_id'],
+            'pricing_id' => $validatedData['order_id'],
             'type' => $type,
             'logo' => $logo,
             'payment_type' => $validatedData['payment_type'],
@@ -67,8 +68,33 @@ class PaymentController extends Controller
             ]
         );
         Log::info("Profile Updated.");
-        $data = hook($order->price + env('SHIPPING_COST') +$custom_cost, $validatedData['payment_type']);
-        return view('payments.init', compact('data'));
+
+        // checking if sandbox
+        if (env('APP_ENV') == 'local') {
+
+            $payment_type = 'sandbox';
+            // working offline with sandbox
+            Log::info("Sandbox WebHook Reached.");
+            $payment = new payment();
+            $payment->description = "Api Success";
+            $payment->callbackurl = 'N/A';
+            $payment->hppResultToken = 'N/A';
+            $payment->HRDF = 'N/A';
+            // activating this user card order
+            $cardOrder = cardOrder::where('user_id', Auth::user()->id)->where('status', 'initiate')->first();
+            $payment->amount = $cardOrder->pricing->price;
+            $payment->save();
+            Log::info("Payment Record Saved.");
+
+            $cardOrder->status = 'pending';
+            $cardOrder->save();
+            Log::info("Card Order Activated.");
+            return view('payments.success');
+        } else {
+            Log::info("Sandbox Disabled.");
+            $data = hook($order->price + env('SHIPPING_COST') + $custom_cost, $validatedData['payment_type']);
+            return view('payments.init', compact('data'));
+        }
     }
 
 
@@ -106,11 +132,11 @@ class PaymentController extends Controller
             'payment_type' => 'required|string',
             'type' => 'required|string'
         ]);
-        $custom1_cost=0;
+        $custom1_cost = 0;
         if ($validatedData['type'] == 'custom') {
-            $custom1_cost=env('CUSTOM_DESIGN_COST');
+            $custom1_cost = env('CUSTOM_DESIGN_COST');
         }
-        $data = hook($validatedData['price'] + env('SHIPPING_COST') +$custom1_cost, $validatedData['payment_type']);
+        $data = hook($validatedData['price'] + env('SHIPPING_COST') + $custom1_cost, $validatedData['payment_type']);
         return view('payments.init', compact('data'));
     }
 }

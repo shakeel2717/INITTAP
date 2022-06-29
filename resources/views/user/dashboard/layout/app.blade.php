@@ -191,7 +191,7 @@
                                     Card</span>
                             </a>
                         </li>
-                        @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder[0]->status != 'initiate')
+                        @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder->status != 'initiate')
                             <li class="nav-item">
                                 <small class="nav-subtitle" title="Layouts">Profile Managent</small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>

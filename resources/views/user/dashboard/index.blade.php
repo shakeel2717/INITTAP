@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="row">
-        <x-order-status />
+        <x-order-status :cardOrder="$cardOrder" />
         <div class="col-md-4">
             <div class="card mb-3 mb-lg-5">
                 <div class="card-header">

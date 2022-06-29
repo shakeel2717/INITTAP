@@ -122,6 +122,11 @@
                                                 <option value="CREDIT_CARD">
                                                     CREDIT CARD
                                                 </option>
+                                                @if (env('APP_ENV') == 'local'))
+                                                <option value="sandbox">
+                                                    Sand Box
+                                                </option>
+                                                @endif
                                             </select>
                                         </div>
                                         <div class="form-group">
