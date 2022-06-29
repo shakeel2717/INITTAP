@@ -11,7 +11,6 @@
                 <p>Don't have an account yet? <a href="{{ route('corporate.auth.create') }}">Sign up
                         here</a></p>
             </div>
-            <span class="divider text-muted mb-4">OR</span>
         </div>
         <div class="text-center">
             <div class="mb-5">

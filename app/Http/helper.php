@@ -4,6 +4,25 @@ use App\Models\cardOrder;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
+
+function balance($user_id)
+{
+    return 500;
+}
+
+
+function totalDeposit($user_id)
+{
+    return 1000;
+}
+
+
+function totalSpend($user_id)
+{
+    return 2000;
+}
+
+
 function hook($amount,$type)
 {
 

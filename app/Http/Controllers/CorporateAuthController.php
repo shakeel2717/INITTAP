@@ -53,7 +53,7 @@ class CorporateAuthController extends Controller
         // storing document in storage
 
         $document = $request->file('document');
-        $documentName = rand(00000,99999). $document->getClientOriginalExtension();
+        $documentName = rand(00000, 99999) . $document->getClientOriginalExtension();
         $document->move(public_path('documents'), $documentName);
 
         $corporate = new Corporate();
@@ -77,23 +77,18 @@ class CorporateAuthController extends Controller
         ]);
 
         $check = Corporate::where('email', $validatedData['email'])->first();
-        if($check)
-        {
-            if(password_verify($validatedData['password'], $check->password))
-            {
-                return redirect()->route('corporate.dashboard')->with('message', 'Login Successful!');
-            }
-            else
-            {
-                return redirect()->route('corporate.auth.login')->withErrors('Invalid Password!');
-            }
-        }
-        else
-        {
+        if (!$check) {
             return redirect()->route('corporate.auth.login')->withErrors('Invalid Email!');
         }
 
+        if (!password_verify($validatedData['password'], $check->password)) {
+            return redirect()->route('corporate.auth.login')->withErrors('Invalid Password!');
+        }
 
+        // storing corporate in session
+        session()->put('corporate', $check);
+
+        return redirect()->route('corporate.dashboard.index.index');
     }
 
     /**
