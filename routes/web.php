@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
+use App\Http\Controllers\corporate\UserManagerController;
 use App\Http\Controllers\CorporateAuthController;
 use App\Http\Controllers\CorporateController;
 use App\Http\Controllers\LandingPageController;
@@ -115,6 +116,7 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
     Route::resource('auth', CorporateAuthController::class);
     Route::prefix('dashboard')->name('dashboard.')->middleware('corporate')->group(function () {
         Route::resource('index', CorporateController::class);
+        Route::resource('users', UserManagerController::class);
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Corporate;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,14 @@ class CorporateMiddleware
         if (!session()->has('corporate')) {
             return redirect()->route('corporate.auth.login');
         } else {
-            return $next($request);
+            // update this session from the database
+            $corporate = Corporate::find(session()->get('corporate')->id);
+            if (!$corporate) {
+                return redirect()->route('corporate.auth.login');
+            } else {
+                session()->put('corporate', $corporate);
+                return $next($request);
+            }
         }
     }
 }
