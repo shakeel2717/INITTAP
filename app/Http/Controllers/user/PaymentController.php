@@ -70,7 +70,7 @@ class PaymentController extends Controller
         Log::info("Profile Updated.");
 
         // checking if sandbox
-        if (env('APP_ENV') == 'local') {
+        if (env('APP_ENV') == 'local' && $validatedData['payment_type'] == 'sandbox') {
 
             $payment_type = 'sandbox';
             // working offline with sandbox
