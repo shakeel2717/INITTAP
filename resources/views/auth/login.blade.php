@@ -29,5 +29,6 @@
         <button type="submit" class="btn btn-lg btn-block btn-primary">Sign in</button>
         <hr>
         <p>Forgot Password? <a href="{{ route('password.request') }}">Click to Reset</a></p>
+        <p>Business Account? <a href="{{ route('corporate.auth.login') }}">Sign in here</a></p>
     </form>
 @endsection

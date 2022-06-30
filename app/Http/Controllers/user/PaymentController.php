@@ -34,19 +34,19 @@ class PaymentController extends Controller
         if ($validatedData['type'] == 'custom') {
             $type = 'custom';
             $file = $request->custom;
-            $name = time() . Auth::user()->code . '.' . $file->getClientOriginalExtension();
+            $name = time() . session('user')->code . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/logo', $name);
             $logo = $name;
             $custom_cost = env('CUSTOM_DESIGN_COST');
         }
 
-        $cardOrderAlready = cardOrder::where('user_id', Auth::user()->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
+        $cardOrderAlready = cardOrder::where('user_id', session('user')->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
         if ($cardOrderAlready) {
             return redirect()->back()->with('error', 'You have already a card order, Please Contact us for more information');
         }
 
         $task = cardOrder::updateOrCreate([
-            'user_id' => Auth::user()->id,
+            'user_id' => session('user')->id,
         ], [
             'pricing_id' => $validatedData['order_id'],
             'type' => $type,
@@ -61,7 +61,7 @@ class PaymentController extends Controller
         // updating the record in profile
         $profile = profile::updateOrCreate(
             [
-                'user_id' => Auth::user()->id
+                'user_id' => session('user')->id
             ],
             [
                 'title' => $validatedData['card_name'],  'designation' => $validatedData['designation'], 'about' => $validatedData['about']
@@ -69,7 +69,6 @@ class PaymentController extends Controller
         );
         Log::info("Profile Updated.");
 
-        // checking if sandbox
         if (env('APP_ENV') == 'local' && $validatedData['payment_type'] == 'sandbox') {
 
             $payment_type = 'sandbox';
@@ -81,7 +80,7 @@ class PaymentController extends Controller
             $payment->hppResultToken = 'N/A';
             $payment->HRDF = 'N/A';
             // activating this user card order
-            $cardOrder = cardOrder::where('user_id', Auth::user()->id)->where('status', 'initiate')->first();
+            $cardOrder = cardOrder::where('user_id', session('user')->id)->where('status', 'initiate')->first();
             $payment->amount = $cardOrder->pricing->price;
             $payment->save();
             Log::info("Payment Record Saved.");

@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->string('payment_id')->nullable();
             $table->string('description')->nullable();
             $table->string('callbackurl');
-            $table->string('hppResultToken')->unique();
+            $table->string('hppResultToken');
             $table->string('HRDF');
             $table->string('amount')->nullable();
             $table->timestamps();
