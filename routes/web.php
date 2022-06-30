@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CardManageController;
+use App\Http\Controllers\admin\CorporateController as AdminCorporateController;
 use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
@@ -101,6 +102,7 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('cards/feature/{feature}/delete', [AdminFeatureController::class, 'delete'])->name('feature.delete');
     Route::post('cards/feature/update', [AdminFeatureController::class, 'update'])->name('feature.update');
     Route::resource('cards', CardManageController::class);
+    Route::resource('corporate', AdminCorporateController::class);
     Route::get('user/show/{id}', [AdminController::class, 'userShow'])->name('userShow');
     Route::post('user/show/update', [AdminController::class, 'userUpdate'])->name('userUpdate');
     Route::get('payments/index', [AdminPaymentController::class, 'index'])->name('payment.index');

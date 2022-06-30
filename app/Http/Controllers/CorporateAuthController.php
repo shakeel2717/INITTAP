@@ -53,7 +53,7 @@ class CorporateAuthController extends Controller
         // storing document in storage
 
         $document = $request->file('document');
-        $documentName = rand(00000, 99999) . $document->getClientOriginalExtension();
+        $documentName = rand(00000, 99999) . '.' . $document->getClientOriginalExtension();
         $document->move(public_path('documents'), $documentName);
 
         $corporate = new Corporate();
