@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CorporateController extends Controller
@@ -13,7 +14,8 @@ class CorporateController extends Controller
      */
     public function index()
     {
-        return view('corporate.dashboard.index');
+        $users = User::where('corporate_id', session('corporate')->id)->get();
+        return view('corporate.dashboard.index', compact('users'));
     }
 
     /**
