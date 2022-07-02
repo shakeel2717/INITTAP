@@ -119,8 +119,12 @@ class PaymentController extends Controller
         $payment->callbackurl = $request->callbackurl;
         $payment->hppResultToken = $request->hppResultToken;
         $payment->HRDF = $request->HRDF;
+        $referenceId = $request->referenceId;
         // activating this user card order
-        $cardOrder = cardOrder::where('user_id', Auth::user()->id)->where('status', 'initiate')->first();
+        $cardOrder = cardOrder::find($referenceId);
+        if (!$cardOrder) {
+            Log::info("Payment Failed, no Item Found in Card Order.");
+        }
         $payment->amount = $cardOrder->pricing->price;
         $payment->save();
         Log::info("Payment Record Saved.");
