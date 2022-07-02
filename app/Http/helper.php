@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\cardOrder;
+use App\Models\Option;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
@@ -23,7 +24,7 @@ function totalSpend($user_id)
 }
 
 
-function hook($amount,$type)
+function hook($amount, $type,$referenceId)
 {
 
     $key =  env('HPP_KEY');
@@ -48,11 +49,11 @@ function hook($amount,$type)
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
     $datas->serviceParams->transactionInfo = new \stdClass();
-    $datas->serviceParams->transactionInfo->referenceId = rand(1, 1000000);
+    $datas->serviceParams->transactionInfo->referenceId = $referenceId;
     $datas->serviceParams->transactionInfo->invoiceId = "19330545490";
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
-    $datas->serviceParams->transactionInfo->description = "Testing";
+    $datas->serviceParams->transactionInfo->description = "Test";
     $url = $hpp_url;
     $options = array(
         'http' => array(
@@ -66,4 +67,15 @@ function hook($amount,$type)
     $result = file_get_contents($url, false, $context);
     $response = json_decode($result);
     return $response;
+}
+
+
+function siteConfig($type)
+{
+    $config = Option::where('type', $type)->first();
+    if ($config) {
+        return $config->value;
+    } else {
+        return null;
+    }
 }

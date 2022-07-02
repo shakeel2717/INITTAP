@@ -94,9 +94,6 @@
                     </div>
                     <form action="{{ route('api.attempt') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="price" value="{{ $cardOrder->pricing->price }}">
-                        <input type="hidden" name="payment_type" value="{{ $cardOrder->payment_type }}">
-                        <input type="hidden" name="type" value="{{ $cardOrder->type }}">
                         <button class="btn btn-primary" type="submit">Pay Now</button>
                     </form>
                 </div>

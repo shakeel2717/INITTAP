@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\admin;
+use App\Models\Option;
 use App\Models\pricing;
 use App\Models\profile;
 use App\Models\User;
@@ -55,5 +56,11 @@ class clean extends Command
         $user->username = 'test';
         $user->password = Hash::make('test');
         $user->save();
+
+
+        $option = new Option();
+        $option->type = 'corporate_subscription_fees';
+        $option->value = 100;
+        $option->save();
     }
 }

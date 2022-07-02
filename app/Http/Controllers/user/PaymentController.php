@@ -98,7 +98,8 @@ class PaymentController extends Controller
             return view('payments.success');
         } else {
             Log::info("Sandbox Disabled.");
-            $data = hook($order->price + env('SHIPPING_COST') + $custom_cost, $validatedData['payment_type']);
+            $amount = $order->price + env('SHIPPING_COST') + $custom_cost;
+            $data = hook($amount, $validatedData['payment_type'], $task->id);
             return view('payments.init', compact('data'));
         }
     }
@@ -136,16 +137,13 @@ class PaymentController extends Controller
 
     public function attemptPayment(Request $request)
     {
-        $validatedData = $request->validate([
-            'price' => 'required|integer',
-            'payment_type' => 'required|string',
-            'type' => 'required|string'
-        ]);
+        $cardOrder = cardOrder::where('user_id', auth()->user()->id)->first();
         $custom1_cost = 0;
-        if ($validatedData['type'] == 'custom') {
+        if ($cardOrder->type == 'custom') {
             $custom1_cost = env('CUSTOM_DESIGN_COST');
         }
-        $data = hook($validatedData['price'] + env('SHIPPING_COST') + $custom1_cost, $validatedData['payment_type']);
+        $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
+        $data = hook($amount, $cardOrder->payment_type, $cardOrder->id);
         return view('payments.init', compact('data'));
     }
 }
