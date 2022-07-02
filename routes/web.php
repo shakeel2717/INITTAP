@@ -119,6 +119,7 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
     Route::resource('auth', CorporateAuthController::class);
     Route::prefix('dashboard')->name('dashboard.')->middleware('corporate')->group(function () {
         Route::resource('index', CorporateController::class);
+        Route::delete('users/deactivate/{user}', [UserManagerController::class, 'userDeactivate'])->name('users.deactivate');
         Route::resource('users', UserManagerController::class);
         Route::resource('cards', CardBuyController::class);
     });

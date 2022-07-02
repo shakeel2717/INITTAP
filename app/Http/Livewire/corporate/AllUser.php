@@ -170,6 +170,12 @@ final class AllUser extends PowerGridComponent
                 ->class('btn btn-danger px-3 py-2 m-1')
                 ->target('')
                 ->route('corporate.dashboard.users.destroy', ['user' => 'id'])
+                ->method('delete'),
+
+            Button::make('deactivate', 'Deactivate')
+                ->class('btn btn-danger px-3 py-2 m-1')
+                ->target('')
+                ->route('corporate.dashboard.users.deactivate', ['user' => 'id'])
                 ->method('delete')
         ];
     }

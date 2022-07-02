@@ -172,20 +172,6 @@
                         </li>
 
                         <li class="nav-item">
-                            <small class="nav-subtitle" title="Layouts">Finance Management</small>
-                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a class="js-nav-tooltip-link nav-link " href="{{ route('corporate.dashboard.users.index') }}"
-                                title="Layouts" data-placement="left">
-                                <i class="text-white tio-wallet nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Add Funds</span>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Users Management</small>
                             <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>

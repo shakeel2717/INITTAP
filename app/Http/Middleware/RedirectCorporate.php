@@ -19,6 +19,12 @@ class RedirectCorporate
         if ($request->session()->exists('corporate')) {
             return redirect()->route('corporate.dashboard.index.index');
         }
+
+        if (auth()->user()->status == 'deactivated') {
+            auth()->logout();
+            return redirect()->route('login')->withErrors(['Your account has been deactivated. Please contact your administrator.']);
+        }
+
         return $next($request);
     }
 }

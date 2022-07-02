@@ -114,4 +114,19 @@ class UserManagerController extends Controller
 
         return redirect()->route('corporate.dashboard.users.index')->with('message', 'User deleted successfully');
     }
+
+
+    public function userDeactivate($user)
+    {
+        $user = User::where('corporate_id', session('corporate')->id)->where('id', $user)->firstOrFail();
+        if ($user->status == 'deactivated') {
+            $status = 'active';
+        } else {
+            $status = 'deactivated';
+        }
+        $user->status = $status;
+        $user->save();
+
+        return redirect()->route('corporate.dashboard.users.index')->with('message', 'User ' . $status . ' successfully');
+    }
 }
