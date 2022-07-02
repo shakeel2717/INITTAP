@@ -27,6 +27,10 @@ class RedirectIfAuthenticated
             }
         }
 
+        if (session()->has('corporate')) {
+            return redirect()->route('corporate.dashboard.index.index');
+        }
+
         return $next($request);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
 use App\Models\address;
 use App\Models\admin;
 use App\Models\cardOrder;
@@ -17,6 +18,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminController extends Controller
@@ -108,7 +110,6 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
-            'code' => userCode(),
             'password' => Hash::make($request->password),
         ]);
 
@@ -209,6 +210,10 @@ class AdminController extends Controller
         $order = cardOrder::findOrFail($id);
         $order->status = $validatedData['status'];
         $order->save();
+
+        if ($validatedData['status'] == 'shipped') {
+            Mail::to($order->user->email)->send(new OrderShipped($order));
+        }
         // updating this user status
         $user = User::find($order->user_id);
         $user->status = 'active';

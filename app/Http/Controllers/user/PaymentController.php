@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderInvoice;
+use App\Mail\OrderPlaced;
 use App\Models\cardOrder;
 use App\Models\payment;
 use App\Models\pricing;
 use App\Models\profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -26,6 +30,7 @@ class PaymentController extends Controller
             'mobile' => 'required|string',
         ]);
 
+        $user = User::find(session('user')->id);
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
         $logo = 'inittap';
@@ -34,19 +39,19 @@ class PaymentController extends Controller
         if ($validatedData['type'] == 'custom') {
             $type = 'custom';
             $file = $request->custom;
-            $name = time() . session('user')->code . '.' . $file->getClientOriginalExtension();
+            $name = time() . $user->username . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/logo', $name);
             $logo = $name;
             $custom_cost = env('CUSTOM_DESIGN_COST');
         }
 
-        $cardOrderAlready = cardOrder::where('user_id', session('user')->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
+        $cardOrderAlready = cardOrder::where('user_id', $user->id)->where('type', $type)->where('status', '!=', 'initiate')->first();
         if ($cardOrderAlready) {
             return redirect()->back()->with('error', 'You have already a card order, Please Contact us for more information');
         }
 
         $task = cardOrder::updateOrCreate([
-            'user_id' => session('user')->id,
+            'user_id' => $user->id,
         ], [
             'pricing_id' => $validatedData['order_id'],
             'type' => $type,
@@ -58,10 +63,12 @@ class PaymentController extends Controller
             'about' => $validatedData['about'],
         ]);
         Log::info("Card Order Placed or Updated.");
+        // sending Email to this user
+        Mail::to($user->email)->send(new OrderPlaced($task));
         // updating the record in profile
         $profile = profile::updateOrCreate(
             [
-                'user_id' => session('user')->id
+                'user_id' => $user->id
             ],
             [
                 'title' => $validatedData['card_name'],  'designation' => $validatedData['designation'], 'about' => $validatedData['about']
@@ -80,7 +87,7 @@ class PaymentController extends Controller
             $payment->hppResultToken = 'N/A';
             $payment->HRDF = 'N/A';
             // activating this user card order
-            $cardOrder = cardOrder::where('user_id', session('user')->id)->where('status', 'initiate')->first();
+            $cardOrder = cardOrder::where('user_id', $user->id)->where('status', 'initiate')->first();
             $payment->amount = $cardOrder->pricing->price;
             $payment->save();
             Log::info("Payment Record Saved.");
@@ -120,6 +127,9 @@ class PaymentController extends Controller
         $cardOrder->status = 'pending';
         $cardOrder->save();
         Log::info("Card Order Activated.");
+
+        // sending Email to this user
+        Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
         return view('payments.success');
     }
 
