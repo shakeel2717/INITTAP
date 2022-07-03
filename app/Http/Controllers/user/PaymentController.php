@@ -153,8 +153,15 @@ class PaymentController extends Controller
         if ($cardOrder->type == 'custom') {
             $custom1_cost = env('CUSTOM_DESIGN_COST');
         }
-        $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
-        $data = hook($amount, $cardOrder->payment_type, $cardOrder->id);
-        return view('payments.init', compact('data'));
+
+        // getting pending Payment who already inserted
+        $pendingPayment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->latest()->first();
+        if ($pendingPayment) {
+            $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
+            $data = hook($amount, $cardOrder->payment_type, $pendingPayment->id);
+            return view('payments.init', compact('data'));
+        } else {
+            return redirect()->back()->withErrors('You have no pending payment, Please Contact us for more information');
+        }
     }
 }
