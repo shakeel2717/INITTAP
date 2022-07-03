@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\corporate;
 
 use App\Http\Controllers\Controller;
+use App\Models\corporate\Subscription;
 use App\Models\payment;
 use App\Models\Transaction;
 use Illuminate\Contracts\Support\ValidatedData;
@@ -52,6 +53,12 @@ class PaymentController extends Controller
         $payment->amount = $amount;
         $payment->save();
 
+        // getting pending subscription
+        $pendingSubscriptionTransaction = Transaction::where('corporate_id', session('corporate')->id)
+            ->where('type', 'Subscription Charges')
+            ->where('status', 'pending')
+            ->first();
+
         // checking if sandbox payment is enabled
         if ($validatedData['payment_type'] == 'sandbox' && env('APP_ENV') == 'local') {
             // making a payment for this user
@@ -59,8 +66,23 @@ class PaymentController extends Controller
             $transaction->corporate_id = session('corporate')->id;
             $transaction->type = 'deposit';
             $transaction->sum = 'in';
+            $transaction->amount = $amount;
             $transaction->reference = 'SandBox Payment Gateway';
             $transaction->save();
+
+            $expiry_date = now()->addYear();
+            // activating this user Subscription
+            $subscription = new Subscription();
+            $subscription->corporate_id = session('corporate')->id;
+            $subscription->type = 'yearly subscription';
+            $subscription->status = 'active';
+            $subscription->amount = $amount;
+            $subscription->expiry_date = $expiry_date;
+            $subscription->save();
+
+            $pendingSubscriptionTransaction->status = true;
+            $pendingSubscriptionTransaction->save();
+
             return redirect()->route('corporate.dashboard.index.index')->with('message', 'Sand Box Payment Successful');
         }
 

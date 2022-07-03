@@ -82,10 +82,10 @@ class PaymentController extends Controller
             // working offline with sandbox
             Log::info("Sandbox WebHook Reached.");
             $payment = new payment();
-            $payment->description = "Api Success";
-            $payment->callbackurl = 'N/A';
-            $payment->hppResultToken = 'N/A';
-            $payment->HRDF = 'N/A';
+            $payment->user_id = auth()->user()->id;
+            $payment->description = "Due Payment";
+            $payment->type = $validatedData['payment_type'];
+
             // activating this user card order
             $cardOrder = cardOrder::where('user_id', $user->id)->where('status', 'initiate')->first();
             $payment->amount = $cardOrder->pricing->price;
@@ -98,8 +98,16 @@ class PaymentController extends Controller
             return view('payments.success');
         } else {
             Log::info("Sandbox Disabled.");
+
+            $payment = new payment();
+            $payment->user_id = auth()->user()->id;
+            $payment->description = "Due Payment";
+            $payment->type = $validatedData['payment_type'];
+            $payment->amount = $order->price;
+            $payment->save();
+
             $amount = $order->price + env('SHIPPING_COST') + $custom_cost;
-            $data = hook($amount, $validatedData['payment_type'], $task->id);
+            $data = hook($amount, $validatedData['payment_type'], $payment->id);
             return view('payments.init', compact('data'));
         }
     }
@@ -115,11 +123,8 @@ class PaymentController extends Controller
     {
         Log::info("WebHook Reached.");
         $payment = new payment();
-        $payment->description = "Api Success";
-        $payment->callbackurl = $request->callbackurl;
-        $payment->hppResultToken = $request->hppResultToken;
-        $payment->HRDF = $request->HRDF;
         $referenceId = $request->referenceId;
+
         // activating this user card order
         $cardOrder = cardOrder::find($referenceId);
         if (!$cardOrder) {

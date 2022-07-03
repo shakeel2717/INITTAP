@@ -2,13 +2,22 @@
 
 use App\Models\cardOrder;
 use App\Models\Option;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 
-function balance($user_id)
+function balance($corporate_id)
 {
-    return 500;
+    $in = Transaction::where('corporate_id', $corporate_id)->where('sum', 'in')->sum('amount');
+    $out = Transaction::where('corporate_id', $corporate_id)->where('sum', 'out')->sum('amount');
+    return $in - $out;
+}
+
+function duePayment($corporate_id)
+{
+    $out = Transaction::where('corporate_id', $corporate_id)->where('type', 'Subscription Charges')->where('sum', 'out')->sum('amount');
+    return $out;
 }
 
 
@@ -24,7 +33,7 @@ function totalSpend($user_id)
 }
 
 
-function hook($amount, $type,$referenceId)
+function hook($amount, $type, $referenceId)
 {
 
     $key =  env('HPP_KEY');

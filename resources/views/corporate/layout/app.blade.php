@@ -119,8 +119,8 @@
                                                 alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <span class="card-title h5">Admin</span>
-                                            <span class="card-text">Admin</span>
+                                            <span class="card-title h5">{{ session('corporate')->email }}</span>
+                                            <span class="card-text text-uppercase">{{ session('corporate')->status }}</span>
                                         </div>
                                     </div>
                                 </div>

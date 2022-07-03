@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\corporate\Subscription;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class CorporateController extends Controller
     public function index()
     {
         $users = User::where('corporate_id', session('corporate')->id)->get();
-        return view('corporate.dashboard.index', compact('users'));
+        $subscriptions = Transaction::where('corporate_id', session('corporate')->id)->latest()->take(5)->get();
+        return view('corporate.dashboard.index', compact('users', 'subscriptions'));
     }
 
     /**

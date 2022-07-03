@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corporate;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class CorporateAuthController extends Controller
@@ -64,6 +65,15 @@ class CorporateAuthController extends Controller
         $corporate->phone = $validatedData['phone'];
         $corporate->address = $validatedData['address'];
         $corporate->save();
+
+        // creating a payment charge for the corporate
+        $transaction = new Transaction();
+        $transaction->corporate_id = $corporate->id;
+        $transaction->amount = siteConfig("corporate_subscription_fees");
+        $transaction->type = "Subscription Charges";
+        $transaction->status = false;
+        $transaction->sum = "out";
+        $transaction->save();
 
         return redirect()->route('corporate.auth.login')->with('message', 'Corporate Account created successfully!');
     }
