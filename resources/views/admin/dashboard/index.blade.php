@@ -59,6 +59,51 @@
         <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
             <div class="card h-100">
                 <div class="card-body">
+                    <h6 class="card-subtitle mb-2">Total Corporate</h6>
+
+                    <div class="row align-items-center gx-2">
+                        <div class="col">
+                            <span class="js-counter display-4 text-dark"
+                                data-value="{{ $corporates->count() }}">{{ $corporates->count() }}</span>
+                            <span class="text-body font-size-sm ml-1">Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2">Pending Corporate</h6>
+
+                    <div class="row align-items-center gx-2">
+                        <div class="col">
+                            <span class="js-counter display-4 text-dark"
+                                data-value="{{ $corporates->where('status','pending')->count() }}">{{ $corporates->where('status','pending')->count() }}</span>
+                            <span class="text-body font-size-sm ml-1">Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2">Active Corporate</h6>
+
+                    <div class="row align-items-center gx-2">
+                        <div class="col">
+                            <span class="js-counter display-4 text-dark"
+                                data-value="{{ $corporates->where('status','active')->count() }}">{{ $corporates->where('status','active')->count() }}</span>
+                            <span class="text-body font-size-sm ml-1">Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <div class="card h-100">
+                <div class="card-body">
                     <h6 class="card-subtitle mb-2">Total Orders</h6>
 
                     <div class="row align-items-center gx-2">

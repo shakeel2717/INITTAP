@@ -8,6 +8,7 @@ use App\Models\address;
 use App\Models\admin;
 use App\Models\cardOrder;
 use App\Models\Contact;
+use App\Models\Corporate;
 use App\Models\email;
 use App\Models\phone;
 use App\Models\profile;
@@ -31,10 +32,11 @@ class AdminController extends Controller
         // getting sum of total orderCards
         $totalOrders = cardOrder::withSum('pricing', 'price')->get();
         $amount = 0;
+        $corporates = Corporate::get();
         foreach ($totalOrders as $pricing) {
             $amount += $pricing->pricing_sum_price;
         }
-        return view('admin.dashboard.index', compact('users', 'orders', 'admin', 'amount', 'totalOrders'));
+        return view('admin.dashboard.index', compact('users', 'orders', 'admin', 'amount', 'totalOrders', 'corporates'));
     }
 
 
