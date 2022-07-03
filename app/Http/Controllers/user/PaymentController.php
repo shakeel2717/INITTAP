@@ -124,18 +124,23 @@ class PaymentController extends Controller
     public function success(Request $request)
     {
         Log::info("WebHook Reached.");
-        $payment = new payment();
         $referenceId = $request->referenceId;
 
-        // activating this user card order
-        $cardOrder = cardOrder::find($referenceId);
-        if (!$cardOrder) {
-            Log::info("Payment Failed, no Item Found in Card Order.");
+        // finding the payment record
+        $payment = payment::find($referenceId);
+        if (!$payment) {
+            Log::info("Refernce ID Found Error. Payment Failed");
         }
-        $payment->amount = $cardOrder->pricing->price;
+
+        $payment->amount = $request->txAmount;
+        $payment->status = 'complete';
         $payment->save();
+
         Log::info("Payment Record Saved.");
 
+
+        //  finding this user card order
+        $cardOrder = cardOrder::where('user_id', $payment->user_id)->where('status', 'initiate')->first();
         $cardOrder->status = 'pending';
         $cardOrder->save();
         Log::info("Card Order Activated.");
