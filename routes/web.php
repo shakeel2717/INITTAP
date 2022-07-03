@@ -8,9 +8,11 @@ use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
 use App\Http\Controllers\corporate\CardBuyController;
+use App\Http\Controllers\corporate\PaymentController as CorporatePaymentController;
 use App\Http\Controllers\corporate\UserManagerController;
 use App\Http\Controllers\CorporateAuthController;
 use App\Http\Controllers\CorporateController;
+use App\Http\Controllers\CorporateTransaction;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
@@ -122,6 +124,9 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
         Route::delete('users/deactivate/{user}', [UserManagerController::class, 'userDeactivate'])->name('users.deactivate');
         Route::resource('users', UserManagerController::class);
         Route::resource('cards', CardBuyController::class);
+        Route::resource('payments', CorporatePaymentController::class);
+        Route::get('transactions/payments', [CorporateTransaction::class,'payments'])->name('transactions.payments');
+        Route::resource('transactions', CorporateTransaction::class);
     });
 });
 

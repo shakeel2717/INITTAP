@@ -34,8 +34,8 @@
 
                         <div class="col-md-auto">
                             <div class="d-grid d-sm-flex gap-3">
-                                <button type="button" class="btn btn-primary w-100 w-sm-auto" data-bs-toggle="modal"
-                                    data-bs-target="#accountUpdatePlanModal">Make Payment</button>
+                                <a href="{{ route('corporate.dashboard.payments.create') }}" type="button" class="btn btn-primary w-100 w-sm-auto" data-bs-toggle="modal"
+                                    data-bs-target="#accountUpdatePlanModal">Make Payment</a>
                             </div>
                         </div>
                         <!-- End Col -->

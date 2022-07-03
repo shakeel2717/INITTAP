@@ -186,6 +186,27 @@
                         </li>
 
                         <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Transaction's Report</small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('corporate.dashboard.transactions.index') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="text-white tio-file nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All Transactions</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('corporate.dashboard.transactions.payments') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="text-white tio-file nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">All Payments</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Buy Cards</small>
                             <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>

@@ -15,12 +15,16 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('payment_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('corporate_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('pricing_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('type');
             $table->string('description')->nullable();
-            $table->string('callbackurl');
-            $table->string('hppResultToken');
-            $table->string('HRDF');
+            $table->string('status')->default('pending');
             $table->string('amount')->nullable();
+            $table->string('transactionId')->nullable();
+            $table->string('responseMsg')->nullable();
+            $table->string('responseCode')->nullable();
             $table->timestamps();
         });
     }
