@@ -53,8 +53,9 @@ function hook($amount, $type, $referenceId)
     $datas->serviceParams->storeId = $storeId;
     $datas->serviceParams->hppKey = $key;
     $datas->serviceParams->paymentMethod = $type;
-    $datas->serviceParams->hppSuccessCallbackUrl = "https://inittap.com/api/payment/success";
-    $datas->serviceParams->hppFailureCallbackUrl = "https://inittap.com/api/payment/failed";
+    $datas->serviceParams->hppSuccessCallbackUrl = "http://127.0.0.1:3000/api/payment/success";
+    $datas->serviceParams->hppFailureCallbackUrl = "http://127.0.0.1:3000/api/payment/failed";
+    $datas->serviceParams->hppRespDataFormat = "2";
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
     $datas->serviceParams->transactionInfo = new \stdClass();
