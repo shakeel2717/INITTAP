@@ -19,10 +19,12 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('corporate_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('pricing_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('type');
+            $table->string('payment_type');
             $table->string('description')->nullable();
             $table->string('status')->default('pending');
             $table->string('amount')->nullable();
             $table->string('transactionId')->nullable();
+            $table->string('m_transactionId')->nullable();
             $table->string('responseMsg')->nullable();
             $table->string('responseCode')->nullable();
             $table->timestamps();

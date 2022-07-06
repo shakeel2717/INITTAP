@@ -45,11 +45,14 @@ class PaymentController extends Controller
         ]);
 
         $amount = siteConfig("corporate_subscription_fees");
+        $transactionId = transactionId();
 
         $payment = new payment();
         $payment->corporate_id = session('corporate')->id;
         $payment->description = "Due Payment";
-        $payment->type = $validatedData['payment_type'];
+        $payment->type = "corporate";
+        $payment->payment_type = $validatedData['payment_type'];
+        $payment->transactionId = $transactionId;
         $payment->amount = $amount;
         $payment->save();
 
@@ -86,7 +89,7 @@ class PaymentController extends Controller
             return redirect()->route('corporate.dashboard.index.index')->with('message', 'Sand Box Payment Successful');
         }
 
-        $data = hook($amount, $validatedData['payment_type'], $payment->id);
+        $data = hook($amount, $validatedData['payment_type'], $transactionId);
         return view('payments.init', compact('data'));
     }
 

@@ -9,6 +9,7 @@ use App\Models\cardOrder;
 use App\Models\payment;
 use App\Models\pricing;
 use App\Models\profile;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,33 +124,52 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-
         Log::info("WebHook Reached.");
         Log::info("WebHook Data." . $request);
+        $txAmount = $request['txAmount'];
 
-        $referenceId = $request->referenceId;
-
-        // finding the payment record
-        $payment = payment::find($referenceId);
-        if (!$payment) {
-            Log::info("Refernce ID Found Error. Payment Failed");
+        // getting this user payment transaction
+        $payment = payment::where('transactionId', $request['referenceId'])->first();
+        if ($payment) {
+            Log::info("Payment Succesfull, but the transaction not found. TransactionId: " . $request['referenceId']);
         }
 
-        $payment->amount = $request->txAmount;
+        $payment->m_transactionId = $request['transactionId'];
         $payment->status = 'complete';
         $payment->save();
-
         Log::info("Payment Record Saved.");
 
+        // checking if the payment is from corporate
+        if ($payment->type == 'corporate') {
+            Log::info("Corporate Payment Found.");
+            // adding a deposit transaction
+            $transaction = new Transaction();
+            $transaction->corporate_id = $payment->corporate_id;
+            $transaction->amount = $txAmount;
+            $transaction->type = "Deposit";
+            $transaction->status = true;
+            $transaction->sum = "in";
+            $transaction->save();
+            // getting this user pending subscription
+            $transaction = Transaction::where('corporate_id', $payment->corporate_id)->where('type', 'Subscription Charges')->where('status', false)->first();
+            $transaction->status = true;
+            $transaction->reference = $request['transactionId'];
+            $transaction->save();
+        }
 
-        //  finding this user card order
-        $cardOrder = cardOrder::where('user_id', $payment->user_id)->where('status', 'initiate')->first();
-        $cardOrder->status = 'pending';
-        $cardOrder->save();
-        Log::info("Card Order Activated.");
+        // checking if the payment is from user
+        if ($payment->type == 'user') {
+            Log::info("User Payment Found.");
+            //  finding this user card order
+            $cardOrder = cardOrder::where('user_id', $payment->user_id)->where('status', 'initiate')->first();
+            $cardOrder->status = 'pending';
+            $cardOrder->save();
+            Log::info("Card Order Activated.");
 
-        // sending Email to this user
-        Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+            // sending Email to this user
+            Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+        }
+
         return view('payments.success');
     }
 
