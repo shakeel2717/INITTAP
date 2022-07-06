@@ -10,11 +10,11 @@ Go to {{ env('APP_NAME') }}
 @component('mail::table')
 | Product | Type | Price |
 | ------------- |:-------------:| --------:|
-| {{ $task->pricing->title }} | {{ $task->pricing->category }} | ${{ number_format($task->pricing->price, 2) }} |
+| {{ $cardOrder->pricing->title }} | {{ $cardOrder->pricing->category }} | ${{ number_format($cardOrder->pricing->price, 2) }} |
 @endcomponent
 
 @component('mail::panel')
-Total Amount Paid: ${{ number_format($task->pricing->price, 2) }}
+Total Amount Paid: ${{ number_format($cardOrder->pricing->price, 2) }}
 @endcomponent
 
 Please Contact us if you have any questions.

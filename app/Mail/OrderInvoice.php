@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderInvoice extends Mailable
 {
+    public $cardOrder;
     use Queueable, SerializesModels;
 
     /**
@@ -16,9 +17,9 @@ class OrderInvoice extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($cardOrder)
     {
-        //
+        $this->cardOrder = $cardOrder;
     }
 
     /**

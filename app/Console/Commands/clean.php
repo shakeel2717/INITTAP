@@ -68,26 +68,8 @@ class clean extends Command
 
         $option = new Option();
         $option->type = 'transactionId';
-        $option->value = 2000000;
+        $option->value = 3000000;
         $option->save();
 
-
-        $coporate = new Corporate();
-        $coporate->email = 'shakeel2717@gmail.com';
-        $coporate->password = Hash::make('asdfasdf');
-        $coporate->document = '123456789';
-        $coporate->name = 'test';
-        $coporate->phone = '0123456789';
-        $coporate->address = 'test';
-        $coporate->save();
-
-        // creating a payment charge for the corporate
-        $transaction = new Transaction();
-        $transaction->corporate_id = $coporate->id;
-        $transaction->amount = siteConfig("corporate_subscription_fees");
-        $transaction->type = "Subscription Charges";
-        $transaction->status = false;
-        $transaction->sum = "out";
-        $transaction->save();
     }
 }

@@ -99,16 +99,19 @@ class PaymentController extends Controller
             return view('payments.success');
         } else {
             Log::info("Sandbox Disabled.");
+            $transactionId = transactionId();
 
             $payment = new payment();
             $payment->user_id = auth()->user()->id;
             $payment->description = "Due Payment";
-            $payment->type = $validatedData['payment_type'];
+            $payment->type = 'user';
+            $payment->payment_type = $validatedData['payment_type'];
             $payment->amount = $order->price;
+            $payment->transactionId = $transactionId;
             $payment->save();
 
             $amount = $order->price + env('SHIPPING_COST') + $custom_cost;
-            $data = hook($amount, $validatedData['payment_type'], $payment->id);
+            $data = hook($amount, $validatedData['payment_type'], $transactionId);
             return view('payments.init', compact('data'));
         }
     }
@@ -160,6 +163,15 @@ class PaymentController extends Controller
         // checking if the payment is from user
         if ($payment->type == 'user') {
             Log::info("User Payment Found.");
+            // adding a deposit transaction
+            $transaction = new Transaction();
+            $transaction->user_id = $payment->user_id;
+            $transaction->amount = $txAmount;
+            $transaction->type = "Deposit";
+            $transaction->status = true;
+            $transaction->sum = "in";
+            $transaction->save();
+
             //  finding this user card order
             $cardOrder = cardOrder::where('user_id', $payment->user_id)->where('status', 'initiate')->first();
             $cardOrder->status = 'pending';

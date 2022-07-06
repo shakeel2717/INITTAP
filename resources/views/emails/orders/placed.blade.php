@@ -1,7 +1,7 @@
 @component('mail::message')
 # Order Placed
 
-Your Card Successfully Placed.!
+Your {{ env('APP_NAME') }} Card Order Successfully Placed.!
 
 @component('mail::button', ['url' => env('APP_URL')])
     Go to {{ env('APP_NAME') }}
