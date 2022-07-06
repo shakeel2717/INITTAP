@@ -19,6 +19,7 @@ class CreatePricingsTable extends Migration
             $table->string('category');
             $table->text('description')->nullable();
             $table->string('price');
+            $table->string('price_corporate');
             $table->string('img');
             $table->boolean('status')->default(true);
             $table->timestamps();

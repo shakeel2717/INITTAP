@@ -45,6 +45,7 @@ class CardManageController extends Controller
             'category' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
+            'price_corporate' => 'required|string',
         ]);
 
 
@@ -57,6 +58,7 @@ class CardManageController extends Controller
         $pricing->category = $validatedData['category'];
         $pricing->description = $validatedData['description'];
         $pricing->price = $validatedData['price'];
+        $pricing->price_corporate = $validatedData['price_corporate'];
         $pricing->img = $name;
         $pricing->save();
 

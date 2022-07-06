@@ -79,6 +79,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row form-group">
+                                <label for="type" class="col-sm-3 col-form-label input-label">Card Price for Corporate </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-sm-down-break">
+                                        <input type="text" class="form-control" name="price_corporate" id="price_corporate"
+                                            placeholder="Card Price for Corporate Users" value="{{ old('price_corporate') }}">
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Form Group -->
                             <div class="js-add-field row form-group" data-hs-add-field-options='{
                                         "template": "#addAddressFieldEgTemplate",

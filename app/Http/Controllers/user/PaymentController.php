@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderInvoice;
 use App\Mail\OrderPlaced;
 use App\Models\cardOrder;
+use App\Models\Corporate;
 use App\Models\payment;
 use App\Models\pricing;
 use App\Models\profile;
@@ -145,6 +146,11 @@ class PaymentController extends Controller
         // checking if the payment is from corporate
         if ($payment->type == 'corporate') {
             Log::info("Corporate Payment Found.");
+            $corporate = Corporate::find($payment->corporate_id);
+            $corporate->status = 'active';
+            $corporate->save();
+            Log::info("Corporate Activated: " . $corporate->email);
+
             // adding a deposit transaction
             $transaction = new Transaction();
             $transaction->corporate_id = $payment->corporate_id;
