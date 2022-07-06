@@ -123,7 +123,10 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
+
         Log::info("WebHook Reached.");
+        Log::info("WebHook Data." . $request);
+
         $referenceId = $request->referenceId;
 
         // finding the payment record
