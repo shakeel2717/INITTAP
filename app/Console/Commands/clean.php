@@ -68,7 +68,7 @@ class clean extends Command
 
         $option = new Option();
         $option->type = 'transactionId';
-        $option->value = 3000200;
+        $option->value = 5000500;
         $option->save();
 
     }
