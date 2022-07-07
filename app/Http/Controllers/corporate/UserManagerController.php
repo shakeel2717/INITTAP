@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\profile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UserManagerController extends Controller
 {
@@ -104,14 +105,13 @@ class UserManagerController extends Controller
     public function destroy($id)
     {
         $user = User::where('corporate_id', session('corporate')->id)->where('id', $id)->firstOrFail();
-
         // deleting this user Profile
         $profile = profile::where('user_id', $id)->firstOrFail();
+        if ($user->status == 'active') {
+            return redirect()->back()->withErrors('This user is active and cannot be deleted');
+        }
         $profile->delete();
-
         $user->delete();
-
-
         return redirect()->route('corporate.dashboard.users.index')->with('message', 'User deleted successfully');
     }
 
@@ -128,5 +128,20 @@ class UserManagerController extends Controller
         $user->save();
 
         return redirect()->route('corporate.dashboard.users.index')->with('message', 'User ' . $status . ' successfully');
+    }
+
+
+    public function qrDownload($format, $user)
+    {
+        if (!$format == 'svg' || !$format == 'eps') {
+            return redirect()->back()->with('message', 'Invalid Format');
+        }
+        $user = User::findOrFail($user);
+        $qrCode = QrCode::size(250)->format($format)->generate(route('user.public.profile', ['username' => $user->username]));
+        // save this qr code to public folder
+        $path = public_path('qr/' . $user->username . '.' . $format);
+        file_put_contents($path, $qrCode);
+        // download this qr code
+        return response()->download($path);
     }
 }

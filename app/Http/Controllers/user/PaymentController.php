@@ -77,44 +77,28 @@ class PaymentController extends Controller
             ]
         );
         Log::info("Profile Updated.");
+        $transactionId = transactionId();
 
-        if (env('APP_ENV') == 'local' && $validatedData['payment_type'] == 'sandbox') {
-
-            $payment_type = 'sandbox';
-            // working offline with sandbox
-            Log::info("Sandbox WebHook Reached.");
-            $payment = new payment();
-            $payment->user_id = auth()->user()->id;
-            $payment->description = "Due Payment";
-            $payment->type = $validatedData['payment_type'];
-
-            // activating this user card order
-            $cardOrder = cardOrder::where('user_id', $user->id)->where('status', 'initiate')->first();
-            $payment->amount = $cardOrder->pricing->price;
-            $payment->save();
-            Log::info("Payment Record Saved.");
-
-            $cardOrder->status = 'pending';
-            $cardOrder->save();
-            Log::info("Card Order Activated.");
-            return view('payments.success');
+        // checking if this is a corporate user's request, or direct user
+        if ($request->session()->exists('user')) {
+            $amount = $order->price_corporate;
         } else {
-            Log::info("Sandbox Disabled.");
-            $transactionId = transactionId();
-
-            $payment = new payment();
-            $payment->user_id = auth()->user()->id;
-            $payment->description = "Due Payment";
-            $payment->type = 'user';
-            $payment->payment_type = $validatedData['payment_type'];
-            $payment->amount = $order->price;
-            $payment->transactionId = $transactionId;
-            $payment->save();
-
-            $amount = $order->price + env('SHIPPING_COST') + $custom_cost;
-            $data = hook($amount, $validatedData['payment_type'], $transactionId);
-            return view('payments.init', compact('data'));
+            $amount = $order->price;
         }
+
+
+        $payment = new payment();
+        $payment->user_id = $user->id;
+        $payment->description = "Due Payment";
+        $payment->type = 'user';
+        $payment->payment_type = $validatedData['payment_type'];
+        $payment->amount = $amount;
+        $payment->transactionId = $transactionId;
+        $payment->save();
+
+        $amount = $amount + env('SHIPPING_COST') + $custom_cost;
+        $data = hook($amount, $validatedData['payment_type'], $transactionId);
+        return view('payments.init', compact('data'));
     }
 
 
@@ -138,7 +122,7 @@ class PaymentController extends Controller
 
         // getting this user payment transaction
         $payment = payment::where('transactionId', $request['referenceId'])->first();
-        if ($payment) {
+        if (!$payment) {
             Log::info("Payment Succesfull, but the transaction not found. TransactionId: " . $request['referenceId']);
         }
 
@@ -173,6 +157,10 @@ class PaymentController extends Controller
         // checking if the payment is from user
         if ($payment->type == 'user') {
             Log::info("User Payment Found.");
+            $user = Corporate::find($payment->user_id);
+            $user->status = 'active';
+            $user->save();
+            Log::info("User Activated: " . $user->email);
             // adding a deposit transaction
             $transaction = new Transaction();
             $transaction->user_id = $payment->user_id;

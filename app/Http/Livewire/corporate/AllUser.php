@@ -176,7 +176,17 @@ final class AllUser extends PowerGridComponent
                 ->class('btn btn-danger px-3 py-2 m-1')
                 ->target('')
                 ->route('corporate.dashboard.users.deactivate', ['user' => 'id'])
-                ->method('delete')
+                ->method('delete'),
+
+            Button::make('Download QR', 'EPS QR')
+                ->class('btn btn-info px-3 py-2 m-1')
+                ->target('')
+                ->route('corporate.dashboard.user.qrDownload', ['format' => 'eps', 'user' => 'id']),
+
+            Button::make('Download QR', 'EPS SVG')
+                ->class('btn btn-info px-3 py-2 m-1')
+                ->target('')
+                ->route('corporate.dashboard.user.qrDownload', ['format' => 'svg', 'user' => 'id']),
         ];
     }
 

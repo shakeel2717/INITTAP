@@ -155,7 +155,7 @@
                                                         </div>
                                                         <div class="col col-md-4 align-self-center">
                                                             <h5 id="price_cost">Price:
-                                                                ${{ number_format($card->price, 2) }} </br>
+                                                                ${{ number_format($card->price_corporate, 2) }} </br>
                                                                 Shipping Cost:
                                                                 ${{ number_format(env('SHIPPING_COST'), 2) }}
                                                             </h5>
@@ -164,7 +164,7 @@
 
                                                         <div class="col col-md-4 align-self-center text-end">
                                                             <h2 class="text-primary">Total:
-                                                                ${{ number_format($card->price + env('SHIPPING_COST'), 2) }}
+                                                                ${{ number_format($card->price_corporate + env('SHIPPING_COST'), 2) }}
                                                             </h2>
                                                         </div>
                                                         <!-- End Col -->

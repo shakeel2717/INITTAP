@@ -32,7 +32,11 @@
                                 <tr>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->user->email }}</td>
-                                    <td>{{ $order->pricing->price }}</td>
+                                    @if ($order->user->corporate_id == null)
+                                        <td>${{ number_format($order->pricing->price, 2) }}</td>
+                                    @else
+                                        <td>${{ number_format($order->pricing->price_corporate, 2) }}</td>
+                                    @endif
                                     <td>{{ $order->card_title }}</td>
                                     <td>{{ $order->card_designation }}</td>
                                     <td><span class="badge badge-primary">{{ Str::ucfirst($order->status) }}</span></td>
@@ -60,8 +64,7 @@
                                         <td><span class="badge badge-primary">{{ Str::ucfirst($order->type) }}</span></td>
                                         <td>
                                             <a href="{{ asset('logo/') . '/' . $order->logo }}">
-                                                <img class="avatar"
-                                                    src="{{ asset('logo/') . '/' . $order->logo }}"
+                                                <img class="avatar" src="{{ asset('logo/') . '/' . $order->logo }}"
                                                     alt="Custom logo Image">
                                             </a>
                                         </td>
@@ -69,14 +72,17 @@
                                         <td>INITTAP</td>
                                         <td>INITTAP</td>
                                     @endif
-                                    <td><a href="{{ route('admin.dashboard.order.qrDownload',['format' => 'svg', 'user' => $order->user->id]) }}"><i class="tio-download display-4"></i></a></td>
-                                    <td><a href="{{ route('admin.dashboard.order.qrDownload',['format' => 'eps', 'user' => $order->user->id]) }}"><i class="tio-download display-4"></i></a></td>
+                                    <td><a
+                                            href="{{ route('admin.dashboard.order.qrDownload', ['format' => 'svg', 'user' => $order->user->id]) }}"><i
+                                                class="tio-download display-4"></i></a></td>
+                                    <td><a
+                                            href="{{ route('admin.dashboard.order.qrDownload', ['format' => 'eps', 'user' => $order->user->id]) }}"><i
+                                                class="tio-download display-4"></i></a></td>
                                 </tr>
                             @empty
                                 <tr>
                                     <td>No Record Found</td>
                                 </tr>
-
                             @endforelse
                         </tbody>
                     </table>

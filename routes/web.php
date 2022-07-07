@@ -130,6 +130,7 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
         Route::resource('payments', CorporatePaymentController::class);
         Route::get('transactions/payments', [CorporateTransaction::class,'payments'])->name('transactions.payments');
         Route::resource('transactions', CorporateTransaction::class);
+        Route::get('user/qr/{format}/{user}', [UserManagerController::class, 'qrDownload'])->name('user.qrDownload');
     });
 });
 

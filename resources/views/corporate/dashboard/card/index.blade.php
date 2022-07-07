@@ -32,7 +32,7 @@
                                         @foreach ($cards as $card)
                                             <option value="{{ $card->id }}">{{ $card->title }} |
                                                 {{ $card->category }} |
-                                                $ {{ number_format($card->price, 2) }}</option>
+                                                $ {{ number_format($card->price_corporate, 2) }}</option>
                                         @endforeach
                                     </select>
                                 </div>
