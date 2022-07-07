@@ -238,15 +238,10 @@
             <!-- End Card -->
         </div>
         <div class="col-lg-6 mb-3 mb-lg-5">
-            <!-- Card -->
             <div class="card h-100">
-                <!-- Header -->
                 <div class="card-header">
                     <h5 class="card-header-title">Update Stock</h5>
                 </div>
-                <!-- End Header -->
-
-                <!-- Body -->
                 <div class="card-body">
                     <p>Add more Stock in system.</p>
                     <h3 class="card-title">Current Stock: <span
@@ -270,9 +265,37 @@
                         </div>
                     </form>
                 </div>
-                <!-- End Body -->
             </div>
-            <!-- End Card -->
+        </div>
+        <div class="col-lg-6 mb-3 mb-lg-5">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-header-title">Update Subscription Fees for Corporate</h5>
+                </div>
+                <div class="card-body">
+                    <p>Corporate User Fees.</p>
+                    <h3 class="card-title">Current Fees: <span
+                            class="text-success display-2">${{ number_format(siteConfig("corporate_subscription_fees"),2) }}</span></h3>
+                    <hr>
+                    <form action="{{ route('admin.dashboard.subscription.fees') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="fees">Update Subscription Fees</label>
+                                    <input type="number" name="fees" id="fees" class="form-control"
+                                        placeholder="Update Fees">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Update Stock" class="btn btn-md btn-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -129,6 +129,10 @@ class PaymentController extends Controller
     public function success(Request $request)
     {
         Log::info("WebHook Reached.");
+        if ($request['responseCode'] != 2001) {
+            Log::info("Invalid Status.");
+            return view('payments.failed');
+        }
         Log::info("WebHook Data." . $request);
         $txAmount = $request['txAmount'];
 

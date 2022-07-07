@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feature;
+use App\Models\Option;
 use App\Models\pricing;
 use Illuminate\Http\Request;
 
@@ -43,5 +44,19 @@ class AdminFeatureController extends Controller
         $feature->value = $validatedData['value'];
         $feature->save();
         return redirect()->back()->with('message', 'Feature Updated Successfully');
+    }
+
+
+    public function subscriptionFees(Request $request)
+    {
+        $validatedData = $request->validate([
+            'fees' => 'required|numeric',
+        ]);
+
+        $option = Option::where('type','corporate_subscription_fees')->firstOrFail();
+        $option->value = $validatedData['fees'];
+        $option->save();
+
+        return redirect()->back()->with('message', 'Subscription Fees Updated Successfully');
     }
 }

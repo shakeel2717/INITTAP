@@ -70,8 +70,6 @@
                                     @else
                                         <span class="text-success">Active</span>
                                     @endif
-                                    (${{ number_format(siteConfig('corporate_subscription_fees'), 2) }}
-                                    USD)
                                 </h3>
                             </div>
 
