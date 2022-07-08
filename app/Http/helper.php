@@ -53,8 +53,8 @@ function hook($amount, $type, $referenceId)
     $datas->serviceParams->storeId = $storeId;
     $datas->serviceParams->hppKey = $key;
     $datas->serviceParams->paymentMethod = $type;
-    $datas->serviceParams->hppSuccessCallbackUrl = "http://127.0.0.1:8000/api/payment/success";
-    $datas->serviceParams->hppFailureCallbackUrl = "http://127.0.0.1:8000/api/payment/failed";
+    $datas->serviceParams->hppSuccessCallbackUrl = env('hppSuccessCallbackUrl');
+    $datas->serviceParams->hppFailureCallbackUrl = env('hppFailureCallbackUrl');
     $datas->serviceParams->hppRespDataFormat = "2";
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
