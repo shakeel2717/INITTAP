@@ -77,13 +77,13 @@
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
                                                         id="avatarUploader"
                                                         data-hs-file-attach-options='{
-                                                                                                                                                "textTarget": "#avatarImg",
-                                                                                                                                                "mode": "image",
-                                                                                                                                                "targetAttr": "src",
-                                                                                                                                                "resetTarget": ".js-file-attach-reset-img",
-                                                                                                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
-                                                                                                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                                                                                                                                            }'
+                                                                "textTarget": "#avatarImg",
+                                                                "mode": "image",
+                                                                "targetAttr": "src",
+                                                                "resetTarget": ".js-file-attach-reset-img",
+                                                                "resetImg": "{{ asset('assets/img/160x160/img1.jpg') }}",
+                                                                "allowTypes": [".png", ".jpeg", ".jpg"]
+                                                            }'
                                                         name="custom">
 
                                                     <span class="avatar-uploader-trigger">

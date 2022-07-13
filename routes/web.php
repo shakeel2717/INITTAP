@@ -143,6 +143,6 @@ Route::post('store', [orderCardController::class, 'store'])->name('store');
 Route::prefix('api')->name('api.')->group(function () {
     Route::post('payment/init', [PaymentController::class, 'init'])->name('init');
     Route::get('payment/success', [PaymentController::class, 'success'])->name('success');
-    Route::post('payment/failed', [PaymentController::class, 'failed'])->name('failed');
+    Route::get('payment/failed', [PaymentController::class, 'failed'])->name('failed');
     Route::post('payment/attempt', [PaymentController::class, 'attemptPayment'])->name('attempt');
 });
