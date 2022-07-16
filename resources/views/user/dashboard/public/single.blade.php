@@ -8,7 +8,7 @@
             <!-- Profile Cover -->
             <div class="profile-cover">
                 <div class="profile-cover-img-wrapper">
-                    <img id="profileCoverImg" class="profile-cover-img" src="{{ asset('assets/img/cover.png') }}"
+                    <img id="profileCoverImg" class="profile-cover-img" src="{{ asset('assets/brand/profile-cover.jpg') }}"
                         alt="Image Description">
                     {{-- <div class="profile-cover-content profile-cover-btn">
                         <div class="custom-file-btn">

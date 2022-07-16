@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/chart.js/dist/Chart.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/daterangepicker/daterangepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css?v=1.1.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 </head>
 
@@ -152,9 +152,9 @@
         class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
         <div class="navbar-vertical-container">
             <div class="navbar-vertical-footer-offset bg-dark">
-                <div class="navbar-brand-wrapper justify-content-between">
+                <div class="navbar-brand-wrapper justify-content-between" style="overflow: hidden">
                     <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
-                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-gold.svg') }}"
+                        <img class="navbar-brand-logo" src="{{ asset('assets/brand/logo-light.svg') }}" height="50"
                             alt="Logo">
                         <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
                             alt="Logo">
