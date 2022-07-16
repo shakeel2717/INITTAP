@@ -27,7 +27,7 @@
     <link href="{{ asset('landing/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('landing/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('landing/css/style.css?v=1.0.0') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -52,7 +52,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <a href="/"><img src="{{ asset('assets/img/brand/logo-gold.svg') }}"
+                <a href="/"><img src="{{ asset('assets/brand/logo-light.svg') }}"
                         alt="{{ env('APP_NAME') }}" width="150" class="img-fluid"></a>
             </div>
 
@@ -304,11 +304,11 @@
 
                         <br>
 
-                        <a href="{{ route('corporate.auth.create') }}" class="btn btn-lg btn-dark">Get Corporate Account</a>
+                        <a href="{{ route('corporate.auth.create') }}" class="btn btn-lg btn-dark">Get Corporate
+                            Account</a>
 
                     </div>
-                    <div class="col-xl-5 col-lg-6 "
-                        data-aos="fade-right">
+                    <div class="col-xl-5 col-lg-6 " data-aos="fade-right">
                         <img src="{{ asset('landing/corporate.jpg') }}" alt="">
                     </div>
 
@@ -450,7 +450,8 @@
                                 </div>
                             @endif
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block my-3">Send Message</button>
+                                <button type="submit" class="btn btn-primary btn-theme btn-block my-3">Send
+                                    Message</button>
 
                             </div>
                         </form>
@@ -470,7 +471,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 footer-contact text-center">
-                        <a href="index.html"><img src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                        <a href="index.html"><img src="{{ asset('assets/brand/logo-dark.svg') }}"
                                 alt="{{ env('APP_NAME') }}" width="150" class="img-fluid"></a>
                         <p class="footer-text mt-4">{{ env('APP_NAME') }} © {{ date('Y') }} All right reserved
                         </p>

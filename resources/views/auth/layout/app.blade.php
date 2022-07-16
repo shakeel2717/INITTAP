@@ -24,7 +24,7 @@
         </div>
         <div class="container py-5 py-sm-7">
             <a class="d-flex justify-content-center mb-5" href="{{ route('home') }}">
-                <img class="z-index-2" src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Image Description"
+                <img class="z-index-2" src="{{ asset('assets/brand/logo-light.svg') }}" alt="Image Description"
                     style="width: 12rem;">
             </a>
 
