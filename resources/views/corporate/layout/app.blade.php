@@ -25,7 +25,7 @@
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
-                    <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-dark.svg') }}"
+                    <img class="navbar-brand-logo" src="{{ asset('assets/brand/logo-light.svg') }}"
                         alt="Logo">
                     <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
                         alt="Logo">
@@ -144,7 +144,7 @@
             <div class="navbar-vertical-footer-offset bg-dark">
                 <div class="navbar-brand-wrapper justify-content-between">
                     <a class="navbar-brand" href="{{ route('user.dashboard.index') }}" aria-label="Front">
-                        <img class="navbar-brand-logo" src="{{ asset('assets/img/brand/logo-gold.svg') }}"
+                        <img class="navbar-brand-logo" src="{{ asset('assets/brand/logo-light.svg') }}"
                             alt="Logo">
                         <img class="navbar-brand-logo-mini" src="{{ asset('assets/img/brand/favi.svg') }}"
                             alt="Logo">
