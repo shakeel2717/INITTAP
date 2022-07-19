@@ -21,8 +21,11 @@ class AdminAuthController extends Controller
             'username' => 'required|exists:admins,username',
             'password' => 'required',
         ]);
-        $admin = admin::first();
+        $admin = admin::where('username', $request->username)->first();
         // checking if password is same
+        if ($admin == "") {
+            return redirect()->back()->withErrors('Username or Password is incorrect');
+        }
 
         if (!$passwrod = Hash::check($validatedData['password'], $admin->password)) {
             return redirect()->back()->withErrors('Invalid Password');

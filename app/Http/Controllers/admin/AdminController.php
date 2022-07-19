@@ -92,6 +92,7 @@ class AdminController extends Controller
             'password' => 'required|min:8',
         ]);
 
+
         $admin = new admin();
         $admin->username = $request->username;
         $admin->password = Hash::make($request->password);
@@ -377,5 +378,14 @@ class AdminController extends Controller
     {
         $contacts = Contact::get();
         return view('admin.dashboard.contactForm', compact('contacts'));
+    }
+
+
+    public function logout(Request $request)
+    {
+        if ($request->session()->exists('admin')) {
+            $request->session()->forget('admin');
+            return redirect()->route('login');
+        }
     }
 }

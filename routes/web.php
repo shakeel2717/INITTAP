@@ -110,8 +110,6 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('payments/index', [AdminPaymentController::class, 'index'])->name('payment.index');
     Route::get('contact/forms', [AdminController::class, 'contactForm'])->name('contact.form');
     Route::post('corporate/subscription/fees', [AdminFeatureController::class, 'subscriptionFees'])->name('subscription.fees');
-
-
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 

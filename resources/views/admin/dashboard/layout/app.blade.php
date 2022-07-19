@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="dropdown-divider"></div>
-                                <form action="{{ route('logout') }}" method="POST">
+                                <form action="{{ route('admin.dashboard.logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item">Sign out</button>
                                 </form>
