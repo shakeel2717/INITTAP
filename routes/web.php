@@ -120,11 +120,13 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
     Route::get('auth/login', [CorporateAuthController::class, 'login'])->name('auth.login');
     Route::post('auth/login', [CorporateAuthController::class, 'loginReq'])->name('auth.login.req');
     Route::resource('auth', CorporateAuthController::class);
-    Route::prefix('dashboard')->name('dashboard.')->middleware('corporate')->group(function () {
+    Route::prefix('dashboard')->name('dashboard.')->middleware(['corporate'])->group(function () {
         Route::resource('index', CorporateController::class);
-        Route::delete('users/deactivate/{user}', [UserManagerController::class, 'userDeactivate'])->name('users.deactivate');
-        Route::resource('users', UserManagerController::class);
-        Route::resource('cards', CardBuyController::class);
+        Route::middleware('corporateaccess')->group(function(){
+            Route::delete('users/deactivate/{user}', [UserManagerController::class, 'userDeactivate'])->name('users.deactivate');
+            Route::resource('users', UserManagerController::class);
+            Route::resource('cards', CardBuyController::class);
+        });
         Route::resource('payments', CorporatePaymentController::class);
         Route::get('transactions/payments', [CorporateTransaction::class,'payments'])->name('transactions.payments');
         Route::resource('transactions', CorporateTransaction::class);

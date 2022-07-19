@@ -137,6 +137,7 @@ class PaymentController extends Controller
             $corporate = Corporate::find($payment->corporate_id);
             $corporate->status = 'active';
             $corporate->save();
+            session('corporate')->status = 'active';
             Log::info("Corporate Activated: " . $corporate->email);
 
             // adding a deposit transaction
