@@ -19,6 +19,8 @@ final class AllCard extends PowerGridComponent
     public $description = null;
     public $price = null;
     public $status = null;
+    public $price_corporate = null;
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +95,7 @@ final class AllCard extends PowerGridComponent
             ->addColumn('category')
             ->addColumn('description')
             ->addColumn('price')
+            ->addColumn('price_corporate')
             ->addColumn('img_feature', function (Pricing $model) {
                 return '<img src="/assets/cards/' . $model->img . '" width="100px" height="100px">';
             })
@@ -135,6 +138,12 @@ final class AllCard extends PowerGridComponent
                 ->searchable(),
 
             Column::make('PRICE', 'price')
+                ->sortable()
+                ->searchable()
+                ->editOnClick()
+                ->makeInputText(),
+
+            Column::make('CORPORATE PRICE', 'price_corporate')
                 ->sortable()
                 ->searchable()
                 ->editOnClick()
