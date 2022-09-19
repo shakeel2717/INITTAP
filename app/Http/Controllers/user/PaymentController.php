@@ -159,7 +159,7 @@ class PaymentController extends Controller
         // checking if the payment is from user
         if ($payment->type == 'user') {
             Log::info("User Payment Found.");
-            $user = Corporate::find($payment->user_id);
+            $user = User::find($payment->user_id);
             $user->status = 'active';
             $user->save();
             Log::info("User Activated: " . $user->email);
