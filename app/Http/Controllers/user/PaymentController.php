@@ -32,15 +32,6 @@ class PaymentController extends Controller
             'mobile' => 'required|string',
         ]);
 
-        // checking if this is a corporate user's request, or direct user
-        if ($request->session()->exists('user')) {
-            dd("Corporate");
-            $amount = $order->price_corporate;
-        } else {
-            dd("Direct");
-            $amount = $order->price;
-        }
-
         $user = User::find(session('user')->id);
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
@@ -88,7 +79,14 @@ class PaymentController extends Controller
         Log::info("Profile Updated.");
         $transactionId = transactionId();
 
-        // Paste Here.
+        // checking if this is a corporate user's request, or direct user
+        if (!$request->session()->exists('user')) {
+            dd("Corporate");
+            $amount = $order->price_corporate;
+        } else {
+            dd("Direct");
+            $amount = $order->price;
+        }
 
 
         $payment = new payment();
