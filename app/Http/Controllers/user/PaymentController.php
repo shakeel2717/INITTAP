@@ -81,8 +81,10 @@ class PaymentController extends Controller
 
         // checking if this is a corporate user's request, or direct user
         if ($request->session()->exists('user')) {
+            dd("Corporate");
             $amount = $order->price_corporate;
         } else {
+            dd("Direct");
             $amount = $order->price;
         }
 
@@ -106,7 +108,6 @@ class PaymentController extends Controller
     {
         Log::info("WebHook Failed.");
         // dump all the request data
-        dump($request->all());
         return view('payments.failed');
     }
 
