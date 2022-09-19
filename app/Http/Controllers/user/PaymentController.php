@@ -32,8 +32,6 @@ class PaymentController extends Controller
             'mobile' => 'required|string',
         ]);
 
-        dd("here");
-
         $user = User::find(session('user')->id);
         $order = pricing::findOrFail($validatedData['order_id']);
         $type = 'inittap';
@@ -83,6 +81,7 @@ class PaymentController extends Controller
 
         // checking if this is a corporate user's request, or direct user
         if (!$request->session()->exists('user')) {
+            info("Corporate User");
             $amount = $order->price_corporate;
         } else {
             $amount = $order->price;
@@ -99,6 +98,7 @@ class PaymentController extends Controller
         $payment->save();
 
         $amount = $amount + env('SHIPPING_COST') + $custom_cost;
+        info("Amount:". $amount);
         $data = hook($amount, $validatedData['payment_type'], $transactionId);
         return view('payments.init', compact('data'));
     }
