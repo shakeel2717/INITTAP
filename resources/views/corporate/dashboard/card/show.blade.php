@@ -62,7 +62,7 @@
                                             </select>
                                             <!-- End Select2 -->
                                         </div>
-                                        <div class="row form-group d-none justify-content-center" id="custom">
+                                        <div class="row form-group justify-content-center" id="custom">
                                             <div class="d-flex align-items-center">
                                                 <!-- Avatar -->
                                                 <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
