@@ -56,10 +56,7 @@
                                                 data-hs-select2-options='{
                                                                                             "placeholder": "Select wallet"
                                                                                             }'>
-                                                <option value="inittap" selected>
-                                                    INITTAP branded card
-                                                </option>
-                                                <option value="custom">
+                                                <option value="custom" selected>
                                                     Custom Branded Card
                                                 </option>
                                             </select>
@@ -205,9 +202,9 @@
         $(document).ready(function() {
             $('#checkout-button').prop('disabled', true);
             // $('#custom').addClass('d-none');
-            $('#type').change(function() {
-                $("#custom").toggleClass('d-none');
-            });
+            // $('#type').change(function() {
+            //     $("#custom").toggleClass('d-none');
+            // });
 
             $("#card_name").on("input", function() {
                 var heading = $(this).val();
