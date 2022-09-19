@@ -80,7 +80,7 @@ class PaymentController extends Controller
         $transactionId = transactionId();
 
         // checking if this is a corporate user's request, or direct user
-        if (!$request->session()->exists('user')) {
+        if ($request->session()->exists('corporate')) {
             info("Corporate User");
             $amount = $order->price_corporate;
         } else {
