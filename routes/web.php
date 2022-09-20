@@ -35,7 +35,7 @@ Route::name('user.')->group(function () {
     Route::get('/me/save/{username}', [PublicController::class, 'publicProfileSave'])->name('public.profile.save');
 });
 
-Route::middleware(['auth', 'redirectcorporate'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth', 'redirectcorporate','verified'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
