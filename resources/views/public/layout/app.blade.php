@@ -18,7 +18,7 @@
             @yield('content')
         </div>
         <div class="footer text-center">
-            <ul class="list-inline list-separator mb-2">
+            <ul class="list-inline list-separator mb-2 mt-5">
                 <li class="list-inline-item">
                     <a class="btn btn-sm btn-dark" href="{{ route('user.dashboard.index') }}"> Get your Card <i
                             class="tio-open-in-new"></i></a>

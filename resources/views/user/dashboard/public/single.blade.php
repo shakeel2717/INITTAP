@@ -59,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card shadow-lg card-body mb-2">
+                    <div class="card shadow-lg card-body mb-5">
                         <h5>About <a href="javascript;" data-toggle="modal" data-target="#about"> <i
                                     class="tio-edit"></i> Edit</a></h5>
                         <p>{{ Auth::user()->profile->about }}</p>
