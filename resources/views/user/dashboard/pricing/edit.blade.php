@@ -14,25 +14,24 @@
                             <p>Preview of your Card</p>
                             <div class="mx-auto nfc-card">
                                 <div class="card-group shadow-lg">
-                                    <div class="card border">
+                                    <div class="card border" >
                                         <div
                                             class="card-body d-flex flex-column justify-content-between align-items-center">
                                             <div class="first">
-                                                <h4 id="heading" class="card-title">{{ Auth::user()->name }}</h4>
-                                                <h5 id="desg" class="card-title" style="color:gold">Designation</h5>
-                                                <img class="img-fluid" src="{{ asset('assets/img/hr.svg') }}"
-                                                    alt="H Row" width="100%">
+                                                <h4 id="heading" class="card-title" style="color:#222C61"">{{ Auth::user()->name }}</h4>
+                                                <h5 id="desg" class="card-title" style="color:#222C61">Designation</h5>
+                                                <!-- <img class="img-fluid" src="{{ asset('assets/img/hr.svg') }}" alt="H Row" width="100%"> -->
                                             </div>
                                             <div class="second">
-                                                <img class="img-fluid"
+                                                <img class="img-fluid" 
                                                     src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{ route('user.public.profile', ['username' => Auth::user()->username]) }}&chld=L|1&choe=UTF-8, 'QrCode.png', 'image/png' }}"
                                                     alt="QR Code">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card border-0" style="background-color:black">
+                                    <div class="card border-0" style="background-color:#222C61">
                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                            <img src="{{ asset('assets/img/brand/logo-gold.svg') }}" alt="Logo"
+                                            <img src="{{ asset('assets/img/brand/logo-light.svg') }}" alt="Logo"
                                                 width="80%">
                                         </div>
                                     </div>

@@ -105,13 +105,15 @@
                             @endif
                             @if ($user->phones->count() > 0)
                                 @foreach ($user->phones as $phone)
-                                    <li class="list-group-item py-3">
+                                    <li class="list-group-item py-3" >
                                         <div class="media">
-                                            <div
-                                                class="mt-1 mr-3 display-4 d-flex justify-content-start align-items-center">
-                                                <i class="tio-call-talking"></i>
-                                                <h2 class="ml-4 mb-0">{{ $phone->phone }}</h2>
-                                            </div>
+                                            <a href="tel:{{ $phone->phone }}">
+                                                <div
+                                                    class="mt-1 mr-3 display-4 d-flex justify-content-start align-items-center">
+                                                    <i class="tio-call-talking"></i>
+                                                    <h2 class="ml-4 mb-0" >{{ $phone->phone }}</h2>
+                                                </div>
+                                            </a>
                                         </div>
                                     </li>
                                 @endforeach
