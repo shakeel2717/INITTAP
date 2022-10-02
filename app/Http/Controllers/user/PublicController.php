@@ -266,7 +266,8 @@ class PublicController extends Controller
         $prefix = '';
         $suffix = '';
         // add personal data
-        $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+        //$vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+        $vcard->addName($user->profile->title);
         // add work data
         $vcard->addJobtitle($user->profile->designation);
         foreach ($user->emails as $email) {
