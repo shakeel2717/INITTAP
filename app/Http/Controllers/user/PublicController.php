@@ -110,6 +110,10 @@ class PublicController extends Controller
                 $protocole = 'https://twitter.com/';
                 $icon = 'tio-twitter';
                 break;
+            case 'snapchat':
+                $protocole = 'https://snapchat.com/add/';
+                $icon = 'tio-snapchat';
+                break;   
             case 'youtube':
                 $protocole = 'https://www.youtube.com/';
                 $icon = 'tio-youtube';
@@ -267,7 +271,7 @@ class PublicController extends Controller
         $suffix = '';
         // add personal data
         //$vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
-        $vcard->addName($user->profile->title);
+        $vcard->addName($user->profile->title, $additional, $prefix, $suffix);
         // add work data
         $vcard->addJobtitle($user->profile->designation);
         foreach ($user->emails as $email) {

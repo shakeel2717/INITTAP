@@ -235,6 +235,10 @@
                                             data-option-template='<span class="d-flex align-items-center"><i class="tio-twitter"></i><span>Twitter</span></span>'>
                                             Twitter
                                         </option>
+                                        <option value="snapchat"
+                                            data-option-template='<span class="d-flex align-items-center"><i class="tio-snapchat"></i><span>Snapchat</span></span>'>
+                                            Snapchat
+                                        </option>
                                         <option value="youtube"
                                             data-option-template='<span class="d-flex align-items-center"><i class="tio-youtube"></i><span>Youtube</span></span>'>
                                             Youtube

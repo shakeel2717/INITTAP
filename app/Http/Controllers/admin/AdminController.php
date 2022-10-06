@@ -338,6 +338,10 @@ class AdminController extends Controller
                 $protocole = 'https://twitter.com/';
                 $icon = 'tio-twitter';
                 break;
+            case 'snapchat':
+                $protocole = 'https://snapchat.com/add/';
+                $icon = 'tio-snapchat';
+                break;    
             case 'youtube':
                 $protocole = 'https://www.youtube.com/';
                 $icon = 'tio-youtube';
