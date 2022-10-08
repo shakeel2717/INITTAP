@@ -22,9 +22,13 @@
                 </label>
                 <!-- End Avatar -->
 
-                <h1 class="page-header-title">{{ $user->profile->title }} <i class="tio-verified tio-lg text-primary"
-                        data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i></h1>
-
+                <h1 class="page-header-title">{{ $user->profile->title }} 
+                    @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder->status != 'initiate')
+                    <i class="tio-verified tio-lg text-primary"
+                        data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i>
+                    @endif
+                </h1>
+                       
                 <!-- List -->
                 <ul class="list-inline list-inline-m-1">
                     <li class="list-inline-item">
@@ -47,14 +51,18 @@
 
 
             <hr>
+            @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder->status != 'initiate')
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
+                    
                         <a href="{{ route('user.public.profile.save', ['username' => $user->username]) }}"
                             class="btn btn-block btn-dark btn-lg"><i class="tio-user-add"></i> Save Contact</a>
+                    
                     </div>
                 </div>
             </div>
+            @endif
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
