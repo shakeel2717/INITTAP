@@ -80,6 +80,7 @@
                 <a href="{{ route('register') }}" class="btn-get-started scrollto">Get Started</a>
             </div>
         </div>
+        
     </section><!-- End Hero -->
 
     <main id="main">
@@ -186,7 +187,7 @@
         </section><!-- End About Section -->
 
         <!-- ======= Values Section ======= -->
-        <section id="values" class="values">
+        <!--<section id="values" class="values">
             <div class="container">
 
                 <div class="row">
@@ -225,7 +226,8 @@
                 </div>
 
             </div>
-        </section><!-- End Values Section -->
+        </section> -->
+        <!-- End Values Section -->
 
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
@@ -286,8 +288,7 @@
                         <div class="icon-box" data-aos="fade-up">
                             <div class="icon"><i class="bx bx-leaf"></i></div>
                             <h4 class="title"><a href="">Manage all Employees</a></h4>
-                            <p class="description">Paper comprises 50% of business waste, 33% of municipal waste and
-                                25% of waste going to landfill</p>
+                            <p class="description">Manage employees contact details, disable card whenever employees take temporary leave or leaves the company</p>
                         </div>
 
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
@@ -295,12 +296,6 @@
                             <h4 class="title"><a href="">Create new Employee Card</a></h4>
                             <p class="description">You don't need to carry 100's of business cards to make contact
                                 with other people, use simple and smart INITTAP card</p>
-                        </div>
-
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon"><i class="bx bx-receipt"></i></div>
-                            <h4 class="title"><a href="">Manage Billing Reports</a></h4>
-                            <p class="description">let your business stand out, smart things make difference</p>
                         </div>
 
                         <br>
@@ -412,7 +407,7 @@
                         </div>
                     </div>
                 </div>
-
+           
                 <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="col-xl-9 col-lg-12 mt-4">
                         <form action="{{ route('guest.form.store') }}" method="POST">
@@ -482,9 +477,9 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
+    <a href="https://api.whatsapp.com/send?phone=252610863882" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-whatsapp"></i></a>
+    
     <!-- Vendor JS Files -->
     <script src="{{ asset('landing/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('landing/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
