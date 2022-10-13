@@ -13,19 +13,11 @@
 <body>
     <main id="content" role="main" class="main">
         <div class="container">
-            <a class="position-absolute top-0 left-0 right-0" href="index.html">
-                <img class="avatar avatar-xxl avatar-4by3 avatar-centered" src="{{ asset('assets/brand/logo-dark.svg') }}"
-                    alt="Image Description">
-            </a>
+            
             @yield('content')
         </div>
-        <div class="footer text-center">
-            <ul class="list-inline list-separator">
-                <li class="list-inline-item">
-                    <a class="list-separator-link" href="#">Extra Link</a>
-                </li>
-            </ul>
-        </div>
+        
+        
     </main>
     <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
