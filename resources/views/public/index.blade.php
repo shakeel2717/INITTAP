@@ -23,7 +23,7 @@
                 <!-- End Avatar -->
 
                 <h1 class="page-header-title">{{ $user->profile->title }} 
-                    @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder->status != 'initiate')
+                    @if ($user->cardOrder()->count() >= 1 && $user->cardOrder->status != 'initiate')
                     <i class="tio-verified tio-lg text-primary"
                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Activated"></i>
                     @endif
@@ -51,7 +51,7 @@
 
 
             <hr>
-            @if (Auth::user()->cardOrder()->count() >= 1 && Auth::user()->cardOrder->status != 'initiate')
+            @if ($user->cardOrder()->count() >= 1 && $user->cardOrder->status != 'initiate')
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg card-body mb-2">
