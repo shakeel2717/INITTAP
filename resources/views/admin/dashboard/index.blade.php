@@ -273,10 +273,6 @@
                     <h5 class="card-header-title">Update Subscription Fees for Corporate</h5>
                 </div>
                 <div class="card-body">
-                    <p>Corporate User Fees.</p>
-                    <h3 class="card-title">Current Fees: <span
-                            class="text-success display-2">${{ number_format(siteConfig("corporate_subscription_fees"),2) }}</span></h3>
-                    <hr>
                     <form action="{{ route('admin.dashboard.subscription.fees') }}" method="POST">
                         @csrf
                         <div class="row">
@@ -284,12 +280,19 @@
                                 <div class="form-group">
                                     <label for="fees">Update Subscription Fees</label>
                                     <input type="number" name="fees" id="fees" class="form-control"
-                                        placeholder="Update Fees">
+                                        placeholder="Update Fees" value="{{ siteConfig('corporate_subscription_fees') }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="submit" value="Update Stock" class="btn btn-md btn-primary">
+                                    <label for="refer">Update Refer Commission %</label>
+                                    <input type="number" name="refer" id="refer" class="form-control"
+                                        placeholder="Update Refer Commission" value="{{ siteConfig('referCommission') }}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Update Setting" class="btn btn-md btn-primary">
                                 </div>
                             </div>
                         </div>

@@ -51,12 +51,17 @@ class AdminFeatureController extends Controller
     {
         $validatedData = $request->validate([
             'fees' => 'required|numeric',
+            'refer' => 'required|numeric',
         ]);
 
         $option = Option::where('type','corporate_subscription_fees')->firstOrFail();
         $option->value = $validatedData['fees'];
         $option->save();
 
-        return redirect()->back()->with('message', 'Subscription Fees Updated Successfully');
+        $option = Option::where('type','referCommission')->firstOrFail();
+        $option->value = $validatedData['refer'];
+        $option->save();
+
+        return redirect()->back()->with('message', 'Setting Updated Successfully');
     }
 }
