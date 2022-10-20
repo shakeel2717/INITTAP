@@ -22,6 +22,7 @@ use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\PublicController;
 use App\Http\Controllers\user\UserDashboard;
 use App\Http\Controllers\user\UserProfileController;
+use App\Http\Controllers\UserPaymentController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -39,6 +40,7 @@ Route::name('user.')->group(function () {
 Route::middleware(['auth', 'redirectcorporate','verified'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::resource('affiliate', AffiliateController::class);
+    Route::resource('payment', UserPaymentController::class);
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
         Route::get('/show/{card}', [PricingController::class, 'show'])->name('show');

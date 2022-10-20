@@ -87,4 +87,51 @@ Affiliate System
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-lg mb-3 mb-lg-5">
+            <div class="card-body text-center">
+                <div class="w-50 mx-auto mb-4">
+                    <img class="img-fluid" src="{{ asset('assets/finance.png') }}" alt="Image Description" width="250">
+                </div>
+
+                <div class="mb-3">
+                    <h3>Add/Update your Payment Profile</h3>
+                </div>
+
+                <form action="{{ route('user.payment.store') }}" method="POST">
+                    @csrf
+
+                    <div class="my-2">
+                        <div class="w-75 mx-auto">
+                            <div class="form-group text-left">
+                                <label for="type">Account Type <span class="text-uppercase text-primary">Selected: {{ auth()->user()->userPayment->type }}</span></label>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="paypal">Paypal</option>
+                                    <option value="payoneer">Payoneer</option>
+                                    <option value="skrill">Skrill</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="title">Account Title</label>
+                                <input type="text" name="title" id="title" class="form-control" value="{{ auth()->user()->userPayment->title }}">
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="account">Account Email</label>
+                                <input type="email" name="account" id="account" class="form-control" value="{{ auth()->user()->userPayment->account }}">
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" name="phone" id="phone" class="form-control" value="{{ auth()->user()->userPayment->phone }}">
+                            </div>
+                            <div class="form-group text-left">
+                                <button type="submit" class="btn btn-primary">Update Payment Record</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
