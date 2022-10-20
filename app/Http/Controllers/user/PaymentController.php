@@ -98,7 +98,7 @@ class PaymentController extends Controller
         $payment->save();
 
         $amount = $amount + env('SHIPPING_COST') + $custom_cost;
-        info("Amount:". $amount);
+        info("Amount:" . $amount);
         $data = hook($amount, $validatedData['payment_type'], $transactionId);
         return view('payments.init', compact('data'));
     }
@@ -183,18 +183,18 @@ class PaymentController extends Controller
 
 
             // checking if this user has valid refer
-            if($user->refer != "default"){
-                info("Valid Refer Found, Proccess for the Commission.");
+            if ($user->refer != "default" && siteConfig("referCommission") > 0) {
+                info("Valid Refer Found, Process for the Commission.");
                 // getting this refer detail
-                $upliner = User::where('username',$user->refer)->first();
+                $upliner = User::where('username', $user->refer)->first();
 
                 $transaction = new Transaction();
-            $transaction->user_id = $upliner->id;
-            $transaction->amount = $txAmount * siteConfig("referCommission") / 100;
-            $transaction->type = "Refer Commission";
-            $transaction->status = true;
-            $transaction->sum = "in";
-            $transaction->save();
+                $transaction->user_id = $upliner->id;
+                $transaction->amount = $txAmount * siteConfig("referCommission") / 100;
+                $transaction->type = "Refer Commission";
+                $transaction->status = true;
+                $transaction->sum = "in";
+                $transaction->save();
             }
         }
 
