@@ -105,7 +105,7 @@ Affiliate System
                     <div class="my-2">
                         <div class="w-75 mx-auto">
                             <div class="form-group text-left">
-                                <label for="type">Account Type <span class="text-uppercase text-primary">Selected: {{ auth()->user()->userPayment->type }}</span></label>
+                                <label for="type">Account Type <span class="text-uppercase text-primary">Selected: {{ auth()->user()->userPayment->type ?? "" }}</span></label>
                                 <select name="type" id="type" class="form-control">
                                     <option value="paypal">Paypal</option>
                                     <option value="payoneer">Payoneer</option>
@@ -114,15 +114,15 @@ Affiliate System
                             </div>
                             <div class="form-group text-left">
                                 <label for="title">Account Title</label>
-                                <input type="text" name="title" id="title" class="form-control" value="{{ auth()->user()->userPayment->title }}">
+                                <input type="text" name="title" id="title" class="form-control" value="{{ auth()->user()->userPayment->title ?? '' }}">
                             </div>
                             <div class="form-group text-left">
                                 <label for="account">Account Email</label>
-                                <input type="email" name="account" id="account" class="form-control" value="{{ auth()->user()->userPayment->account }}">
+                                <input type="email" name="account" id="account" class="form-control" value="{{ auth()->user()->userPayment->account ?? '' }}">
                             </div>
                             <div class="form-group text-left">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" name="phone" id="phone" class="form-control" value="{{ auth()->user()->userPayment->phone }}">
+                                <input type="text" name="phone" id="phone" class="form-control" value="{{ auth()->user()->userPayment->phone ?? '' }}">
                             </div>
                             <div class="form-group text-left">
                                 <button type="submit" class="btn btn-primary">Update Payment Record</button>
