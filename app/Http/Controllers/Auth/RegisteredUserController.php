@@ -19,9 +19,14 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($sponsor = "default")
     {
-        return view('auth.register');
+        // checking if this refer is valid
+        if ($sponsor != "default") {
+            $user = User::where('username', $sponsor)->firstOrFail();
+        }
+
+        return view('auth.register', compact("sponsor"));
     }
 
     /**
@@ -37,13 +42,21 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'sponsor' => ['nullable', 'string', 'max:255', 'exists:users,username'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if (isset($request->sponsor)) {
+            $sponsor = $request->sponsor;
+        } else {
+            $sponsor = "default";
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
+            'refer' => $sponsor,
             'mobile' => $request->mobile,
             'password' => Hash::make($request->password),
         ]);

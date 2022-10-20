@@ -180,7 +180,24 @@ class PaymentController extends Controller
 
             // sending Email to this user
             Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+
+
+            // checking if this user has valid refer
+            if($user->refer != "default"){
+                info("Valid Refer Found, Proccess for the Commission.");
+                // getting this refer detail
+                $upliner = User::where('username',$user->refer)->first();
+
+                $transaction = new Transaction();
+            $transaction->user_id = $upliner->id;
+            $transaction->amount = $txAmount * siteConfig("referCommission") / 100;
+            $transaction->type = "Refer Commission";
+            $transaction->status = true;
+            $transaction->sum = "in";
+            $transaction->save();
+            }
         }
+
 
         return view('payments.success');
     }

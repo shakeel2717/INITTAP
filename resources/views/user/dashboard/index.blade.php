@@ -74,6 +74,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card mb-3 mb-lg-5">
+                <div class="card-header">
+                    <h2 class="card-header-title h5">Earn Money</h2>
+                </div>
+                <div class="card-body card-body-height card-body-centered">
+                    <img class="avatar avatar-xxl mb-3" src="{{ asset('assets/marketing.png') }}"
+                        alt="Image Description">
+                    <p class="card-text">Invite your Friends & family to Inittap and Earn Money.</p>
+                    <a class="btn btn-sm btn-white" href="{{ route('user.affiliate.index') }}">Get your Sponser Link</a>
+                </div>
+            </div>
+        </div>
 
     </div>
 @endsection

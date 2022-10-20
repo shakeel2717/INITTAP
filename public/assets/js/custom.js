@@ -70,16 +70,16 @@ $(document).on('ready', function () {
                 "Apr 28", "Apr 29", "Apr 30", "Apr 31"
             ];
             updatingChart.data.datasets = [{
-                    "data": [120, 250, 300, 200, 300, 290, 350, 100, 125, 320],
-                    "backgroundColor": "#377dff",
-                    "hoverBackgroundColor": "#377dff",
-                    "borderColor": "#377dff"
-                },
-                {
-                    "data": [250, 130, 322, 144, 129, 300, 260, 120, 260, 245, 110],
-                    "backgroundColor": "#e7eaf3",
-                    "borderColor": "#e7eaf3"
-                }
+                "data": [120, 250, 300, 200, 300, 290, 350, 100, 125, 320],
+                "backgroundColor": "#377dff",
+                "hoverBackgroundColor": "#377dff",
+                "borderColor": "#377dff"
+            },
+            {
+                "data": [250, 130, 322, 144, 129, 300, 260, 120, 260, 245, 110],
+                "backgroundColor": "#e7eaf3",
+                "borderColor": "#e7eaf3"
+            }
             ];
             updatingChart.update();
         } else {
@@ -87,16 +87,16 @@ $(document).on('ready', function () {
                 "May 7", "May 8", "May 9", "May 10"
             ];
             updatingChart.data.datasets = [{
-                    "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
-                    "backgroundColor": "#377dff",
-                    "hoverBackgroundColor": "#377dff",
-                    "borderColor": "#377dff"
-                },
-                {
-                    "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
-                    "backgroundColor": "#e7eaf3",
-                    "borderColor": "#e7eaf3"
-                }
+                "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                "backgroundColor": "#377dff",
+                "hoverBackgroundColor": "#377dff",
+                "borderColor": "#377dff"
+            },
+            {
+                "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                "backgroundColor": "#e7eaf3",
+                "borderColor": "#e7eaf3"
+            }
             ]
             updatingChart.update();
         }
@@ -162,3 +162,14 @@ $(document).on('ready', function () {
 });
 if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write(
     '<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+
+
+
+
+function copyToClipboard(element) {
+    var copyText = document.getElementById("referLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+    alert("Link Copied!");
+}

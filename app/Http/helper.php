@@ -102,3 +102,18 @@ function transactionId()
         return null;
     }
 }
+
+
+function referCount($user_id)
+{
+    $user = User::findOrFail($user_id);
+    $sponsors = User::where('refer', $user->username)->get();
+    return $sponsors;
+}
+
+
+function referCommission($user_id){
+    $in = Transaction::where('user_id', $user_id)->where('type','Refer Commission')->where('sum', 'in')->sum('amount');
+    $out = Transaction::where('user_id', $user_id)->where('type','Refer Commission')->where('sum', 'out')->sum('amount');
+    return $in - $out;
+}

@@ -244,6 +244,18 @@
                             </li>
                         @endif
                         <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Earn Commission</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link " href="{{ route('user.affiliate.index') }}"
+                                title="Layouts" data-placement="left">
+                                <i class="tio-money nav-icon  text-white"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-white">Affiliate System</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">My Account</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
@@ -363,7 +375,7 @@
     <script src="{{ asset('assets/vendor/clipboard/dist/clipboard.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/hs-add-field/dist/hs-add-field.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js?v=0.1') }}"></script>
 
 
 </body>

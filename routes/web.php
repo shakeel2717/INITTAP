@@ -14,6 +14,7 @@ use App\Http\Controllers\CorporateAuthController;
 use App\Http\Controllers\CorporateController;
 use App\Http\Controllers\CorporateTransaction;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\user\AffiliateController;
 use App\Http\Controllers\user\orderCardController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\PricingController;
@@ -37,6 +38,7 @@ Route::name('user.')->group(function () {
 
 Route::middleware(['auth', 'redirectcorporate','verified'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
+    Route::resource('affiliate', AffiliateController::class);
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/index', [PricingController::class, 'index'])->name('index');
         Route::get('/show/{card}', [PricingController::class, 'show'])->name('show');
