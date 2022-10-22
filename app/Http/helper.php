@@ -114,6 +114,6 @@ function referCount($user_id)
 
 function referCommission($user_id){
     $in = Transaction::where('user_id', $user_id)->where('type','Refer Commission')->where('sum', 'in')->sum('amount');
-    $out = Transaction::where('user_id', $user_id)->where('type','Refer Commission')->where('sum', 'out')->sum('amount');
+    $out = Transaction::where('user_id', $user_id)->where('type','Withdraw Commission')->where('sum', 'out')->sum('amount');
     return $in - $out;
 }

@@ -256,6 +256,20 @@
                         </li>
 
                         <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Refer System</small>
+                            <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="js-nav-tooltip-link nav-link "
+                                href="{{ route('admin.dashboard.refer.index') }}" title="Layouts"
+                                data-placement="left">
+                                <i class="text-white tio-money nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-white">Affiliate System</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <small class="nav-subtitle" title="Layouts">Orders Management</small>
                             <small class="text-white tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>

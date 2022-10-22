@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CardManageController;
 use App\Http\Controllers\admin\CorporateController as AdminCorporateController;
 use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
+use App\Http\Controllers\admin\ReferController;
 use App\Http\Controllers\admin\StockController;
 use App\Http\Controllers\AdminFeatureController;
 use App\Http\Controllers\corporate\CardBuyController;
@@ -114,7 +115,9 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::get('payments/index', [AdminPaymentController::class, 'index'])->name('payment.index');
     Route::get('contact/forms', [AdminController::class, 'contactForm'])->name('contact.form');
     Route::post('corporate/subscription/fees', [AdminFeatureController::class, 'subscriptionFees'])->name('subscription.fees');
+    Route::resource('refer', ReferController::class);
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    
 });
 
 
