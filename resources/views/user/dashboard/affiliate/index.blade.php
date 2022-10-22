@@ -133,5 +133,84 @@ Affiliate System
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-lg mb-3 mb-lg-5">
+                    <div class="card-body text-center">
+                        <div class="w-50 mx-auto mb-4">
+                            <img class="img-fluid" src="{{ asset('assets/refers.png') }}" alt="Image Description" width="250">
+                        </div>
+
+                        <div class="mb-3">
+                            <h3>Refer Report</h3>
+                        </div>
+                        <div class="tablerecord">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Join Date</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($refers as $refer)
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <th>{{ $refer->name }}</th>
+                                        <th>{{ $refer->email }}</th>
+                                        <th>{{ $refer->created_at->diffForHumans() }}</th>
+                                        <th>{{ ucfirst($refer->status) }}</th>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-lg mb-3 mb-lg-5">
+                    <div class="card-body text-center">
+                        <div class="w-50 mx-auto mb-4">
+                            <img class="img-fluid" src="{{ asset('assets/money.png') }}" alt="Image Description" width="250">
+                        </div>
+
+                        <div class="mb-3">
+                            <h3>Commission Transactions</h3>
+                        </div>
+                        <div class="tablerecord">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($commissions as $transaction)
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $transaction->created_at->diffForHumans() }}</td>
+                                        <td><strong>{{ $transaction->type }}</strong></td>
+                                        <td><strong>${{ number_format($transaction->amount,2) }}</strong></td>
+                                        <td>{{ $transaction->status ? "Approved" : "Pending" }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 @endsection

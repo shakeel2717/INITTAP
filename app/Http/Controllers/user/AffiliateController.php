@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AffiliateController extends Controller
@@ -14,7 +16,9 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.affiliate.index');
+        $commissions = Transaction::where('user_id', auth()->user()->id)->where('type','Refer Commission')->get();
+        $refers = User::where('refer', auth()->user()->username)->get();
+        return view('user.dashboard.affiliate.index', compact('commissions','refers'));
     }
 
     /**
