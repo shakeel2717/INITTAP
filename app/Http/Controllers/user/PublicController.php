@@ -223,7 +223,7 @@ class PublicController extends Controller
         $validatedData = $request->validate([
             'about' => 'required|string',
         ]);
-        $about = profile::find(Auth::user()->id);
+        $about = profile::find(Auth::user()->profile->id);
         $about->about = $validatedData['about'];
         $about->save();
         return redirect()->back()->with('message', 'Your About info has been updated successfully');
@@ -236,7 +236,7 @@ class PublicController extends Controller
             'designation' => 'required|string',
         ]);
 
-        $about = profile::find(Auth::user()->id);
+        $about = profile::find(Auth::user()->profile->id);
         $about->title = $validatedData['title'];
         $about->designation = $validatedData['designation'];
         $about->save();
