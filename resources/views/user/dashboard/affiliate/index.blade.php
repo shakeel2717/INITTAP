@@ -82,7 +82,7 @@ Affiliate System
                 </div>
 
 
-                <a class="btn btn-primary" id="clickToCopy" href="http://127.0.0.1:8000/user/order/index">Copy Refer Link</a>
+                <!-- <a class="btn btn-primary" id="clickToCopy" href="http://127.0.0.1:8000/user/order/index">Copy Refer Link</a> -->
             </div>
         </div>
     </div>
