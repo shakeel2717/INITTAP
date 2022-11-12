@@ -121,6 +121,9 @@
                                                 <option value="CREDIT_CARD">
                                                     CREDIT CARD
                                                 </option>
+                                                <option value="edahab">
+                                                Edahab Payment
+                                                </option>
                                                 @if (env('APP_ENV') == 'local'))
                                                 <option value="sandbox">
                                                     Sand Box

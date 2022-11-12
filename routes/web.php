@@ -38,7 +38,7 @@ Route::name('user.')->group(function () {
     Route::get('/me/save/{username}', [PublicController::class, 'publicProfileSave'])->name('public.profile.save');
 });
 
-Route::middleware(['auth', 'redirectcorporate','verified'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth', 'redirectcorporate', 'verified'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::resource('affiliate', AffiliateController::class);
     Route::resource('payment', UserPaymentController::class);
@@ -117,7 +117,6 @@ Route::middleware('admin')->prefix('admin/dashboard')->name('admin.dashboard.')-
     Route::post('corporate/subscription/fees', [AdminFeatureController::class, 'subscriptionFees'])->name('subscription.fees');
     Route::resource('refer', ReferController::class);
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
-    
 });
 
 
@@ -129,13 +128,13 @@ Route::prefix('corporate')->name('corporate.')->group(function () {
     Route::resource('auth', CorporateAuthController::class);
     Route::prefix('dashboard')->name('dashboard.')->middleware(['corporate'])->group(function () {
         Route::resource('index', CorporateController::class);
-        Route::middleware('corporateaccess')->group(function(){
+        Route::middleware('corporateaccess')->group(function () {
             Route::delete('users/deactivate/{user}', [UserManagerController::class, 'userDeactivate'])->name('users.deactivate');
             Route::resource('users', UserManagerController::class);
             Route::resource('cards', CardBuyController::class);
         });
         Route::resource('payments', CorporatePaymentController::class);
-        Route::get('transactions/payments', [CorporateTransaction::class,'payments'])->name('transactions.payments');
+        Route::get('transactions/payments', [CorporateTransaction::class, 'payments'])->name('transactions.payments');
         Route::resource('transactions', CorporateTransaction::class);
         Route::get('user/qr/{format}/{user}', [UserManagerController::class, 'qrDownload'])->name('user.qrDownload');
     });
@@ -152,4 +151,7 @@ Route::prefix('api')->name('api.')->group(function () {
     Route::get('payment/success', [PaymentController::class, 'success'])->name('success');
     Route::get('payment/failed', [PaymentController::class, 'failed'])->name('failed');
     Route::post('payment/attempt', [PaymentController::class, 'attemptPayment'])->name('attempt');
+
+    // eDahab
+    Route::get('payment/edahab/success', [PaymentController::class, 'edahab'])->name('edahab.success');
 });

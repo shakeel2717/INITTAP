@@ -21,6 +21,11 @@ class PaymentController extends Controller
 {
     public function init(Request $request)
     {
+
+
+        // storing this data into database
+
+
         $validatedData = $request->validate([
             'designation' => 'required|string',
             'card_name' => 'required|string',
@@ -77,7 +82,6 @@ class PaymentController extends Controller
             ]
         );
         Log::info("Profile Updated.");
-        $transactionId = transactionId();
 
         // checking if this is a corporate user's request, or direct user
         if ($request->session()->exists('corporate')) {
@@ -87,6 +91,52 @@ class PaymentController extends Controller
             $amount = $order->price;
         }
 
+
+        // checking if this request from edahab Gateway
+        if ($validatedData['payment_type'] = "edahab") {
+            $totalAmount = $amount + env('SHIPPING_COST') + $custom_cost;
+
+            $request_param = array(
+                "apiKey" => "yzkdSxQqHlYgvYs4EtnQQGN9sA8FwORlgWNbQOQ92",
+                "edahabNumber" => $validatedData['mobile'],
+                "amount" => $totalAmount,
+                "agentCode" => "083943",
+                "returnUrl" => env('eDahabSuccessCallbackUrl')
+            );
+
+
+            $json = json_encode($request_param, JSON_UNESCAPED_SLASHES);
+
+            $hashed = hash('SHA256', $json . "tEmVI8R0oa6gW6VUMIvBEiRFtrCJWA203KkFtF");
+            $url = "https://edahab.net/api/api/IssueInvoice?hash=" . $hashed;
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, TRUE);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+            $result = curl_exec($curl);
+            $data = json_decode($result);
+
+            // checking if this user already have recent pending payment and delete
+            $findDuplicateTid = payment::where('user_id', $user->id)
+                ->where('payment_type', 'edahab')
+                ->where('status', 'pending')
+                ->delete();
+
+            $payment = new payment();
+            $payment->user_id = $user->id;
+            $payment->responseCode = $data->StatusCode;
+            $payment->responseMsg = $data->StatusDescription;
+            $payment->type = 'user';
+            $payment->payment_type = "edahab";
+            $payment->amount = $amount;
+            $payment->transactionId = $data->InvoiceId;
+            $payment->save();
+
+            return redirect("https://edahab.net/api/payment?invoiceId=" . $data->InvoiceId);
+        }
+
+        $transactionId = transactionId();
 
         $payment = new payment();
         $payment->user_id = $user->id;
@@ -220,5 +270,47 @@ class PaymentController extends Controller
         } else {
             return redirect()->back()->withErrors('You have no pending payment, Please Contact us for more information');
         }
+    }
+
+
+    public function edahab(Request $request)
+    {
+        info("WebHook Reached.");
+
+        info("WebHook Data." . $request);
+        // verifying the invoice status
+        $request_param = array("apiKey" => "yzkdSxQqHlYgvYs4EtnQQGN9sA8FwORlgWNbQOQ92", "invoiceId" => 1498800);
+
+
+        /* Encode it into a JSON string. */
+        $json = json_encode($request_param, JSON_UNESCAPED_SLASHES);
+
+        $hashed = hash('SHA256', $json . "tEmVI8R0oa6gW6VUMIvBEiRFtrCJWA203KkFtF");
+
+
+        $url = "https://edahab.net/api/api/CheckInvoiceStatus?hash=" . $hashed;
+
+        $curl = curl_init($url);
+        // Tell cURL to send a POST request.
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        // Set the JSON object as the POST content.
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+
+        // Set the JSON content-type: application/json.
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        // Send the request.
+        $result = curl_exec($curl);
+
+        $data = json_decode($result);
+
+        if ($data->InvoiceStatus == "Pending") {
+            return redirect()->route('api.failed');
+        }
+
+        echo $result;
     }
 }
