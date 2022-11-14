@@ -278,39 +278,101 @@ class PaymentController extends Controller
         info("WebHook Reached.");
 
         info("WebHook Data." . $request);
+        info("Getting This User Invoice Id");
+        $payment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->firstOrFail();
+
+        info("Invoice Detail: " . $payment);
         // verifying the invoice status
-        $request_param = array("apiKey" => "yzkdSxQqHlYgvYs4EtnQQGN9sA8FwORlgWNbQOQ92", "invoiceId" => 1498800);
-
-
-        /* Encode it into a JSON string. */
+        $request_param = array("apiKey" => "yzkdSxQqHlYgvYs4EtnQQGN9sA8FwORlgWNbQOQ92", "invoiceId" => $payment->transactionId);
         $json = json_encode($request_param, JSON_UNESCAPED_SLASHES);
-
         $hashed = hash('SHA256', $json . "tEmVI8R0oa6gW6VUMIvBEiRFtrCJWA203KkFtF");
-
-
         $url = "https://edahab.net/api/api/CheckInvoiceStatus?hash=" . $hashed;
-
         $curl = curl_init($url);
-        // Tell cURL to send a POST request.
         curl_setopt($curl, CURLOPT_POST, TRUE);
-
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        // Set the JSON object as the POST content.
         curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
-
-        // Set the JSON content-type: application/json.
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-        // Send the request.
         $result = curl_exec($curl);
-
         $data = json_decode($result);
 
         if ($data->InvoiceStatus == "Pending") {
             return redirect()->route('api.failed');
-        }
+        } elseif ($data->InvoiceStatus == "Paid") {
+            $payment->m_transactionId = $data->TransactionId;
+            $payment->status = 'complete';
+            $payment->save();
+            info("Payment Record Saved.");
 
-        echo $result;
+            // checking if the payment is from corporate
+            if ($payment->type == 'corporate') {
+                info("Corporate Payment Found.");
+                $corporate = Corporate::find($payment->corporate_id);
+                $corporate->status = 'active';
+                $corporate->save();
+                session('corporate')->status = 'active';
+                info("Corporate Activated: " . $corporate->email);
+
+                // adding a deposit transaction
+                $transaction = new Transaction();
+                $transaction->corporate_id = $payment->corporate_id;
+                $transaction->amount = $payment->amount;
+                $transaction->type = "Deposit";
+                $transaction->status = true;
+                $transaction->sum = "in";
+                $transaction->save();
+                // getting this user pending subscription
+                $transaction = Transaction::where('corporate_id', $payment->corporate_id)->where('type', 'Subscription Charges')->where('status', false)->first();
+                $transaction->status = true;
+                $transaction->reference = $data->TransactionId;
+                $transaction->save();
+            }
+
+            // checking if the payment is from user
+            if ($payment->type == 'user') {
+                Log::info("User Payment Found.");
+                $user = User::find($payment->user_id);
+                $user->status = 'active';
+                $user->save();
+                Log::info("User Activated: " . $user->email);
+                // adding a deposit transaction
+                $transaction = new Transaction();
+                $transaction->user_id = $payment->user_id;
+                $transaction->amount = $payment->amount;
+                $transaction->type = "Deposit";
+                $transaction->status = true;
+                $transaction->sum = "in";
+                $transaction->save();
+
+                //  finding this user card order
+                $cardOrder = cardOrder::where('user_id', $payment->user_id)->where('status', 'initiate')->first();
+                $cardOrder->status = 'pending';
+                $cardOrder->save();
+                Log::info("Card Order Activated.");
+
+                // sending Email to this user
+                Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+
+
+                // checking if this user has valid refer
+                if ($user->refer != "default" && siteConfig("referCommission") > 0) {
+                    info("Valid Refer Found, Process for the Commission.");
+                    // getting this refer detail
+                    $upliner = User::where('username', $user->refer)->first();
+
+                    $transaction = new Transaction();
+                    $transaction->user_id = $upliner->id;
+                    $transaction->amount = $payment->amount * siteConfig("referCommission") / 100;
+                    $transaction->type = "Refer Commission";
+                    $transaction->status = true;
+                    $transaction->sum = "in";
+                    $transaction->save();
+                }
+            }
+
+            return view('payments.success');
+        } else {
+            info("Error#404.");
+            return "Error#404";
+        }
     }
 }
