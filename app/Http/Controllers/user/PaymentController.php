@@ -372,7 +372,7 @@ class PaymentController extends Controller
             return view('payments.success');
         } else {
             info("Error#404.");
-            return "Error#404";
+            return "Error#404, Please Contact Support";
         }
     }
 }
