@@ -93,7 +93,7 @@ class PaymentController extends Controller
 
 
         // checking if this request from edahab Gateway
-        if ($validatedData['payment_type'] = "edahab") {
+        if ($validatedData['payment_type'] == "edahab") {
             $totalAmount = $amount + env('SHIPPING_COST') + $custom_cost;
 
             $request_param = array(
