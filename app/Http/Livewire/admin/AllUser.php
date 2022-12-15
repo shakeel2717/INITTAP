@@ -16,6 +16,7 @@ final class AllUser extends PowerGridComponent
     public $name = null;
     public $username = null;
     public $email = null;
+    public $mobile = null;
 
     /*
     |--------------------------------------------------------------------------
@@ -90,6 +91,7 @@ final class AllUser extends PowerGridComponent
             ->addColumn('email')
             ->addColumn('username')
             ->addColumn('status')
+            ->addColumn('mobile')
             ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (User $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
@@ -124,6 +126,13 @@ final class AllUser extends PowerGridComponent
                 ->makeInputText(),
 
             Column::make('USERNAME', 'username')
+                ->sortable()
+                ->searchable()
+                ->editOnClick()
+                ->makeInputText(),
+
+
+            Column::make('MOBILE', 'mobile')
                 ->sortable()
                 ->searchable()
                 ->editOnClick()
