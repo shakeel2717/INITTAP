@@ -173,6 +173,10 @@ final class AllUser extends PowerGridComponent
                 ->class('bg-primary cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
                 ->route('admin.dashboard.userShow', ['id' => 'id']),
 
+            Button::make('verify', 'Verify Email')
+                ->class('btn btn-primary')
+                ->emit('verify', ['id' => 'id']),
+
             Button::make('edit', 'View Profile')
                 ->class('bg-primary cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
                 ->route('user.public.profile', ['username' => 'username']),
@@ -192,6 +196,25 @@ final class AllUser extends PowerGridComponent
             //        ->route('user.destroy', ['user' => 'id'])
             //        ->method('delete')
         ];
+    }
+
+
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'verify',
+            ]
+        );
+    }
+
+
+    public function verify($id)
+    {
+        $user = User::find($id['id']);
+        $user->email_verified_at = now();
+        $user->save();
     }
 
 
@@ -217,16 +240,16 @@ final class AllUser extends PowerGridComponent
      * @return array<int, RuleActions>
      */
 
-    /*
+    
     public function actionRules(): array
     {
        return [
 
            //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($user) => $user->id === 1)
+            Rule::button('verify')
+                ->when(fn($user) => $user->email_verified_at != null)
                 ->hide(),
         ];
     }
-    */
+    
 }
