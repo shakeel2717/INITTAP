@@ -38,7 +38,7 @@ Route::name('user.')->group(function () {
     Route::get('/me/save/{username}', [PublicController::class, 'publicProfileSave'])->name('public.profile.save');
 });
 
-Route::middleware(['auth', 'redirectcorporate', 'verified'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth', 'redirectcorporate'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard/index', [UserDashboard::class, 'index'])->name('dashboard.index');
     Route::resource('affiliate', AffiliateController::class);
     Route::resource('payment', UserPaymentController::class);
@@ -51,13 +51,17 @@ Route::middleware(['auth', 'redirectcorporate', 'verified'])->prefix('user')->na
         Route::get('/single', [PublicController::class, 'single'])->name('single');
         Route::post('/store', [PublicController::class, 'store'])->name('store');
         Route::post('/social', [PublicController::class, 'social'])->name('social');
+        Route::post('/social/destroy', [PublicController::class, 'socialDestroy'])->name('social.destroy');
         Route::get('/edit', [PublicController::class, 'edit'])->name('edit');
         Route::get('/show/{id}', [PublicController::class, 'show'])->name('show');
         Route::post('/addressEdit', [PublicController::class, 'addressEdit'])->name('addressEdit');
         Route::post('/socialEdit', [PublicController::class, 'socialEdit'])->name('socialEdit');
         Route::post('/websiteEdit', [PublicController::class, 'websiteEdit'])->name('websiteEdit');
+        Route::post('/website/destroy', [PublicController::class, 'websiteDestroy'])->name('website.destroy');
         Route::post('/phoneEdit', [PublicController::class, 'phoneEdit'])->name('phoneEdit');
+        Route::post('/phone/destroy', [PublicController::class, 'phoneDestroy'])->name('phone.destroy');
         Route::post('/emailEdit', [PublicController::class, 'emailEdit'])->name('emailEdit');
+        Route::post('/email/destroy', [PublicController::class, 'emailDestroy'])->name('email.destroy');
         Route::post('/aboutEdit', [PublicController::class, 'aboutEdit'])->name('aboutEdit');
         Route::post('/mainEdit', [PublicController::class, 'mainEdit'])->name('mainEdit');
         Route::get('/qrDownload', [PublicController::class, 'qrDownload'])->name('qr.download');

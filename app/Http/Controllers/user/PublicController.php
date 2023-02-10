@@ -29,6 +29,47 @@ class PublicController extends Controller
     }
 
 
+    public function websiteDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'website_id' => 'required|exists:websites,id'
+        ]);
+        // checking if this social id is belongs to this user
+        $website = website::find($validated['website_id']);
+        if ($website->user_id === auth()->user()->id) {
+            $website->delete();
+        }
+        return redirect()->back()->with('message', 'Website Delete Successfully');
+    }
+
+
+    public function phoneDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'phone_id' => 'required|exists:phones,id'
+        ]);
+        // checking if this social id is belongs to this user
+        $phone = phone::find($validated['phone_id']);
+        if ($phone->user_id === auth()->user()->id) {
+            $phone->delete();
+        }
+        return redirect()->back()->with('message', 'Phone Delete Successfully');
+    }
+
+    public function emailDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'email_id' => 'required|exists:emails,id'
+        ]);
+        // checking if this social id is belongs to this user
+        $email = email::find($validated['email_id']);
+        if ($email->user_id === auth()->user()->id) {
+            $email->delete();
+        }
+        return redirect()->back()->with('message', 'Email Delete Successfully');
+    }
+
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -113,7 +154,7 @@ class PublicController extends Controller
             case 'snapchat':
                 $protocole = 'https://snapchat.com/add/';
                 $icon = 'tio-snapchat';
-                break;   
+                break;
             case 'youtube':
                 $protocole = 'https://www.youtube.com/';
                 $icon = 'tio-youtube';
@@ -281,7 +322,7 @@ class PublicController extends Controller
             $vcard->addPhoneNumber($phone->phone, 'PREF;WORK');
         }
         foreach ($user->websites as $website) {
-            $vcard->addURL($website->website,'Website');
+            $vcard->addURL($website->website, 'Website');
         }
         foreach ($user->social as $social) {
             $vcard->addURL($social->url, ucfirst($social->name));
@@ -319,6 +360,21 @@ class PublicController extends Controller
     public function publicQr($username)
     {
         $user = User::where('username', $username)->firstOrFail();
-        return view('public.qr',compact('user'));
+        return view('public.qr', compact('user'));
+    }
+
+
+    public function socialDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'social_id' => 'required|exists:socials,id',
+        ]);
+
+        // checking if this social id is belongs to this user
+        $social = social::find($validated['social_id']);
+        if ($social->user_id === auth()->user()->id) {
+            $social->delete();
+        }
+        return redirect()->back()->with('message', 'Social Profile Delete Successfully');
     }
 }
