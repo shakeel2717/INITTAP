@@ -118,7 +118,7 @@
                         <li class="list-group-item py-3">
                             <div class="d-flex justify-content-between">
                                 <div class="media">
-                                    <a href="{{ $phone->phone }}">
+                                    <a href="tel:{{ $phone->phone }}">
                                         <div class="mt-1 mr-3 display-4 d-flex justify-content-start align-items-center">
                                             <i class="tio-website"></i>
                                             <h2 class="ml-4 mb-0">{{ $phone->phone }}</h2>

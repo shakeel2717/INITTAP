@@ -24,7 +24,7 @@
                         <tbody>
                             @forelse ($addresses as $address)
                                 <tr>
-                                    <td>{{ $address->user->email }}</td>
+                                    <td>{{ $address->user->email ?? ' ' }}</td>
                                     <td>{{ $address->name }}</td>
                                     <td>{{ $address->address }}</td>
                                     <td>{{ $address->city }}</td>
