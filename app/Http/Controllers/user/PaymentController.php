@@ -268,7 +268,8 @@ class PaymentController extends Controller
         }
 
         // getting pending Payment who already inserted
-        $user = User::find(session('user')->id);
+        //$user = User::find(session('user')->id);
+        $user = User::find($cardOrder->user_id);
         $pendingPayment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->latest()->first();
         if ($pendingPayment) {
             $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
