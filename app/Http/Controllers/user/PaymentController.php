@@ -273,10 +273,11 @@ class PaymentController extends Controller
         $pendingPayment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->latest()->first();
         if ($pendingPayment) {
             $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
-            $tranId = $pendingPayment->transactionId.random_int(100000, 999999);
-            $pendingPayment->transactionId = $tranId;
+            $transactionIdAttempt = transactionId();
+            //$tranId =  $transactionIdAttempt;
+            $pendingPayment->transactionId = $transactionIdAttempt;
             $pendingPayment->save();
-            $data = hook($amount, $cardOrder->payment_type, $tranId);
+            $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
             $failureReason = $data->responseMsg;
             if ($data->responseCode != 2001) {
                 Log::info("Invalid Status.");

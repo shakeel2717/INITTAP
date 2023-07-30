@@ -65,6 +65,8 @@ function hook($amount, $type, $referenceId)
     $datas->serviceParams->transactionInfo->currency = "USD";
     $datas->serviceParams->transactionInfo->description = "Inittap Payment of ".$referenceId;
     $url = $hpp_url;
+    Log::info("Request: ");
+    Log::info(print_r($datas, true));
     $options = array(
         "ssl"=>array(
             "verify_peer"=>false,
@@ -79,7 +81,7 @@ function hook($amount, $type, $referenceId)
     );
     $context  = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
-    Log::info("WebHook Failed.". $result);
+    Log::info("Response.". $result);
     $response = json_decode($result);
     return $response;
 }
