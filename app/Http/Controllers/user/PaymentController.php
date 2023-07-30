@@ -150,23 +150,29 @@ class PaymentController extends Controller
         $amount = $amount + env('SHIPPING_COST') + $custom_cost;
         info("Amount:" . $amount);
         $data = hook($amount, $validatedData['payment_type'], $transactionId);
+        if ($data->responseCode != 2001) {
+            Log::info("Invalid Status.");
+            return view('payments.failed',  compact('failureReason'));
+        }
         return view('payments.init', compact('data'));
     }
 
 
     public function failed(Request $request)
     {
-        Log::info("WebHook Failed.");
+        Log::info("WebHook Failed.". $request);
+        $failureReason = $request['procDescription'];
         // dump all the request data
-        return view('payments.failed');
+        return view('payments.failed', compact('failureReason'));
     }
 
     public function success(Request $request)
     {
         Log::info("WebHook Reached.");
+        $failureReason = $request['procDescription'];
         if ($request['responseCode'] != 2001) {
             Log::info("Invalid Status.");
-            return view('payments.failed');
+            return view('payments.failed',  compact('failureReason'));
         }
         Log::info("WebHook Data." . $request);
         $txAmount = $request['txAmount'];
@@ -262,13 +268,38 @@ class PaymentController extends Controller
         }
 
         // getting pending Payment who already inserted
+        $user = User::find(session('user')->id);
         $pendingPayment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->latest()->first();
         if ($pendingPayment) {
             $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
-            $data = hook($amount, $cardOrder->payment_type, $pendingPayment->id);
+            $tranId = $pendingPayment->transactionId.random_int(100000, 999999);
+            $pendingPayment->transactionId = $tranId;
+            $pendingPayment->save();
+            $data = hook($amount, $cardOrder->payment_type, $tranId);
+            $failureReason = $data->responseMsg;
+            if ($data->responseCode != 2001) {
+                Log::info("Invalid Status.");
+                return view('payments.failed',  compact('failureReason'));
+            }
             return view('payments.init', compact('data'));
         } else {
-            return redirect()->back()->withErrors('You have no pending payment, Please Contact us for more information');
+            $transactionIdAttempt = transactionId();
+            $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
+            $payment = new payment();
+            $payment->user_id = $user->id;
+            $payment->description = "Due Payment";
+            $payment->type = 'user';
+            $payment->payment_type = $cardOrder->payment_type;
+            $payment->amount = $cardOrder->pricing->price;
+            $payment->transactionId = $transactionIdAttempt;
+            $payment->save();
+            $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
+            if ($data->responseCode != 2001) {
+                Log::info("Invalid Status.");
+                return view('payments.failed',  compact('failureReason'));
+            }
+            return view('payments.init', compact('data'));
+            //return redirect()->back()->withErrors('You have no pending payment, Please Contact us for more information');
         }
     }
 

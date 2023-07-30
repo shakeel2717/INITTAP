@@ -13,7 +13,7 @@
 
       <div class="col-sm-6 col-md-4 text-center text-sm-left">
         <h1 class="display-1 mb-0 text-primary">Failed</h1>
-        <p class="lead">Sorry, But Your payment is Failed.</p>
+        <p class="lead">{{ $failureReason }}</br> Please Try again</p>
         <a class="btn btn-primary" href="{{ route('user.dashboard.index') }}">Back to Dashboard</a>
       </div>
     </div>
