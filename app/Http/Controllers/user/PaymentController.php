@@ -71,7 +71,7 @@ class PaymentController extends Controller
         ]);
         Log::info("Card Order Placed or Updated.");
         // sending Email to this user
-        Mail::to($user->email)->send(new OrderPlaced($task));
+        //Mail::to($user->email)->send(new OrderPlaced($task));
         // updating the record in profile
         $profile = profile::updateOrCreate(
             [
@@ -148,16 +148,23 @@ class PaymentController extends Controller
         $payment->save();
 
         $amount = $amount + env('SHIPPING_COST') + $custom_cost;
-        info("Amount:" . $amount);
-        $data = hook($amount, $validatedData['payment_type'], $transactionId);
+        //info("Amount:" . $amount);
+        // $data = hook($amount, $validatedData['payment_type'], $transactionId);
+        $data = apiHook($amount, $validatedData['payment_type'], $transactionId, $validatedData['mobile']);
         if ($data->responseCode != 2001) {
+            $failureReason = $data->params->description;
             Log::info("Invalid Status.");
             return view('payments.failed',  compact('failureReason'));
         }
-        return view('payments.init', compact('data'));
+        else{
+            Log::info("Response Success: ");
+            Log::info(print_r($data, true));
+            $api_success = apiSuccess($data);
+            return view('payments.success');
+        }
+        //return view('payments.init', compact('data'));
     }
-
-
+    
     public function failed(Request $request)
     {
         Log::info("WebHook Failed.". $request);
@@ -169,8 +176,9 @@ class PaymentController extends Controller
     public function success(Request $request)
     {
         Log::info("WebHook Reached.");
-        $failureReason = $request['procDescription'];
+        
         if ($request['responseCode'] != 2001) {
+            $failureReason = $request['procDescription'];
             Log::info("Invalid Status.");
             return view('payments.failed',  compact('failureReason'));
         }
@@ -223,7 +231,7 @@ class PaymentController extends Controller
             $transaction = new Transaction();
             $transaction->user_id = $payment->user_id;
             $transaction->amount = $txAmount;
-            $transaction->type = "Deposit";
+            $transaction->type = "Card Payment";
             $transaction->status = true;
             $transaction->sum = "in";
             $transaction->save();
@@ -266,9 +274,7 @@ class PaymentController extends Controller
         if ($cardOrder->type == 'custom') {
             $custom1_cost = env('CUSTOM_DESIGN_COST');
         }
-
         // getting pending Payment who already inserted
-        //$user = User::find(session('user')->id);
         $user = User::find($cardOrder->user_id);
         $pendingPayment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->latest()->first();
         if ($pendingPayment) {
@@ -277,13 +283,17 @@ class PaymentController extends Controller
             //$tranId =  $transactionIdAttempt;
             $pendingPayment->transactionId = $transactionIdAttempt;
             $pendingPayment->save();
-            $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
-            $failureReason = $data->responseMsg;
+            // $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
+            $data = apiHook($amount, $cardOrder->payment_type, $transactionIdAttempt,$cardOrder->mobile);
             if ($data->responseCode != 2001) {
-                Log::info("Invalid Status.");
+                $failureReason = $data->params->description;
                 return view('payments.failed',  compact('failureReason'));
             }
-            return view('payments.init', compact('data'));
+            else{
+                //return view('payments.init', compact('data'));
+                $api_success = apiSuccess($data);
+                return view('payments.success');
+            }
         } else {
             $transactionIdAttempt = transactionId();
             $amount = $cardOrder->pricing->price + env('SHIPPING_COST') + $custom1_cost;
@@ -295,12 +305,17 @@ class PaymentController extends Controller
             $payment->amount = $cardOrder->pricing->price;
             $payment->transactionId = $transactionIdAttempt;
             $payment->save();
-            $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
+            // $data = hook($amount, $cardOrder->payment_type, $transactionIdAttempt);
+            $data = apiHook($amount, $cardOrder->payment_type, $transactionIdAttempt,$cardOrder->mobile);
             if ($data->responseCode != 2001) {
-                Log::info("Invalid Status.");
+                $failureReason = $data->params->description;
                 return view('payments.failed',  compact('failureReason'));
             }
-            return view('payments.init', compact('data'));
+            else{
+                $api_success = apiSuccess($data);
+                return view('payments.success');
+            }
+            // return view('payments.init', compact('data'));
             //return redirect()->back()->withErrors('You have no pending payment, Please Contact us for more information');
         }
     }
@@ -308,9 +323,9 @@ class PaymentController extends Controller
 
     public function edahab(Request $request)
     {
-        info("WebHook Reached.");
+        info("Edahab WebHook Reached.");
 
-        info("WebHook Data." . $request);
+        info("Edahab WebHook Data." . $request);
         info("Getting This User Invoice Id");
         $payment = payment::where('user_id', auth()->user()->id)->where('status', 'pending')->firstOrFail();
 

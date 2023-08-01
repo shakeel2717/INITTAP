@@ -133,13 +133,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile">Mobile Number</label>
-                                            <input type="text" class="form-control" id="mobile" name="mobile"
+                                            <input type="text" class="form-control" id="mobile" name="mobile" 
                                                 placeholder="Your Mobile Number">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col mx-auto">
+                                         <h3>F.G: Fadlan lacag bixin EVCPlus ka aqbal mobile kaaga adigo raacaya tilaamaha kuusoo dhaca, Mahadsanid</h3>
                                         <h2>Payment Receipt</h2>
                                         <div class="card-body" style="background-color: rgb(238, 236, 236);">
                                             <div class="d-flex">
@@ -181,9 +182,9 @@
                                     </div>
                                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                                     <div class="col-md-6">
+                                        <div id='loader'></div>
                                         <button type="submit" id="checkout-button"
-                                            class="btn btn-lg btn-block btn-primary">Proceed to
-                                            Checkout</button>
+                                            class="btn btn-lg btn-block btn-primary">Proceed to Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -259,6 +260,13 @@
         $(document).on('ready', function() {
             $('.js-file-attach').each(function() {
                 var customFile = new HSFileAttach($(this)).init();
+            });
+        });
+    </script>
+    <script>
+        $(function() {
+            $( "form" ).submit(function() {
+                $('#loader').show();
             });
         });
     </script>

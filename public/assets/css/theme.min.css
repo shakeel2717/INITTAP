@@ -5662,12 +5662,12 @@ input[type=submit].btn-block {
 }
 
 .nfc-card {
-    width:28rem;
+    width: 28rem;
 }
 
 @media (max-width:425px) {
     .nfc-card {
-        width:22rem;
+        width: 22rem;
     }
 }
 
@@ -14483,7 +14483,7 @@ a.text-dark:hover {
     }
 
     abbr[title]::after {
-        content: " ("attr(title) ")"
+        content: " (" attr(title) ")"
     }
 
     pre {
@@ -29164,4 +29164,16 @@ a:hover .text-hover-primary {
 .tagify.tagify-form-control-list {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0
+}
+
+#loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75) url("/assets/brand/ajax-loader.gif") no-repeat center center;
+    z-index: 99999;
 }

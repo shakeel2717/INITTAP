@@ -94,6 +94,7 @@
                     </div>
                     <form action="{{ route('api.attempt') }}" method="POST">
                         @csrf
+                        <div id='loader'></div>
                         <button class="btn btn-primary" type="submit">Pay Now</button>
                     </form>
                 </div>
@@ -119,3 +120,13 @@
         </div>
     </div>
 @endif
+@section('footer')
+
+    <script>
+        $(function() {
+            $( "form" ).submit(function() {
+                $('#loader').show();
+            });
+        });
+    </script>
+@endsection
