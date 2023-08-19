@@ -83,9 +83,17 @@ function hook($amount, $type, $referenceId)
         )
     );
     $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    //Log::info("Response.". $result);
-    $response = json_decode($result);
+    try{
+        $result = file_get_contents($url, false, $context);
+        Log::info("Response.". $result);
+        $response = json_decode($result);
+    }
+    catch(Exception $e){
+        Log::info("Exception happened.". $e->getMessage());
+        $response = new \stdClass();
+        $response->responseCode=400;
+        $response->responseMsg = "Your Payment failed, please try again";
+    }
     return $response;
 }
 
@@ -109,18 +117,15 @@ function apiHook($amount, $type, $referenceId, $mobile)
     $datas->serviceParams->apiUserId = $storeId;
     $datas->serviceParams->apiKey = $key;
     $datas->serviceParams->paymentMethod = $type;
-    //$datas->serviceParams->hppSuccessCallbackUrl = env('hppSuccessCallbackUrl');
-    //$datas->serviceParams->hppFailureCallbackUrl = env('hppFailureCallbackUrl');
-    //$datas->serviceParams->hppRespDataFormat = "2";
     $datas->serviceParams->payerInfo = new \stdClass();
     $datas->serviceParams->payerInfo->accountNo = $mobile_number;
-    $datas->serviceParams->payerInfo->accountPwd = "1212";
+    //$datas->serviceParams->payerInfo->accountPwd = "1212";
     $datas->serviceParams->transactionInfo = new \stdClass();
     $datas->serviceParams->transactionInfo->referenceId = $referenceId;
     $datas->serviceParams->transactionInfo->invoiceId = $referenceId;
     $datas->serviceParams->transactionInfo->amount = $amount;
     $datas->serviceParams->transactionInfo->currency = "USD";
-    $datas->serviceParams->transactionInfo->description = "Inittap Payment of ".$referenceId;
+    $datas->serviceParams->transactionInfo->description = "Inittap Payment of ".$referenceId.' For '.$mobile_number;
     $url = $hpp_url;
     Log::info("Request: ");
     Log::info(print_r($datas, true));
@@ -129,7 +134,9 @@ function apiHook($amount, $type, $referenceId, $mobile)
             "verify_peer"=>false,
             "verify_peer_name"=>false,
         ),
+       
         'http' => array(
+            'ignore_errors' => true,
             'method'  => 'POST',
             'content' => json_encode($datas),
             'header' =>  "Content-Type: application/json\r\n" .
@@ -137,9 +144,18 @@ function apiHook($amount, $type, $referenceId, $mobile)
         )
     );
     $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    Log::info("Response.". $result);
-    $response = json_decode($result);
+    try{
+        $result = file_get_contents($url, false, $context);
+        Log::info("Response.". $result);
+        $response = json_decode($result);
+    }
+    catch(Exception $e){
+        Log::info("Exception happened.". $e->getMessage());
+        $response = new \stdClass();
+        $response->responseCode=400;
+        $response->responseMsg = "Your Payment failed, please try again";
+    }
+   
     return $response;
 }
 
@@ -179,9 +195,17 @@ function apiCommitHook(stdClass $request)
         )
     );
     $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    Log::info("Response.". $result);
-    $response = json_decode($result);
+    try{
+        $result = file_get_contents($url, false, $context);
+        Log::info("Response.". $result);
+        $response = json_decode($result);
+    }
+    catch(Exception $e){
+        Log::info("Exception happened.". $e->getMessage());
+        $response = new \stdClass();
+        $response->responseCode=400;
+        $response->responseMsg = "Your Payment failed, please try again";
+    }
     return $response;
 }
 
@@ -249,7 +273,7 @@ function apiSuccess(stdClass $request)
             Log::info("Card Order Activated.");
 
             // sending Email to this user
-            //Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+            Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
 
 
             // checking if this user has valid refer
