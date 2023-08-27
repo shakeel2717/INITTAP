@@ -118,7 +118,7 @@ function apiHook($amount, $type, $referenceId, $mobile)
     $datas->serviceParams->apiKey = $key;
     $datas->serviceParams->paymentMethod = $type;
     $datas->serviceParams->payerInfo = new \stdClass();
-    $datas->serviceParams->payerInfo->accountNo = $mobile_number;
+    $datas->serviceParams->payerInfo->accountNo = "252".substr($mobile_number,-9);
     //$datas->serviceParams->payerInfo->accountPwd = "1212";
     $datas->serviceParams->transactionInfo = new \stdClass();
     $datas->serviceParams->transactionInfo->referenceId = $referenceId;
@@ -223,6 +223,8 @@ function apiSuccess(stdClass $request)
 
         $payment->m_transactionId = $request->params->transactionId;
         $payment->status = 'complete';
+        $payment->responseCode = $request->responseCode;
+        $payment->responseMsg = $request->responseMsg;
         $payment->save();
         Log::info("Payment Record Saved.");
 
