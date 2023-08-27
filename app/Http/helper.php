@@ -275,7 +275,7 @@ function apiSuccess(stdClass $request)
             Log::info("Card Order Activated.");
 
             // sending Email to this user
-            Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
+           // Mail::to(Auth::user()->email)->send(new OrderInvoice($cardOrder));
 
 
             // checking if this user has valid refer

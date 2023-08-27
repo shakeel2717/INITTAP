@@ -14,23 +14,27 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Payment ID</th>
+                                <th scope="col">User ID</th>
+                                <th scope="col">Corporate ID ID</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Call Back URL</th>
-                                <th scope="col">HPP Token</th>
-                                <th scope="col">HRDF</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">TransactionId</th>
+                                <th scope="col">Response Message</th>
                                 <th scope="col">Create Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($payments as $payment)
                                 <tr>
-                                    <td>{{ $payment->payment_id }}</td>
+                                    <td>{{ $payment->id }}</td>
+                                    <td>{{ $payment->user_id }}</td>
+                                    <td>{{ $payment->corporate_id }}</td>
                                     <td>{{ $payment->description }}</td>
                                     <td>{{ number_format($payment->amount,2) }}</td>
-                                    <td>{{ $payment->callbackurl }}</td>
-                                    <td>{{ $payment->hppResultToken }}</td>
-                                    <td>{{ $payment->HRDF }}</td>
+                                    <td>{{ $payment->status }}</td>
+                                    <td>{{ $payment->m_transactionId }}</td>
+                                    <td>{{ $payment->responseMsg }}</td>
                                     <td>{{ $payment->created_at }}</td>
                                 </tr>
                             @empty

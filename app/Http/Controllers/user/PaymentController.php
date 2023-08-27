@@ -140,8 +140,9 @@ class PaymentController extends Controller
 
         $payment = new payment();
         $payment->user_id = $user->id;
-        $payment->description = "Due Payment";
+        $payment->description = "Card Payment, Paying: ".$validatedData['mobile'];
         $payment->type = 'user';
+        $payment->status = 'pending';
         $payment->payment_type = $validatedData['payment_type'];
         $payment->amount = $amount;
         $payment->transactionId = $transactionId;
@@ -154,6 +155,8 @@ class PaymentController extends Controller
         if ($data->responseCode != 2001) {
             Log::info(print_r($data, true));
             $failureReason = $data->responseMsg;
+            $payment->responseMsg = $data->responseMsg;
+            $payment->save();
             Log::info("Invalid Status.");
             return view('payments.failed',  compact('failureReason'));
         }
@@ -288,6 +291,8 @@ class PaymentController extends Controller
             $data = apiHook($amount, $cardOrder->payment_type, $transactionIdAttempt,$cardOrder->mobile);
             if ($data->responseCode != 2001) {
                 $failureReason = $data->responseMsg;
+                $pendingPayment->responseMsg = $data->responseMsg;
+                $pendingPayment->save();
                 return view('payments.failed',  compact('failureReason'));
             }
             else{
