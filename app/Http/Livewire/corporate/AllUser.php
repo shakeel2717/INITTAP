@@ -113,11 +113,6 @@ final class AllUser extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->sortable()
-                ->editOnClick()
-                ->searchable()
-                ->makeInputText(),
             Column::make('NAME', 'name')
                 ->sortable()
                 ->editOnClick()
