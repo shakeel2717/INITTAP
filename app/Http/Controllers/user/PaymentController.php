@@ -71,7 +71,7 @@ class PaymentController extends Controller
         ]);
         Log::info("Card Order Placed or Updated.");
         // sending Email to this user
-        //Mail::to($user->email)->send(new OrderPlaced($task));
+        Mail::to($user->email)->send(new OrderPlaced($task));
         // updating the record in profile
         $profile = profile::updateOrCreate(
             [
